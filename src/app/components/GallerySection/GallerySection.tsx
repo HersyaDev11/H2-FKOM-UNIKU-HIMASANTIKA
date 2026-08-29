@@ -1,0 +1,152 @@
+'use client';
+
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { CoverflowCarousel, type CoverflowSlide } from './coverflow-carousel';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+// Curated Gallery Slides: Aktivitas Praktik & Pembelajaran Mahasiswa Teknik Informatika UMC (Symmetrical & Clean)
+const GALLERY_SLIDES: CoverflowSlide[] = [
+  {
+    src: '/gallery/praktik-mahasiswa-1.jpeg',
+    alt: 'Mahasiswa Teknik Informatika UMC sedang Praktik Pemrograman di Laboratorium Komputer',
+    title: 'Praktikum Pemrograman Komputer',
+    subtitle: 'Aktivitas Coding & Logika Perangkat Lunak',
+    meta: [
+      { label: 'Aktivitas', value: 'Coding & Algoritma' },
+      { label: 'Fasilitas', value: 'Laboratorium TI' },
+      { label: 'Peserta', value: 'Mahasiswa TI' },
+    ],
+  },
+  {
+    src: '/gallery/pembelajaran-jaringan.jpeg',
+    alt: 'Mahasiswa Teknik Informatika sedang Praktik Pembelajaran Jaringan Komputer',
+    title: 'Praktik Jaringan & Komputasi',
+    subtitle: 'Hands-on Pengkabelan & Konfigurasi Jaringan',
+    meta: [
+      { label: 'Fokus', value: 'Jaringan Komputer' },
+      { label: 'Metode', value: 'Praktik Langsung' },
+      { label: 'Ruang', value: 'Laboratorium TI' },
+    ],
+  },
+  {
+    src: '/gallery/pembelajaran-kuliah.jpeg',
+    alt: 'Proses Pembelajaran Interaktif dan Kolaboratif Mahasiswa Teknik Informatika UMC',
+    title: 'Suasana Perkuliahan Interaktif',
+    subtitle: 'Proses Belajar Mengajar Teori & Diskusi Kelas',
+    meta: [
+      { label: 'Metode', value: 'Belajar Kolaboratif' },
+      { label: 'Fasilitas', value: 'Ruang Perkuliahan' },
+      { label: 'Atmosfer', value: 'Aktif & Dinamis' },
+    ],
+  },
+  {
+    src: '/gallery/praktik-mahasiswa-2.jpeg',
+    alt: 'Praktikum Rekayasa Perangkat Lunak dan Pemrograman Web Mahasiswa TI UMC',
+    title: 'Pengembangan Proyek Perangkat Lunak',
+    subtitle: 'Implementasi Praktis Rekayasa Aplikasi Mahasiswa',
+    meta: [
+      { label: 'Aktivitas', value: 'Pengembangan Aplikasi' },
+      { label: 'Metode', value: 'Praktikum Proyek' },
+      { label: 'Peralatan', value: 'Workstation PC' },
+    ],
+  },
+  {
+    src: '/gallery/lab-komputer.jpg',
+    alt: 'Fasilitas Laboratorium Komputer Teknik Informatika UMC',
+    title: 'Fasilitas Laboratorium Komputer',
+    subtitle: 'Ruang Praktik & Eksplorasi Digital Mahasiswa',
+    meta: [
+      { label: 'Fasilitas', value: 'Laboratorium Terpadu' },
+      { label: 'Akses', value: 'Praktikum & Riset' },
+      { label: 'Perangkat', value: 'Workstation PC' },
+    ],
+  },
+  {
+    src: '/gallery/ujian-semester.jpg',
+    alt: 'Evaluasi dan Ujian Praktik Kompetensi Mahasiswa Teknik Informatika UMC',
+    title: 'Evaluasi & Ujian Kompetensi',
+    subtitle: 'Pengujian Pemahaman Teori & Keterampilan Praktik',
+    meta: [
+      { label: 'Kegiatan', value: 'Ujian Kompetensi' },
+      { label: 'Standar', value: 'Mutu Akademik' },
+      { label: 'Tujuan', value: 'Evaluasi Capaian' },
+    ],
+  },
+];
+
+export default function GallerySection() {
+  const containerRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      // Refresh ScrollTrigger to ensure smooth transitions
+      ScrollTrigger.refresh();
+
+      // Subtle scroll reveal
+      gsap.from('.gallery-header', {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+      });
+    },
+    { scope: containerRef }
+  );
+
+  return (
+    <section
+      ref={containerRef}
+      id="galeri-aktivitas"
+      className="relative z-20 w-full bg-[#111111] text-[#FFFFFF] py-16 sm:py-24 md:py-32 lg:py-40 select-none font-['Mori',sans-serif] tracking-[-0.01em] border-t border-neutral-800/80 overflow-hidden"
+      style={{ fontFamily: "'Mori', sans-serif" }}
+    >
+      {/* Clear Architectural Grid on Solid #111111 Background */}
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.07)_1px,transparent_1px)] bg-[size:4rem_4rem]"
+        aria-hidden="true"
+      />
+
+      <div className="w-full max-w-[120rem] mx-auto px-5 sm:px-10 md:px-16 lg:px-24 xl:px-32">
+        
+        {/* Section Header: Responsive Editorial Style */}
+        <div className="gallery-header max-w-4xl xl:max-w-5xl mb-8 sm:mb-12 md:mb-16 lg:mb-20">
+          <h2
+            className="text-[26px] leading-[34px] sm:text-[44px] sm:leading-[54px] md:text-[58px] md:leading-[68px] lg:text-[72px] lg:leading-[86px] xl:text-[80.9999px] xl:leading-[97.1999px] font-normal tracking-[-0.01em] text-[#FFFFFF] font-['Mori',sans-serif]"
+            style={{ fontFamily: "'Mori', sans-serif" }}
+          >
+            Eksplorasi ruang praktikum, aktivitas, dan atmosfer belajar kami.
+          </h2>
+        </div>
+
+        {/* 21st.dev Coverflow Carousel Component */}
+        <div className="w-full">
+          <CoverflowCarousel
+            slides={GALLERY_SLIDES}
+            rotate={38}
+            depth={0.55}
+            perspective={2.8}
+            cardWidth="clamp(220px, 32vw, 380px)"
+            gap={0.07}
+            loop={true}
+            showCaption={true}
+            showPagination={false}
+            showNavigation={true}
+            cardClassName="rounded-2xl sm:rounded-3xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border border-white/10"
+          />
+        </div>
+
+      </div>
+    </section>
+  );
+}
