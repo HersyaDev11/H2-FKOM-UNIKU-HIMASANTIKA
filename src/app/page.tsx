@@ -1,5 +1,6 @@
-import QuotesSection from "./components/QuotesSection/QuotesSection";
+import HeroSection from "./components/HeroSection/HeroSection";
 import FactsSection from "./components/FactsSection/FactsSection";
+import QuotesSection from "./components/QuotesSection/QuotesSection";
 import PeminatanSection from "./components/PeminatanSection/PeminatanSection";
 import GallerySection from "./components/GallerySection/GallerySection";
 import TestimonialsSection from "./components/TestimonialsSection/TestimonialsSection";
@@ -7,6 +8,9 @@ import TestimonialsSection from "./components/TestimonialsSection/TestimonialsSe
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#111111] text-[#FFFFFF]">
+      {/* 0. Kinetic Editorial Hero Section (21st.dev Style) */}
+      <HeroSection />
+
       {/* 1. 5 Pilar Keunggulan & Fakta Akademik */}
       <FactsSection />
 
@@ -24,4 +28,3 @@ export default function Home() {
     </main>
   );
 }
-
