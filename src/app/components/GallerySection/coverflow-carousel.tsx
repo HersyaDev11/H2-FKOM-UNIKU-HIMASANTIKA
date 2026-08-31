@@ -312,17 +312,37 @@ export function CoverflowCarousel({
               type="button"
               aria-label="Previous slide"
               onClick={() => nudge(-1)}
-              className="absolute left-1 sm:left-4 top-1/2 z-[200] -translate-y-1/2 rounded-full bg-neutral-900/90 p-2 sm:p-3 text-white shadow-xl backdrop-blur-md transition-all hover:bg-[#DF1A22] hover:text-white hover:scale-105 active:scale-95 border border-neutral-700/80"
+              className="absolute left-2 sm:left-6 top-1/2 z-[200] -translate-y-1/2 grid h-12 w-12 cursor-pointer place-items-center rounded-full border border-white/20 bg-[#111111] text-white transition-all duration-200 hover:bg-[#24272c] hover:border-white/35 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 shadow-2xl"
             >
-              <ChevronLeft className="size-4 sm:size-6" />
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 12 12"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M7.5 2.5 3.5 6l4 3.5" />
+              </svg>
             </button>
             <button
               type="button"
               aria-label="Next slide"
               onClick={() => nudge(1)}
-              className="absolute right-1 sm:right-4 top-1/2 z-[200] -translate-y-1/2 rounded-full bg-neutral-900/90 p-2 sm:p-3 text-white shadow-xl backdrop-blur-md transition-all hover:bg-[#DF1A22] hover:text-white hover:scale-105 active:scale-95 border border-neutral-700/80"
+              className="absolute right-2 sm:right-6 top-1/2 z-[200] -translate-y-1/2 grid h-12 w-12 cursor-pointer place-items-center rounded-full border border-white/20 bg-[#111111] text-white transition-all duration-200 hover:bg-[#24272c] hover:border-white/35 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 shadow-2xl"
             >
-              <ChevronRight className="size-4 sm:size-6" />
+              <svg
+                className="h-4 w-4"
+                viewBox="0 0 12 12"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m4.5 2.5 4 3.5-4 3.5" />
+              </svg>
             </button>
           </>
         )}
@@ -363,7 +383,7 @@ export function CoverflowCarousel({
       )}
 
       {showPagination && (
-        <div className="mt-4 sm:mt-6 flex items-center justify-center gap-2">
+        <div className="mt-4 sm:mt-6 flex items-center justify-center gap-2.5">
           {slides.map((_, index) => (
             <button
               key={index}
@@ -372,10 +392,10 @@ export function CoverflowCarousel({
               aria-current={index === selected}
               onClick={() => goTo(index)}
               className={cn(
-                "h-2 rounded-full transition-all duration-300 cursor-pointer",
+                "h-2.5 shrink-0 rounded-full transition-all duration-300 cursor-pointer",
                 index === selected
                   ? "w-8 bg-[#DF1A22]"
-                  : "w-2 bg-white/20 hover:bg-white/40",
+                  : "w-2.5 bg-white/25 hover:bg-white/50",
               )}
             />
           ))}

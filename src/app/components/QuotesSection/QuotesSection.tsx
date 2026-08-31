@@ -45,7 +45,6 @@ export default function QuotesSection() {
                 stroke="#1E90FF"
                 strokeWidth="4"
                 strokeLinecap="round"
-                strokeLinejoin="round"
                 strokeDasharray="470"
                 strokeDashoffset="470"
                 style={{ strokeDasharray: 470, strokeDashoffset: 470 }}
@@ -71,7 +70,7 @@ export default function QuotesSection() {
                   <rect x="-38" y="-12" width="76" height="24" rx="12" transform="rotate(45)" fill="#00e64f" />
                   <rect x="-12" y="-38" width="24" height="76" rx="12" transform="rotate(45)" fill="#00e64f" />
                   {/* Center Core Dot */}
-                  <circle cx="0" cy="0" r="10" fill="#fffce1" />
+                  <circle cx="0" cy="0" r="10" fill="#FFFFFF" />
                 </g>
               </g>
 
@@ -104,7 +103,7 @@ export default function QuotesSection() {
                   opacity: 0,
                 }}
               >
-                <circle cx="90" cy="95" r="5" fill="#fffce1" />
+                <circle cx="90" cy="95" r="5" fill="#FFFFFF" />
                 <circle cx="90" cy="95" r="8" stroke="#1E90FF" strokeWidth="1.5" opacity="0.6" />
               </g>
 
@@ -132,7 +131,7 @@ export default function QuotesSection() {
             {singleWord.split('').map((char, cIndex) => (
               <span
                 key={cIndex}
-                className="highlight-char inline-block will-change-transform text-[#fffce1]"
+                className="highlight-char inline-block will-change-transform text-[#FFFFFF]"
                 style={{ display: 'inline-block' }}
               >
                 {char}
@@ -159,7 +158,7 @@ export default function QuotesSection() {
       gsap.set('.flair-stem', { strokeDasharray: 470, strokeDashoffset: 470 });
       gsap.set('.flair-flower', { scale: 0, opacity: 0, transformOrigin: '0px 0px' });
       gsap.set(satelliteElements, { scale: 0, opacity: 0, rotate: -45 });
-      gsap.set([membimbingChars, inovasiChars, talentaChars], { color: '#fffce1', y: 0 });
+      gsap.set([membimbingChars, inovasiChars, talentaChars], { color: '#FFFFFF', y: 0 });
 
       // Word 1 (membimbing) with stem & flower drawing
       const createMembimbingFlairTimeline = () => {
@@ -169,7 +168,7 @@ export default function QuotesSection() {
         tl.set('.flair-stem', { strokeDasharray: 470, strokeDashoffset: 470 }, 0);
         tl.set('.flair-flower', { scale: 0, opacity: 0, rotateZ: -45, transformOrigin: '0px 0px' }, 0);
         tl.set(satelliteElements, { scale: 0, opacity: 0, rotate: -45 }, 0);
-        tl.set(membimbingChars, { color: '#fffce1', y: 0 }, 0);
+        tl.set(membimbingChars, { color: '#FFFFFF', y: 0 }, 0);
 
         // 1. Stem draws smoothly
         tl.to(
@@ -209,13 +208,13 @@ export default function QuotesSection() {
           0.7
         );
 
-        // 4. Flowing color wave on letters: flows into #1E90FF then returns to #fffce1
+        // 4. Flowing color wave on letters: flows into #1E90FF then returns to #FFFFFF
         tl.to(
           membimbingChars,
           {
             keyframes: [
               { color: '#1E90FF', duration: 0.5, ease: 'power2.inOut' },
-              { color: '#fffce1', duration: 0.5, ease: 'power2.inOut', delay: 0.3 },
+              { color: '#FFFFFF', duration: 0.5, ease: 'power2.inOut', delay: 0.3 },
             ],
             stagger: {
               each: 0.04,
@@ -264,18 +263,18 @@ export default function QuotesSection() {
         return tl;
       };
 
-      // Flowing color wave that returns back to #fffce1 for secondary keywords
+      // Flowing color wave that returns back to #FFFFFF for secondary keywords
       const createWordColorTimeline = (chars: NodeListOf<Element>, targetColor: string) => {
         const tl = gsap.timeline();
 
-        tl.set(chars, { color: '#fffce1', y: 0 }, 0);
+        tl.set(chars, { color: '#FFFFFF', y: 0 }, 0);
 
         tl.to(
           chars,
           {
             keyframes: [
               { color: targetColor, duration: 0.5, ease: 'power2.inOut' },
-              { color: '#fffce1', duration: 0.5, ease: 'power2.inOut', delay: 0.3 },
+              { color: '#FFFFFF', duration: 0.5, ease: 'power2.inOut', delay: 0.3 },
             ],
             stagger: {
               each: 0.035,
@@ -342,7 +341,7 @@ export default function QuotesSection() {
     <section
       ref={containerRef}
       id="quotes-section"
-      className="sticky top-0 z-10 w-full min-h-screen flex flex-col items-center justify-center bg-[#0e100f] text-[#fffce1] overflow-hidden select-none"
+      className="sticky top-0 z-10 w-full min-h-screen flex flex-col items-center justify-center bg-[#0e100f] text-[#FFFFFF] overflow-hidden select-none"
     >
       {/* Wide container that centers the entire block in the screen */}
       <div className="w-full max-w-[120rem] mx-auto px-5 sm:px-12 md:px-16 lg:px-24 xl:px-32 py-6 sm:py-8 md:py-10 flex flex-col items-center justify-center">
@@ -350,10 +349,10 @@ export default function QuotesSection() {
         {/* Centered bounding box with internal left-aligned content lifted slightly upward */}
         <div className="w-full max-w-fit text-left flex flex-col items-start -translate-y-6 sm:-translate-y-10 md:-translate-y-12 lg:-translate-y-16">
           
-          {/* Subtitle with bright #fffce1 and enlarged high-profile SVG Braces */}
+          {/* Subtitle with bright #FFFFFF and enlarged high-profile SVG Braces */}
           <div className="relative inline-flex items-center gap-3 sm:gap-4 mb-12 sm:mb-16 md:mb-20 -mt-6 sm:-mt-8 md:-mt-10">
             {/* Left SVG Brace - Height enlarged across all screen sizes */}
-            <div className="text-[#fffce1] flex items-center h-10 sm:h-14 md:h-16 lg:h-20">
+            <div className="text-[#FFFFFF] flex items-center h-10 sm:h-14 md:h-16 lg:h-20">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -368,13 +367,13 @@ export default function QuotesSection() {
               </svg>
             </div>
 
-            {/* Subtitle Label in bright #fffce1 - Text size preserved untouched */}
-            <p className="text-[16px] sm:text-[21px] md:text-[24px] lg:text-[26px] font-medium leading-[1.2] tracking-[-0.01em] text-[#fffce1]">
+            {/* Subtitle Label in bright #FFFFFF - Text size preserved untouched */}
+            <p className="text-[16px] sm:text-[21px] md:text-[24px] lg:text-[26px] font-medium leading-[1.2] tracking-[-0.01em] text-[#FFFFFF]">
               Teknik Informatika UMC
             </p>
 
             {/* Right SVG Brace - Height enlarged across all screen sizes */}
-            <div className="text-[#fffce1] flex items-center h-10 sm:h-14 md:h-16 lg:h-20">
+            <div className="text-[#FFFFFF] flex items-center h-10 sm:h-14 md:h-16 lg:h-20">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -391,7 +390,7 @@ export default function QuotesSection() {
           </div>
 
           {/* GSAP Body-XL Headline Typography: Rata Kiri */}
-          <h2 className="text-[33px] leading-[43px] sm:text-[48px] sm:leading-[58px] md:text-[60px] md:leading-[72px] lg:text-[72px] lg:leading-[86px] xl:text-[80.9999px] xl:leading-[97.1999px] font-normal tracking-[-0.01em] text-[#fffce1] text-left">
+          <h2 className="text-[33px] leading-[43px] sm:text-[48px] sm:leading-[58px] md:text-[60px] md:leading-[72px] lg:text-[72px] lg:leading-[86px] xl:text-[80.9999px] xl:leading-[97.1999px] font-normal tracking-[-0.01em] text-[#FFFFFF] text-left">
             <span className="inline lg:block">
               Teknik Informatika UMC{' '}
               {renderInteractiveWord('membimbing', wordMembimbingRef, true)}{' '}

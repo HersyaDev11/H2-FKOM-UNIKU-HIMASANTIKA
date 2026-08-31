@@ -13,7 +13,7 @@ if (typeof window !== 'undefined') {
 // Curated Gallery Slides: Aktivitas Praktik & Pembelajaran Mahasiswa Teknik Informatika UMC (Symmetrical & Clean)
 const GALLERY_SLIDES: CoverflowSlide[] = [
   {
-    src: '/gallery/praktik-mahasiswa-1.jpeg',
+    src: '/gallery/praktik-mahasiswa-1.webp',
     alt: 'Mahasiswa Teknik Informatika UMC sedang Praktik Pemrograman di Laboratorium Komputer',
     title: 'Praktikum Pemrograman Komputer',
     subtitle: 'Aktivitas Coding & Logika Perangkat Lunak',
@@ -24,7 +24,7 @@ const GALLERY_SLIDES: CoverflowSlide[] = [
     ],
   },
   {
-    src: '/gallery/pembelajaran-jaringan.jpeg',
+    src: '/gallery/pembelajaran-jaringan.webp',
     alt: 'Mahasiswa Teknik Informatika sedang Praktik Pembelajaran Jaringan Komputer',
     title: 'Praktik Jaringan & Komputasi',
     subtitle: 'Hands-on Pengkabelan & Konfigurasi Jaringan',
@@ -35,7 +35,7 @@ const GALLERY_SLIDES: CoverflowSlide[] = [
     ],
   },
   {
-    src: '/gallery/pembelajaran-kuliah.jpeg',
+    src: '/gallery/pembelajaran-kuliah.webp',
     alt: 'Proses Pembelajaran Interaktif dan Kolaboratif Mahasiswa Teknik Informatika UMC',
     title: 'Suasana Perkuliahan Interaktif',
     subtitle: 'Proses Belajar Mengajar Teori & Diskusi Kelas',
@@ -46,7 +46,7 @@ const GALLERY_SLIDES: CoverflowSlide[] = [
     ],
   },
   {
-    src: '/gallery/praktik-mahasiswa-2.jpeg',
+    src: '/gallery/praktik-mahasiswa-2.webp',
     alt: 'Praktikum Rekayasa Perangkat Lunak dan Pemrograman Web Mahasiswa TI UMC',
     title: 'Pengembangan Proyek Perangkat Lunak',
     subtitle: 'Implementasi Praktis Rekayasa Aplikasi Mahasiswa',
@@ -57,7 +57,7 @@ const GALLERY_SLIDES: CoverflowSlide[] = [
     ],
   },
   {
-    src: '/gallery/lab-komputer.jpg',
+    src: '/gallery/lab-komputer.webp',
     alt: 'Fasilitas Laboratorium Komputer Teknik Informatika UMC',
     title: 'Fasilitas Laboratorium Komputer',
     subtitle: 'Ruang Praktik & Eksplorasi Digital Mahasiswa',
@@ -68,7 +68,7 @@ const GALLERY_SLIDES: CoverflowSlide[] = [
     ],
   },
   {
-    src: '/gallery/ujian-semester.jpg',
+    src: '/gallery/ujian-semester.webp',
     alt: 'Evaluasi dan Ujian Praktik Kompetensi Mahasiswa Teknik Informatika UMC',
     title: 'Evaluasi & Ujian Kompetensi',
     subtitle: 'Pengujian Pemahaman Teori & Keterampilan Praktik',
@@ -111,9 +111,15 @@ export default function GallerySection() {
       className="relative z-20 w-full bg-[#111111] text-[#FFFFFF] py-16 sm:py-24 md:py-32 lg:py-40 select-none font-['Mori',sans-serif] tracking-[-0.01em] border-t border-neutral-800/80 overflow-hidden"
       style={{ fontFamily: "'Mori', sans-serif" }}
     >
-      {/* Clear Architectural Grid on Solid #111111 Background */}
+      {/* Clear Architectural Grid with Smooth Bottom Fade (Zero Hard Cut into Next Section) */}
       <div
-        className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.07)_1px,transparent_1px)] bg-[size:4rem_4rem]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.07)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:linear-gradient(to_bottom,black_45%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_45%,transparent_100%)]"
+        aria-hidden="true"
+      />
+
+      {/* Soft Atmospheric Dissolve into Solid #111111 */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#111111] via-[#111111]/80 to-transparent -z-10"
         aria-hidden="true"
       />
 
