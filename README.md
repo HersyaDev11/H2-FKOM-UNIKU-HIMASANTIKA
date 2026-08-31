@@ -1,5 +1,8 @@
 # Landing Page - Program Studi Teknik Informatika
 
+**Tim Pengembang (H2-FKOM):**  
+👨‍💻 **Hersya Yudina** & **Haqil Abdillah**
+
 Repositori ini berisi kode sumber untuk **Landing Page Program Studi Teknik Informatika** yang dibangun untuk keperluan kompetisi desain dan pengembangan web.
 
 ## 🎨 Konsep Desain
