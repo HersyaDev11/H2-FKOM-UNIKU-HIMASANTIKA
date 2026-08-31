@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar/Navbar";
 import HeroSection from "./components/HeroSection/HeroSection";
+import VisiMisiSection from "./components/VisiMisiSection/VisiMisiSection";
 import FactsSection from "./components/FactsSection/FactsSection";
 import QuotesSection from "./components/QuotesSection/QuotesSection";
 import PeminatanSection from "./components/PeminatanSection/PeminatanSection";
@@ -18,6 +19,8 @@ export default function Home() {
       {/* 0. Kinetic Editorial Hero Section (21st.dev Style) */}
       <HeroSection />
 
+      <VisiMisiSection />
+
       {/* 1. 5 Pilar Keunggulan & Fakta Akademik */}
       <FactsSection />
 
@@ -32,7 +35,7 @@ export default function Home() {
 
       {/* 5. Section Testimoni Alumni Reel (Paling Akhir Tetap) */}
       <TestimonialsSection />
-      
+
       <MitraSection />
 
       <Footer />
