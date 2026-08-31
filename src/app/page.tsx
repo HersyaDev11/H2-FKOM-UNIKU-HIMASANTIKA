@@ -5,13 +5,14 @@ import QuotesSection from "./components/QuotesSection/QuotesSection";
 import PeminatanSection from "./components/PeminatanSection/PeminatanSection";
 import GallerySection from "./components/GallerySection/GallerySection";
 import TestimonialsSection from "./components/TestimonialsSection/TestimonialsSection";
+import MitraSection from "./components/MitraSection/MitraSection";
 import Footer from "./components/Footer/Footer";
 import Chatbot from "./components/Chatbot/Chatbot";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#111111] text-[#FFFFFF]">
-      
+
       <Navbar />
 
       {/* 0. Kinetic Editorial Hero Section (21st.dev Style) */}
@@ -31,6 +32,8 @@ export default function Home() {
 
       {/* 5. Section Testimoni Alumni Reel (Paling Akhir Tetap) */}
       <TestimonialsSection />
+      
+      <MitraSection />
 
       <Footer />
 
