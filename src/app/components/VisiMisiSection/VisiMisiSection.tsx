@@ -4,36 +4,22 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useLanguage } from '../../context/LanguageContext';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const VISI_ID = 'Menjadi Program Studi Teknik Informatika yang unggul, inovatif, dan terkemuka di tingkat nasional maupun global, berbasis nilai-nilai kecerdasan digital dan kewirausahaan.';
-const VISI_EN = 'To become an excellent, innovative, and leading Informatics Engineering Study Program at the national and global levels, based on the values of digital intelligence and entrepreneurship.';
+const VISI_TEXT = 'Menjadi Program Studi Teknik Informatika yang unggul, inovatif, dan terkemuka di tingkat nasional maupun global, berbasis nilai-nilai kecerdasan digital dan kewirausahaan.';
 
 const MISI = [
-  { 
-    id: "Menyelenggarakan pendidikan dan pengajaran berkualitas di bidang komputasi, AI, dan rekayasa perangkat lunak yang relevan dengan kebutuhan industri.", 
-    en: "To organize high-quality education and teaching in computing, AI, and software engineering relevant to industry needs." 
-  },
-  { 
-    id: "Melaksanakan dan mengembangkan penelitian inovatif yang berkontribusi pada kemajuan sains dan teknologi masa depan.", 
-    en: "To conduct and develop innovative research that contributes to the advancement of future science and technology." 
-  },
-  { 
-    id: "Melakukan pengabdian kepada masyarakat melalui solusi teknologi tepat guna yang memberikan dampak sosial dan ekonomi secara nyata.", 
-    en: "To carry out community service through appropriate technological solutions that provide real social and economic impact." 
-  }
+  "Menyelenggarakan pendidikan dan pengajaran berkualitas di bidang komputasi, AI, dan rekayasa perangkat lunak yang relevan dengan kebutuhan industri.", 
+  "Melaksanakan dan mengembangkan penelitian inovatif yang berkontribusi pada kemajuan sains dan teknologi masa depan.", 
+  "Melakukan pengabdian kepada masyarakat melalui solusi teknologi tepat guna yang memberikan dampak sosial dan ekonomi secara nyata."
 ];
 
 export default function VisiMisiSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const { lang } = useLanguage();
-
-  const visiText = lang === 'ID' ? VISI_ID : VISI_EN;
 
   useGSAP(
     () => {
@@ -137,7 +123,7 @@ export default function VisiMisiSection() {
 
       return () => clearTimeout(timer);
     },
-    { scope: sectionRef, dependencies: [lang] }
+    { scope: sectionRef }
   );
 
   return (
@@ -166,16 +152,16 @@ export default function VisiMisiSection() {
             
             <div className="visi-reveal inline-flex items-center justify-center px-8 py-3 rounded-full border border-white/10 bg-white/[0.03] mb-12 backdrop-blur-md">
               <span className="text-[12px] sm:text-[14px] font-bold tracking-[0.2em] text-[#DF1A22] uppercase">
-                {lang === 'ID' ? 'Visi Utama' : 'Core Vision'}
+                Visi Utama
               </span>
             </div>
             
             <h2 className="visi-reveal text-[36px] sm:text-[50px] md:text-[60px] lg:text-[70px] xl:text-[80px] leading-[1.1] font-normal tracking-[-0.02em] text-white">
-              "{visiText}"
+              "{VISI_TEXT}"
             </h2>
             
             <div className="visi-reveal mt-16 hidden lg:flex items-center gap-4 text-neutral-500 opacity-60">
-              <span className="text-[14px] uppercase tracking-widest">{lang === 'ID' ? 'Geser untuk Misi' : 'Scroll for Mission'}</span>
+              <span className="text-[14px] uppercase tracking-widest">Geser untuk Misi</span>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
@@ -188,10 +174,10 @@ export default function VisiMisiSection() {
           </div>
           <div className="misi-text relative z-10 max-w-4xl">
             <span className="text-[14px] font-bold tracking-[0.2em] text-[#DF1A22] uppercase block mb-8">
-              {lang === 'ID' ? 'Misi Pertama' : 'First Mission'}
+              Misi Pertama
             </span>
             <p className="text-[28px] sm:text-[40px] md:text-[50px] leading-[1.3] text-neutral-200 font-light">
-              {lang === 'ID' ? MISI[0].id : MISI[0].en}
+              {MISI[0]}
             </p>
           </div>
         </div>
@@ -203,10 +189,10 @@ export default function VisiMisiSection() {
           </div>
           <div className="misi-text relative z-10 max-w-4xl">
             <span className="text-[14px] font-bold tracking-[0.2em] text-[#DF1A22] uppercase block mb-8">
-              {lang === 'ID' ? 'Misi Kedua' : 'Second Mission'}
+              Misi Kedua
             </span>
             <p className="text-[28px] sm:text-[40px] md:text-[50px] leading-[1.3] text-neutral-200 font-light">
-              {lang === 'ID' ? MISI[1].id : MISI[1].en}
+              {MISI[1]}
             </p>
           </div>
         </div>
@@ -218,10 +204,10 @@ export default function VisiMisiSection() {
           </div>
           <div className="misi-text relative z-10 max-w-4xl">
             <span className="text-[14px] font-bold tracking-[0.2em] text-[#DF1A22] uppercase block mb-8">
-              {lang === 'ID' ? 'Misi Ketiga' : 'Third Mission'}
+              Misi Ketiga
             </span>
             <p className="text-[28px] sm:text-[40px] md:text-[50px] leading-[1.3] text-neutral-200 font-light">
-              {lang === 'ID' ? MISI[2].id : MISI[2].en}
+              {MISI[2]}
             </p>
           </div>
         </div>
