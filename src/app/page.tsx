@@ -4,6 +4,7 @@ import QuotesSection from "./components/QuotesSection/QuotesSection";
 import PeminatanSection from "./components/PeminatanSection/PeminatanSection";
 import GallerySection from "./components/GallerySection/GallerySection";
 import TestimonialsSection from "./components/TestimonialsSection/TestimonialsSection";
+import Chatbot from "./components/Chatbot/Chatbot";
 
 export default function Home() {
   return (
@@ -25,6 +26,8 @@ export default function Home() {
 
       {/* 5. Section Testimoni Alumni Reel (Paling Akhir Tetap) */}
       <TestimonialsSection />
+
+      <Chatbot />
     </main>
   );
 }
