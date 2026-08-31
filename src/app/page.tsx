@@ -1,3 +1,4 @@
+import Navbar from "./components/Navbar/Navbar";
 import HeroSection from "./components/HeroSection/HeroSection";
 import FactsSection from "./components/FactsSection/FactsSection";
 import QuotesSection from "./components/QuotesSection/QuotesSection";
@@ -10,6 +11,9 @@ import Chatbot from "./components/Chatbot/Chatbot";
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#111111] text-[#FFFFFF]">
+      
+      <Navbar />
+
       {/* 0. Kinetic Editorial Hero Section (21st.dev Style) */}
       <HeroSection />
 
