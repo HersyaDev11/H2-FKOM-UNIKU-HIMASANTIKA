@@ -52,9 +52,8 @@ export default function Navbar() {
           { id: 'home', idLabel: 'Beranda', enLabel: 'Home', href: '#' },
           { id: 'profile', idLabel: 'Profil', enLabel: 'Profile', href: '#profil' },
           { id: 'curriculum', idLabel: 'Kurikulum', enLabel: 'Academics', href: '#kurikulum' },
-          { id: 'facts', idLabel: 'Fakta', enLabel: 'Facts', href: '#tahukah-kamu' },
+          { id: 'facts', idLabel: 'Fakta', enLabel: 'Facts', href: '#Fakta' },
           { id: 'gallery', idLabel: 'Galeri', enLabel: 'Gallery', href: '#gallery' },
-          { id: 'contact', idLabel: 'Kontak', enLabel: 'Contact', href: '#kontak' },
         ].map((item) => (
           <Link key={item.id} href={item.href} className="group relative py-1 text-[13.5px] xl:text-[14px] text-neutral-400 hover:text-white transition-colors font-medium tracking-wider">
             {lang === 'ID' ? item.idLabel : item.enLabel}
