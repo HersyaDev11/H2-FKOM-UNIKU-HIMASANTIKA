@@ -14,7 +14,7 @@ const partners = [
   {
     name: 'Microsoft',
     logo: (
-      <svg width="40" height="40" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500">
+      <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500 shrink-0">
         <path fill="#f35325" d="M2 2h9v9H2z"/><path fill="#81bc06" d="M13 2h9v9h-9z"/><path fill="#05a6f0" d="M2 13h9v9H2z"/><path fill="#ffba08" d="M13 13h9v9h-9z"/>
       </svg>
     )
@@ -22,7 +22,7 @@ const partners = [
   {
     name: 'Google',
     logo: (
-      <svg width="40" height="40" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500">
+      <svg width="28" height="28" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="grayscale opacity-60 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500 shrink-0">
         <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
         <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
         <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
@@ -33,7 +33,7 @@ const partners = [
   {
     name: 'Tokopedia',
     logo: (
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-neutral-600 group-hover:text-[#42B549] transition-colors duration-500">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-neutral-600 group-hover:text-[#42B549] transition-colors duration-500 shrink-0">
         <path d="M19 6h-4V4c0-1.1-.9-2-2-2h-2c-1.1 0-2 .9-2 2v2H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8-2h2v2h-2V4zm8 16H5V8h14v12z" fill="currentColor"/>
         <path d="M12 14c-1.66 0-3-1.34-3-3H7c0 2.76 2.24 5 5 5s5-2.24 5-5h-2c0 1.66-1.34 3-3 3z" fill="currentColor"/>
       </svg>
@@ -42,7 +42,7 @@ const partners = [
   {
     name: 'AWS',
     logo: (
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-neutral-600 group-hover:text-[#FF9900] transition-colors duration-500">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-neutral-600 group-hover:text-[#FF9900] transition-colors duration-500 shrink-0">
         <path d="M17.5 19.5c-1.5 1.5-4.5 2-7.5 2s-6-.5-7.5-2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
         <path d="M15 20.5l2.5-1-1-2.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         <text x="12" y="14" textAnchor="middle" fontSize="12" fontWeight="bold" fill="currentColor">AWS</text>
@@ -52,7 +52,7 @@ const partners = [
   {
     name: 'Cisco',
     logo: (
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-neutral-600 group-hover:text-[#00bceb] transition-colors duration-500">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-neutral-600 group-hover:text-[#00bceb] transition-colors duration-500 shrink-0">
         <rect x="2" y="10" width="2" height="4" fill="currentColor"/>
         <rect x="6" y="8" width="2" height="8" fill="currentColor"/>
         <rect x="10" y="4" width="2" height="16" fill="currentColor"/>
@@ -62,18 +62,18 @@ const partners = [
     )
   },
   {
-    name: 'PT. Telekomunikasi Indonesia',
+    name: 'Telkom Indonesia',
     logo: (
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-neutral-600 group-hover:text-[#EE2E24] transition-colors duration-500">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-neutral-600 group-hover:text-[#EE2E24] transition-colors duration-500 shrink-0">
         <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
         <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
       </svg>
     )
   },
   {
-    name: 'PT. Bukalapak',
+    name: 'Bukalapak',
     logo: (
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-neutral-600 group-hover:text-[#E31E52] transition-colors duration-500">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-neutral-600 group-hover:text-[#E31E52] transition-colors duration-500 shrink-0">
         <path d="M12 2L2 22h20L12 2z" fill="currentColor"/>
       </svg>
     )
@@ -88,12 +88,13 @@ export default function MitraSection() {
     // 1. Reveal header
     gsap.fromTo(
       '.mitra-header',
-      { opacity: 0, y: 20 },
+      { opacity: 0, y: 15 },
       {
         opacity: 1,
         y: 0,
         duration: 0.8,
         ease: 'power3.out',
+        immediateRender: false,
         scrollTrigger: {
           trigger: containerRef.current,
           start: 'top 85%',
@@ -105,12 +106,10 @@ export default function MitraSection() {
     if (marqueeRef.current) {
       const track = marqueeRef.current.querySelector('.marquee-track');
       
-      // We translate by -50% of the entire track width (which contains 2 sets of partners)
-      // so it loops perfectly once it reaches halfway.
       gsap.to(track, {
         xPercent: -50,
         ease: "none",
-        duration: 30, // Kecepatan scroll, bisa diubah
+        duration: 32,
         repeat: -1,
       });
     }
@@ -119,37 +118,37 @@ export default function MitraSection() {
   return (
     <section 
       ref={containerRef} 
-      className="relative z-20 w-full py-16 sm:py-24 bg-gradient-to-b from-[#111111] to-[#0a0a0a] overflow-hidden font-['Mori',sans-serif]"
+      className="relative z-20 w-full py-12 sm:py-16 bg-[#111111] border-t border-white/[0.06] overflow-hidden font-['Mori',sans-serif] tracking-[-0.01em]"
+      style={{ fontFamily: "'Mori', sans-serif" }}
     >
-      <div className="w-full max-w-[120rem] mx-auto px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 mb-10 sm:mb-14">
-        <h3 className="mitra-header text-center text-[12px] sm:text-[14px] font-bold tracking-[0.25em] text-[#DF1A22] uppercase">
-          Partner & Mitra Kami
-        </h3>
+      <div className="w-full max-w-[120rem] mx-auto px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 mb-6 sm:mb-8 text-center">
+        <span className="mitra-header inline-block text-[11px] sm:text-[12px] font-medium tracking-[0.2em] text-[#DF1A22] uppercase">
+          Kemitraan Industri &amp; Kolaborasi Strategis
+        </span>
       </div>
 
       {/* Marquee Container with Fading Edges via CSS Mask */}
       <div 
         ref={marqueeRef}
-        className="relative w-full flex items-center h-20 sm:h-24 overflow-hidden"
+        className="relative w-full flex items-center h-14 sm:h-16 overflow-hidden"
         style={{
           maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
           WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
         }}
       >
-        {/* Scrolling Track */}
-        <div className="marquee-track flex items-center gap-16 sm:gap-24 lg:gap-32 w-max px-8 sm:px-16">
-          {/* We duplicate the array to ensure a seamless continuous loop */}
-          {[...partners, ...partners].map((partner, index) => (
+        {/* Scrolling Track with 4x duplication for seamless infinite looping */}
+        <div className="marquee-track flex items-center w-max shrink-0 will-change-transform transform-gpu">
+          {[...partners, ...partners, ...partners, ...partners].map((partner, index) => (
             <div 
               key={index} 
-              className="flex items-center justify-center gap-4 min-w-max group cursor-pointer"
+              className="flex items-center justify-center gap-3 min-w-max group cursor-pointer px-6 sm:px-8 lg:px-10"
             >
               {/* Logo */}
-              <div className="flex items-center justify-center">
+              <div className="flex items-center justify-center opacity-70 group-hover:opacity-100 transition-opacity duration-300">
                 {partner.logo}
               </div>
               {/* Nama Perusahaan */}
-              <span className="text-[20px] sm:text-[28px] lg:text-[34px] font-medium text-neutral-600 group-hover:text-white transition-colors duration-500 select-none whitespace-nowrap">
+              <span className="text-[15px] sm:text-[17px] lg:text-[19px] font-normal text-neutral-400 group-hover:text-white transition-colors duration-300 select-none whitespace-nowrap">
                 {partner.name}
               </span>
             </div>

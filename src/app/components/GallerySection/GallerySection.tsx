@@ -107,19 +107,19 @@ export default function GallerySection() {
   return (
     <section
       ref={containerRef}
-      id="galeri-aktivitas"
+      id="galeri"
       className="relative z-20 w-full bg-[#111111] text-[#FFFFFF] py-16 sm:py-24 md:py-32 lg:py-40 select-none font-['Mori',sans-serif] tracking-[-0.01em] border-t border-neutral-800/80 overflow-hidden"
       style={{ fontFamily: "'Mori', sans-serif" }}
     >
-      {/* Clear Architectural Grid with Smooth Bottom Fade (Zero Hard Cut into Next Section) */}
+      {/* Clear Architectural Grid with Smooth Seamless Bottom Fade */}
       <div
-        className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.07)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:linear-gradient(to_bottom,black_45%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_45%,transparent_100%)]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:linear-gradient(to_bottom,black_20%,transparent_60%)] [-webkit-mask-image:linear-gradient(to_bottom,black_20%,transparent_60%)] sm:[mask-image:linear-gradient(to_bottom,black_30%,transparent_75%)] sm:[-webkit-mask-image:linear-gradient(to_bottom,black_30%,transparent_75%)]"
         aria-hidden="true"
       />
 
-      {/* Soft Atmospheric Dissolve into Solid #111111 */}
+      {/* Soft Atmospheric Dissolve into 100% Solid #111111 (Zero Seam Cut) */}
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#111111] via-[#111111]/80 to-transparent -z-10"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-48 sm:h-64 bg-gradient-to-t from-[#111111] via-[#111111] to-transparent -z-10"
         aria-hidden="true"
       />
 
@@ -142,7 +142,7 @@ export default function GallerySection() {
             rotate={38}
             depth={0.55}
             perspective={2.8}
-            cardWidth="clamp(220px, 32vw, 380px)"
+            cardWidth="clamp(200px, min(30vw, 42vh), 380px)"
             gap={0.07}
             loop={true}
             showCaption={true}

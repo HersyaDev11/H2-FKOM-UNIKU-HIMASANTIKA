@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import Navbar from "./components/Navbar/Navbar";
 import HeroSection from "./components/HeroSection/HeroSection";
 import VisiMisiSection from "./components/VisiMisiSection/VisiMisiSection";
@@ -8,7 +9,9 @@ import GallerySection from "./components/GallerySection/GallerySection";
 import TestimonialsSection from "./components/TestimonialsSection/TestimonialsSection";
 import MitraSection from "./components/MitraSection/MitraSection";
 import Footer from "./components/Footer/Footer";
-import Chatbot from "./components/Chatbot/Chatbot";
+
+// Dynamic import Chatbot to code-split its JavaScript bundle
+const Chatbot = dynamic(() => import("./components/Chatbot/Chatbot"));
 
 export default function Home() {
   return (

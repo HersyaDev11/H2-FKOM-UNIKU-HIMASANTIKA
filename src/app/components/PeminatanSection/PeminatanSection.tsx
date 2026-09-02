@@ -118,7 +118,7 @@ export default function PeminatanSection() {
           </div>
         </div>
 
-        {/* Desktop & Tablet: Standby All Visual Previews -> Expand on Hover (>= 768px) */}
+        {/* Desktop & Tablet: Standby All Visual Previews -> Expand on Hover (>= 768px - Optimized GPU) */}
         <div
           onMouseLeave={() => setActiveIndex(null)}
           className="hidden md:flex gap-3 lg:gap-4 h-[520px] lg:h-[550px] w-full"
@@ -134,11 +134,11 @@ export default function PeminatanSection() {
                 onClick={() => setActiveIndex(isExpanded ? null : index)}
                 onMouseEnter={() => setActiveIndex(index)}
                 transition={{
-                  layout: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
-                  duration: 0.65,
+                  layout: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
+                  duration: 0.6,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className={`relative rounded-2xl cursor-pointer border flex flex-col justify-between overflow-hidden group ${
+                className={`relative rounded-2xl cursor-pointer border flex flex-col justify-between overflow-hidden group transform-gpu ${
                   isExpanded
                     ? 'flex-[3.5] lg:flex-[4] p-8 lg:p-9 bg-white border-neutral-300 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.08)]'
                     : 'flex-1 p-6 lg:p-7 border-neutral-200'
@@ -151,9 +151,9 @@ export default function PeminatanSection() {
                       src={track.image}
                       alt={track.title}
                       fill
-                      quality={95}
-                      className="object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-105 z-0"
-                      sizes="(max-width: 1024px) 33vw, 20vw"
+                      quality={80}
+                      className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 z-0"
+                      sizes="(max-width: 1024px) 33vw, 25vw"
                     />
                     {/* Natural Vignette Overlay for High Contrast & Vibrant Center */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 z-0" />
@@ -164,7 +164,7 @@ export default function PeminatanSection() {
                 <div className="flex items-center justify-between w-full relative z-10">
                   <div className="flex items-baseline gap-3">
                     <span
-                      className={`text-[28px] lg:text-[34px] font-bold tracking-tighter tabular-nums leading-none transition-colors duration-500 ${
+                      className={`text-[28px] lg:text-[34px] font-bold tracking-tighter tabular-nums leading-none transition-colors duration-300 ${
                         isExpanded ? '' : 'text-white'
                       }`}
                       style={{ color: isExpanded ? track.accent : undefined }}
@@ -179,7 +179,7 @@ export default function PeminatanSection() {
                   </div>
 
                   <Icon
-                    className={`size-6 transition-colors duration-500 ${
+                    className={`size-6 transition-colors duration-300 ${
                       isExpanded ? 'text-[#111111]' : 'text-white drop-shadow-md'
                     }`}
                   />
@@ -190,7 +190,7 @@ export default function PeminatanSection() {
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 0.35, delay: 0.1 }}
+                    transition={{ duration: 0.3, delay: 0.08 }}
                     className="flex flex-col justify-between flex-1 mt-6 relative z-10"
                   >
                     <div>
@@ -251,8 +251,8 @@ export default function PeminatanSection() {
           })}
         </div>
 
-        {/* Mobile: Seamless Synchronized Accordion (< 768px) */}
-        <div className="flex md:hidden flex-col gap-3.5">
+        {/* Mobile: Taller & Spacious Synchronized Accordion (< 768px - Optimized GPU) */}
+        <div className="flex md:hidden flex-col gap-4">
           {PEMINATAN_TRACKS.map((track, index) => {
             const isExpanded = activeIndex === index;
             const Icon = track.icon;
@@ -261,10 +261,10 @@ export default function PeminatanSection() {
               <div
                 key={track.id}
                 onClick={() => setActiveIndex(isExpanded ? null : index)}
-                className={`rounded-2xl border cursor-pointer overflow-hidden relative transition-colors duration-300 ${
+                className={`rounded-2xl border cursor-pointer overflow-hidden relative transition-colors duration-300 transform-gpu ${
                   isExpanded
-                    ? 'p-6 bg-white border-neutral-300 shadow-lg'
-                    : 'p-6 bg-[#161616] border-neutral-800 shadow-sm'
+                    ? 'p-6 sm:p-7 bg-white border-neutral-300 shadow-lg min-h-[160px]'
+                    : 'py-7 px-6 sm:py-8 sm:px-7 min-h-[148px] sm:min-h-[160px] flex flex-col justify-between bg-[#161616] border-neutral-800 shadow-sm'
                 }`}
               >
                 {/* Persistent Background Photo with Smooth Synchronized Opacity Transition */}
@@ -277,17 +277,17 @@ export default function PeminatanSection() {
                     src={track.image}
                     alt={track.title}
                     fill
-                    quality={95}
+                    quality={80}
                     className="object-cover object-center"
-                    sizes="100vw"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/35" />
                 </div>
 
                 {/* Top Row: Number & Icon (Always in place, never unmounts) */}
-                <div className="flex items-center justify-between relative z-10 w-full mb-3">
+                <div className="flex items-center justify-between relative z-10 w-full mb-3.5">
                   <span
-                    className={`text-[26px] sm:text-[30px] font-bold tracking-tighter tabular-nums leading-none transition-colors duration-300 ${
+                    className={`text-[28px] sm:text-[32px] font-bold tracking-tighter tabular-nums leading-none transition-colors duration-300 ${
                       isExpanded ? '' : 'text-white'
                     }`}
                     style={{ color: isExpanded ? track.accent : undefined }}
@@ -296,23 +296,23 @@ export default function PeminatanSection() {
                   </span>
 
                   <Icon
-                    className={`size-6 transition-colors duration-300 ${
+                    className={`size-6 sm:size-7 transition-colors duration-300 ${
                       isExpanded ? 'text-[#111111]' : 'text-white drop-shadow-md'
                     }`}
                   />
                 </div>
 
-                {/* Unified Title & Subtitle (Always in place, never jumps or delays!) */}
+                {/* Unified Title & Subtitle */}
                 <div className="relative z-10">
                   <h3
-                    className={`text-[20px] font-normal leading-tight transition-colors duration-300 ${
+                    className={`text-[21px] sm:text-[23px] font-normal leading-snug transition-colors duration-300 ${
                       isExpanded ? 'text-[#111111] font-medium' : 'text-white'
                     }`}
                   >
                     {track.title}
                   </h3>
                   <span
-                    className={`text-[12px] block mt-0.5 transition-colors duration-300 ${
+                    className={`text-[12.5px] sm:text-[13px] block mt-1 transition-colors duration-300 ${
                       isExpanded ? 'text-neutral-400 font-light' : 'text-white/70'
                     }`}
                   >
@@ -333,8 +333,8 @@ export default function PeminatanSection() {
                       }}
                       className="overflow-hidden relative z-10"
                     >
-                      <div className="pt-2.5 mt-2.5 border-t border-neutral-100">
-                        <p className="text-neutral-600 text-[13.5px] sm:text-[14px] leading-relaxed font-light mb-4">
+                      <div className="pt-3 mt-3.5 border-t border-neutral-100">
+                        <p className="text-neutral-600 text-[14px] sm:text-[14.5px] leading-relaxed font-light mb-4">
                           {track.summary}
                         </p>
 
@@ -343,9 +343,9 @@ export default function PeminatanSection() {
                             <span className="text-[12px] uppercase tracking-wide text-neutral-400 block mb-2 font-medium">
                               Ruang Lingkup Kajian
                             </span>
-                            <ul className="space-y-1.5">
+                            <ul className="space-y-2">
                               {track.topics.map((topic) => (
-                                <li key={topic} className="text-[13px] text-neutral-700 font-light flex items-center gap-2">
+                                <li key={topic} className="text-[13.5px] text-neutral-700 font-light flex items-center gap-2">
                                   <span
                                     className="w-1.5 h-1.5 rounded-full shrink-0"
                                     style={{ backgroundColor: track.accent }}
@@ -360,9 +360,9 @@ export default function PeminatanSection() {
                             <span className="text-[12px] uppercase tracking-wide text-neutral-400 block mb-2 font-medium">
                               Prospek Lulusan
                             </span>
-                            <ul className="space-y-1.5">
+                            <ul className="space-y-2">
                               {track.careers.map((career) => (
-                                <li key={career} className="text-[13px] text-neutral-800 font-normal flex items-center gap-2">
+                                <li key={career} className="text-[13.5px] text-neutral-800 font-normal flex items-center gap-2">
                                   <ArrowUpRight className="size-3.5 text-neutral-400 shrink-0" />
                                   <span>{career}</span>
                                 </li>

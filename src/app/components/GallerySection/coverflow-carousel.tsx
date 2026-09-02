@@ -265,8 +265,8 @@ export function CoverflowCarousel({
               nudge(1);
             }
           }}
-          // Vertical padding keeps the drop shadows clear of the overflow clip.
-          className="cursor-grab overflow-hidden py-6 sm:py-8 md:py-10 outline-none ring-ring focus-visible:ring-2 active:cursor-grabbing"
+          // Soft horizontal mask ensures 3D cards fade smoothly at edges without hard rectangular cuts
+          className="cursor-grab overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,black_5%,black_95%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_5%,black_95%,transparent_100%)] py-6 sm:py-8 md:py-10 outline-none ring-ring focus-visible:ring-2 active:cursor-grabbing"
           style={{
             perspective: `calc(var(--cf-card) * ${perspective})`,
             touchAction: "pan-y",
@@ -351,8 +351,8 @@ export function CoverflowCarousel({
       {/* Caption & Metadata Container with Reserved Fixed Min-Heights (Zero Layout Shift / Anti-Jitter) */}
       {showCaption && (
         <div
-          className="mt-2 sm:mt-3 flex flex-col items-center px-4 sm:px-6 min-h-[220px] sm:min-h-[240px] md:min-h-[260px] justify-start font-['Inter',sans-serif]"
-          style={{ fontFamily: "'Inter', sans-serif" }}
+          className="mt-2 sm:mt-3 flex flex-col items-center px-4 sm:px-6 min-h-[220px] sm:min-h-[240px] md:min-h-[260px] justify-start font-['Mori',sans-serif] tracking-[-0.01em]"
+          style={{ fontFamily: "'Mori', sans-serif" }}
         >
           {/* Reserved Height for Title (Prevents 1-line vs 2-line layout jump) */}
           <div className="min-h-[34px] sm:min-h-[38px] md:min-h-[42px] flex items-center justify-center w-full max-w-2xl">
