@@ -18,6 +18,8 @@ export default function Home() {
 
       {/* 0. Kinetic Editorial Hero Section (21st.dev Style) */}
       <HeroSection />
+      
+      <AboutSection />
 
       <VisiMisiSection />
 
