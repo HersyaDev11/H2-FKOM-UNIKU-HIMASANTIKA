@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar/Navbar";
 import HeroSection from "./components/HeroSection/HeroSection";
+import AboutSection from "./components/AboutSection/AboutSection";
 import VisiMisiSection from "./components/VisiMisiSection/VisiMisiSection";
 import FactsSection from "./components/FactsSection/FactsSection";
 import QuotesSection from "./components/QuotesSection/QuotesSection";
