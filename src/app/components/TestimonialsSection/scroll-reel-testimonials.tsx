@@ -37,9 +37,9 @@ const SLIDE_MS = 800;
 const EASE_INOUT = "cubic-bezier(0.65,0,0.35,1)";
 
 const QUOTE_CLASSES =
-  "m-0 text-[22px] sm:text-[28px] md:text-[34px] lg:text-[38px] xl:text-[42px] font-normal leading-[1.26] tracking-[-0.018em] text-[#FFFFFF]";
+  "m-0 text-[24.5px] sm:text-[28px] md:text-[33px] lg:text-[38px] xl:text-[42px] font-normal leading-[1.25] sm:leading-[1.26] tracking-[-0.018em] text-[#FFFFFF]";
 const AUTHOR_CLASSES =
-  "m-0 text-[15px] sm:text-[17px] lg:text-[19px] font-normal leading-[1.4] text-neutral-400";
+  "m-0 text-[14px] sm:text-[16px] lg:text-[19px] font-normal leading-[1.4] text-neutral-400";
 
 const FEATURED_SHADOW =
   "0 20px 45px -8px rgba(0,0,0,0.95), 0 0 0 1px rgba(255,255,255,0.2), inset 0 1px 0 rgba(255,255,255,0.3)";
@@ -81,6 +81,7 @@ function Featured({ src, alt }: { src: string; alt?: string }) {
         src={src}
         alt={alt ?? ""}
         loading="lazy"
+        decoding="async"
         className="absolute inset-0 h-full w-full object-cover object-top"
       />
     </div>
@@ -238,20 +239,20 @@ export function ScrollReelTestimonials({
       )}
       style={{ fontFamily: "'Mori', sans-serif" }}
     >
-      {/* Reel Section: Prominent Center Portrait + Compact Side Columns */}
+      {/* Reel Section: Prominent Center Portrait + Compact Side Columns (Full Screen Width on Mobile) */}
       <div
         aria-hidden="true"
-        className="relative h-80 sm:h-96 lg:h-[520px] xl:h-[560px] w-full shrink-0 overflow-hidden lg:w-[480px] xl:w-[500px] rounded-3xl"
+        className="relative h-64 sm:h-76 md:h-88 lg:h-[520px] xl:h-[560px] w-screen -mx-6 sm:mx-0 sm:w-full shrink-0 overflow-hidden lg:w-[480px] xl:w-[500px] sm:rounded-3xl border-0"
         style={{
           WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 16%, black 84%, transparent 100%)",
           maskImage:
-            "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)",
+            "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 16%, black 84%, transparent 100%)",
           WebkitMaskComposite: "source-in",
           maskComposite: "intersect",
         }}
       >
-        <div className="absolute inset-0 flex items-center justify-center gap-3.5">
+        <div className="absolute inset-0 flex items-center justify-center gap-2.5 sm:gap-3.5 scale-[0.88] sm:scale-95 md:scale-100 lg:scale-100 transform-gpu origin-center">
           {/* Left Compact Column (Small 95px boxes) */}
           <div
             className="flex shrink-0 flex-col gap-2.5 will-change-transform motion-reduce:[transition:none!important]"
@@ -294,10 +295,10 @@ export function ScrollReelTestimonials({
 
       {/* Content Section: Typographic Stage */}
       <div className="flex min-w-0 flex-1 flex-col justify-between self-stretch py-2 lg:py-6">
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-5 sm:gap-6 lg:gap-8">
           {/* Brand Red Quote Icon */}
           <svg
-            className="block h-14 w-14 lg:h-16 lg:w-16 text-[#DF1A22]"
+            className="block h-8 w-8 sm:h-11 sm:w-11 lg:h-16 lg:w-16 text-[#DF1A22]"
             viewBox="0 0 24 24"
             fill="currentColor"
             aria-hidden="true"
@@ -313,7 +314,7 @@ export function ScrollReelTestimonials({
             {/* Invisible sizer anchored to the longest quote with ample vertical space */}
             <div
               aria-hidden="true"
-              className="invisible pointer-events-none select-none flex min-h-[240px] sm:min-h-[270px] lg:min-h-[290px] flex-col gap-6"
+              className="invisible pointer-events-none select-none flex min-h-[195px] sm:min-h-[235px] lg:min-h-[290px] flex-col gap-4 sm:gap-6"
             >
               <p className={QUOTE_CLASSES}>{longestTestimonial.quote}</p>
               <p className={AUTHOR_CLASSES}>{longestTestimonial.author}</p>
@@ -321,7 +322,7 @@ export function ScrollReelTestimonials({
             <div
               key={displayIndex}
               className={cn(
-                "absolute inset-x-0 top-0 flex flex-col gap-6 will-change-[transform,opacity]",
+                "absolute inset-x-0 top-0 flex flex-col gap-4 sm:gap-6 will-change-[transform,opacity]",
                 exiting && "scroll-reel-exit"
               )}
             >
@@ -344,9 +345,9 @@ export function ScrollReelTestimonials({
         </div>
 
         {/* Controls: Positioned further down with generous breathing room */}
-        <div className="mt-16 sm:mt-20 flex items-center justify-between border-t border-white/10 pt-8">
+        <div className="mt-6 sm:mt-12 lg:mt-20 flex items-center justify-between border-t border-white/10 pt-4 sm:pt-6 lg:pt-8">
           {/* Pill Indicators */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-1.5 sm:gap-2.5">
             {testimonials.map((_, i) => (
               <button
                 key={i}
@@ -356,10 +357,10 @@ export function ScrollReelTestimonials({
                     paginate((i > index ? 1 : -1) as 1 | -1);
                   }
                 }}
-                className={`h-2.5 shrink-0 rounded-full transition-all duration-300 cursor-pointer ${
+                className={`h-1.5 sm:h-2 lg:h-2.5 shrink-0 rounded-full transition-all duration-300 cursor-pointer ${
                   i === index
-                    ? "w-8 bg-[#DF1A22]"
-                    : "w-2.5 bg-white/25 hover:bg-white/50"
+                    ? "w-5 sm:w-7 lg:w-8 bg-[#DF1A22]"
+                    : "w-1.5 sm:w-2 lg:w-2.5 bg-white/25 hover:bg-white/50"
                 }`}
                 aria-label={`Lihat testimoni ${i + 1}`}
               />
@@ -367,16 +368,16 @@ export function ScrollReelTestimonials({
           </div>
 
           {/* Navigation Arrows */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <button
               type="button"
               onClick={() => paginate(-1)}
               disabled={index === 0}
               aria-label="Testimoni Sebelumnya"
-              className="grid h-12 w-12 cursor-pointer place-items-center rounded-full border border-white/15 bg-white/5 text-white transition-all duration-200 hover:enabled:bg-white/15 hover:enabled:scale-105 active:enabled:scale-95 disabled:cursor-default disabled:opacity-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+              className="grid h-9 w-9 sm:h-10 sm:w-10 lg:h-12 lg:w-12 cursor-pointer place-items-center rounded-full border border-white/15 bg-white/5 text-white transition-all duration-200 hover:enabled:bg-white/15 hover:enabled:scale-105 active:enabled:scale-95 disabled:cursor-default disabled:opacity-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
             >
               <svg
-                className="h-4 w-4"
+                className="h-3.5 w-3.5 lg:h-4 lg:w-4"
                 viewBox="0 0 12 12"
                 fill="none"
                 stroke="currentColor"
@@ -393,10 +394,10 @@ export function ScrollReelTestimonials({
               onClick={() => paginate(1)}
               disabled={index === count - 1}
               aria-label="Testimoni Berikutnya"
-              className="grid h-12 w-12 cursor-pointer place-items-center rounded-full border border-white/15 bg-white/5 text-white transition-all duration-200 hover:enabled:bg-white/15 hover:enabled:scale-105 active:enabled:scale-95 disabled:cursor-default disabled:opacity-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+              className="grid h-9 w-9 sm:h-10 sm:w-10 lg:h-12 lg:w-12 cursor-pointer place-items-center rounded-full border border-white/15 bg-white/5 text-white transition-all duration-200 hover:enabled:bg-white/15 hover:enabled:scale-105 active:enabled:scale-95 disabled:cursor-default disabled:opacity-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
             >
               <svg
-                className="h-4 w-4"
+                className="h-3.5 w-3.5 lg:h-4 lg:w-4"
                 viewBox="0 0 12 12"
                 fill="none"
                 stroke="currentColor"

@@ -25,15 +25,6 @@
   font-display: swap;
 }
 
-/* --- Inter Fallback --- */
-@font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
   /* --- Brand Color Palette (Hanya 5 Warna Utama) --- */
   --color-merah: #DF1A22;
@@ -43,8 +34,8 @@
   --color-hitam: #111111;
 
   /* --- Typography --- */
-  --font-mori: 'Mori-400', 'Mori', 'Inter', sans-serif;
-  --font-sans: 'Mori-400', 'Mori', 'Inter', sans-serif;
+  --font-mori: 'Mori-400', 'Mori', sans-serif;
+  --font-sans: 'Mori-400', 'Mori', sans-serif;
 }
 
 body {
@@ -65,24 +56,29 @@ body {
 }
 
 @keyframes scroll-reel-char-rise {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.scroll-reel-exit {
-  animation: scroll-reel-exit 0.24s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-}
-
-@keyframes scroll-reel-exit {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
+  0% {
     opacity: 0;
-    transform: translateY(-12px);
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
   }
 }
 
+.scroll-reel-card-shadow {
+  box-shadow: 
+    0 20px 45px -8px rgba(0, 0, 0, 0.95),
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.scroll-reel-mask-t {
+  mask-image: linear-gradient(to top, black 65%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 65%, transparent 100%);
+}
+
+.scroll-reel-mask-b {
+  mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+}

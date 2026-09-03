@@ -48,71 +48,99 @@ export default function Footer() {
   return (
     <footer
       ref={containerRef}
-      className="relative z-20 w-full bg-[#111111] text-[#FFFFFF] py-16 sm:py-24 px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 border-t border-neutral-800 overflow-hidden"
+      className="relative z-20 w-full bg-[#111111] text-[#FFFFFF] py-14 sm:py-20 md:py-24 px-5 sm:px-12 md:px-16 lg:px-24 xl:px-32 border-t border-neutral-800/80 overflow-hidden font-['Mori',sans-serif] tracking-[-0.01em]"
       style={{ fontFamily: "'Mori', sans-serif" }}
     >
-      <div className="w-full max-w-[120rem] mx-auto flex flex-col md:flex-row justify-between gap-12 md:gap-20">
+      <div className="w-full max-w-[120rem] mx-auto flex flex-col md:flex-row justify-between gap-10 sm:gap-16 md:gap-20">
         
         {/* Left Side: Brand & Description */}
         <div className="flex-1 max-w-xl">
-          <div className="flex items-center gap-4 sm:gap-6 mb-8">
-            <div className="footer-element relative w-12 h-12 sm:w-16 sm:h-16 shrink-0 grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-500">
+          <div className="flex items-center gap-3.5 sm:gap-6 mb-5 sm:mb-8">
+            <div className="footer-element relative w-11 h-11 sm:w-16 sm:h-16 shrink-0 grayscale-0 opacity-100 sm:grayscale sm:hover:grayscale-0 sm:opacity-80 sm:hover:opacity-100 transition-all duration-500">
                <Image 
                   src="/logoprodi/UMC-1.webp" 
                   alt="Logo Universitas Muhammadiyah Cirebon" 
                   fill 
+                  sizes="(max-width: 640px) 44px, 64px"
+                  loading="lazy"
                   className="object-contain"
                />
             </div>
-            <h2 className="footer-element text-[28px] sm:text-[36px] md:text-[42px] font-normal tracking-[-0.02em] leading-none mt-1">
+            <h2 className="footer-element text-[22px] sm:text-[34px] md:text-[40px] font-normal tracking-[-0.02em] leading-none mt-1">
               Teknik Informatika UMC
             </h2>
           </div>
-          <p className="footer-element text-[#A3A3A3] text-[16px] sm:text-[18px] leading-relaxed mb-8">
+          <p className="footer-element text-neutral-400 text-[14px] sm:text-[17px] leading-relaxed mb-6 sm:mb-8">
             Mencetak talenta digital berdaya saing global melalui pendidikan berkualitas, riset inovatif, dan kolaborasi industri yang berkelanjutan.
           </p>
-          <div className="footer-element flex items-center gap-6">
-            <a href="#" className="text-white hover:text-[#DF1A22] transition-colors duration-300">
+          <div className="footer-element flex flex-wrap items-center gap-5 sm:gap-6">
+            <a 
+              href="https://www.instagram.com/officialpmbumc.id?igsi=emMyc2R0cnVpdno4" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-white hover:text-[#DF1A22] transition-colors duration-300 font-normal text-[14px] sm:text-[15px]"
+            >
               Instagram
             </a>
-            <a href="#" className="text-white hover:text-[#DF1A22] transition-colors duration-300">
-              LinkedIn
+            <a 
+              href="https://www.tiktok.com/@officialpmbumc.id?_r=1&_t=ZS-99P4h0p6NOe" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-white hover:text-[#DF1A22] transition-colors duration-300 font-normal text-[14px] sm:text-[15px]"
+            >
+              TikTok
             </a>
-            <a href="#" className="text-white hover:text-[#DF1A22] transition-colors duration-300">
+            <a 
+              href="https://youtube.com/@umcirebon?si=ZAqeRaGlU7BZBITI" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-white hover:text-[#DF1A22] transition-colors duration-300 font-normal text-[14px] sm:text-[15px]"
+            >
               YouTube
             </a>
           </div>
         </div>
 
-        {/* Right Side: Links */}
-        <div className="flex-1 flex flex-wrap gap-12 sm:gap-24 justify-start md:justify-end">
+        {/* Right Side: Links in Clean 2-Column Grid on Mobile */}
+        <div className="flex-1 grid grid-cols-2 gap-8 sm:flex sm:flex-row sm:gap-16 lg:gap-24 justify-start md:justify-end">
           
-          <div className="flex flex-col gap-4">
-            <h3 className="footer-element text-[20px] font-medium tracking-tight mb-2">Navigasi</h3>
-            <Link href="#quotes" className="footer-element text-[#A3A3A3] hover:text-white transition-colors duration-300">Tentang Kami</Link>
-            <Link href="#tahukah-kamu" className="footer-element text-[#A3A3A3] hover:text-white transition-colors duration-300">Fakta Akademik</Link>
-            <Link href="#gallery" className="footer-element text-[#A3A3A3] hover:text-white transition-colors duration-300">Galeri & Kehidupan</Link>
-            <Link href="#kontak" className="footer-element text-[#A3A3A3] hover:text-white transition-colors duration-300">Hubungi Kami</Link>
+          <div className="flex flex-col gap-2.5 sm:gap-3.5">
+            <h3 className="footer-element text-[16px] sm:text-[19px] font-medium tracking-tight mb-1 sm:mb-2 text-white">Navigasi</h3>
+            <Link href="#beranda" className="footer-element text-neutral-400 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-0.5 sm:py-0">Beranda</Link>
+            <Link href="#visi-misi" className="footer-element text-neutral-400 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-0.5 sm:py-0">Visi &amp; Misi</Link>
+            <Link href="#fakta-akademik" className="footer-element text-neutral-400 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-0.5 sm:py-0">Keunggulan</Link>
+            <Link href="#peminatan" className="footer-element text-neutral-400 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-0.5 sm:py-0">Peminatan</Link>
+            <Link href="#galeri" className="footer-element text-neutral-400 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-0.5 sm:py-0">Galeri</Link>
+            <Link href="#testimoni-alumni" className="footer-element text-neutral-400 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-0.5 sm:py-0">Alumni</Link>
           </div>
 
-          <div className="flex flex-col gap-4">
-            <h3 className="footer-element text-[20px] font-medium tracking-tight mb-2">Akademik</h3>
-            <a href="#" className="footer-element text-[#A3A3A3] hover:text-white transition-colors duration-300">Kurikulum</a>
-            <a href="#" className="footer-element text-[#A3A3A3] hover:text-white transition-colors duration-300">Dosen</a>
-            <a href="#" className="footer-element text-[#A3A3A3] hover:text-white transition-colors duration-300">Fasilitas</a>
-            <a href="#" className="footer-element text-[#A3A3A3] hover:text-white transition-colors duration-300">Pendaftaran</a>
+          <div className="flex flex-col gap-2.5 sm:gap-3.5">
+            <h3 className="footer-element text-[16px] sm:text-[19px] font-medium tracking-tight mb-1 sm:mb-2 text-white">Informasi Resmi</h3>
+            <a 
+              href="https://pmb.umc.ac.id" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="footer-element text-neutral-400 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-0.5 sm:py-0"
+            >
+              Pendaftaran (PMB)
+            </a>
+            <a 
+              href="https://umc.ac.id" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="footer-element text-neutral-400 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-0.5 sm:py-0"
+            >
+              Website Universitas
+            </a>
           </div>
 
         </div>
       </div>
 
       {/* Bottom Legal / Copyright */}
-      <div className="footer-element w-full max-w-[120rem] mx-auto mt-16 sm:mt-24 pt-8 border-t border-neutral-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-[#A3A3A3] text-[14px]">
-        <p>© {new Date().getFullYear()} Teknik Informatika UMC. All rights reserved.</p>
-        <div className="flex gap-6">
-          <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-        </div>
+      <div className="footer-element w-full max-w-[120rem] mx-auto mt-10 sm:mt-16 lg:mt-20 pt-6 sm:pt-8 border-t border-neutral-800/60 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-neutral-400 text-[13px] sm:text-[13.5px]">
+        <p>© {new Date().getFullYear()} Prodi Teknik Informatika Universitas Muhammadiyah Cirebon.</p>
+        <p className="text-neutral-500 text-[12.5px] sm:text-[13px]">Jl. Tuparev No. 70, Cirebon, Jawa Barat</p>
       </div>
     </footer>
   );

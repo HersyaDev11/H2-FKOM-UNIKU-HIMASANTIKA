@@ -1,7 +1,7 @@
 # Design System & Color Palette Guidelines
 **Landing Page Prodi Teknik Informatika - FKOM UMC**
 
-Dokumen ini mendefinisikan panduan identitas visual, spesifikasi palet warna (*color tokens*), hierarki penggunaan, aksesibilitas kontras, serta implementasi Tailwind CSS untuk proyek Landing Page Prodi Teknik Informatika UMC.
+Dokumen ini mendefinisikan panduan identitas visual, spesifikasi palet warna (*color tokens*), hierarki penggunaan, aksesibilitas kontras, standar adaptasi skala multi-perangkat (*Multi-Scale & Zoom Resilience*), standar optimasi performa web (*Performance Engineering*), serta implementasi Tailwind CSS untuk proyek Landing Page Prodi Teknik Informatika UMC.
 
 ---
 
@@ -45,27 +45,153 @@ Dokumen ini mendefinisikan panduan identitas visual, spesifikasi palet warna (*c
   --color-hitam: #111111;
 
   /* --- Typography --- */
-  --font-mori: 'Mori-400', 'Mori', 'Inter', sans-serif;
-  --font-sans: 'Mori-400', 'Mori', 'Inter', sans-serif;
+  --font-mori: 'Mori-400', 'Mori', sans-serif;
+  --font-sans: 'Mori-400', 'Mori', sans-serif;
 }
 ```
 
 ---
 
-## 4. Panduan Penerapan per Komponen
+### 4. Panduan Penerapan per Komponen
 
-### 1. Header / Navigation Bar
-- **Latar Belakang**: Glassmorphism semi-transparan (`bg-[#111111]/80 backdrop-blur-md` atau `bg-white/80 backdrop-blur-md`).
-- **Logo & Nav Links**: Teks `#FFFFFF` (dark mode) / `#111111` (light mode), dengan hover highlight `#DF1A22` atau `#F2A900`.
-- **CTA Button**: Background `#DF1A22` dengan teks `#FFFFFF` dan efek hover scale.
+### 1. Header / Navigation Bar (`Navbar.tsx`)
+- **Latar Belakang**: Glassmorphism semi-transparan (`bg-[#111111]/85 backdrop-blur-xl border-b border-white/[0.08]`).
+- **Logo & Nav Links**: Teks `#FFFFFF` dengan font PP Mori (`tracking-[-0.01em]`) dan hover indicator strip merah UMC (`#DF1A22`).
+- **CTA Button**: Clean pill button warna merah UMC (`#DF1A22`), tanpa ikon panah, dengan teks `Daftar PMB` / `Apply Now` berbobot `font-medium`.
 
-### 2. Facts Section
+### 2. Hero Section (`HeroSection.tsx`)
+- **Latar Belakang**: `#111111` dengan giant background watermark typography `"INFORMATIKA"` (17vw, opacity 0.035).
+- **Headline**: PP Mori Display 4 baris terstruktur dengan aksen merah `#DF1A22` pada "Teknik Informatika".
+- **Visual Stagger**: Pinterest-style vertical masonry 2 kolom bergerak kontinu dengan akselerasi GPU (`transform-gpu`) dan smart LCP image prioritization.
+
+### 3. Visi & Misi (`VisiMisiSection.tsx`)
+- **Latar Belakang**: Nuansa gelap elegan `#050505`, `#0a0a0a`, `#111111` dengan ambient blur glow merah UMC.
+- **Horizontal Scroll Scrub**: 4 panel widescreen (`w-[400vw]`) dengan sinkronisasi ScrollTrigger pin pada desktop dan stacking vertikal responsif pada mobile.
+
+### 4. Facts Section (`FactsSection.tsx`)
 - **Background**: `#FFFFFF` (Clean light layout).
 - **Grand Headline**: Teks `#111111`.
 - **Interactive List Rows**: Hover baris transisi ke warna `#DF1A22` (Merah) dan teks kategori ke `#00853F` (Hijau).
-- **Official Logo**: Menampilkan logo UMC (`/logoprodi/UMC-1.webp`).
+- **Official Logo**: Menampilkan logo resmi UMC (`/logoprodi/UMC-1.webp`) dengan lazy-load hemat memori.
 
-### 3. Gallery Section
-- **Background**: `#FFFFFF` dengan micro-dots `#F2A900` halus.
-- **Grand Headline**: Teks `#111111`.
-- **Carousel Controls**: Tombol navigasi hover `#DF1A22`, teks judul `#111111`, pagination aktif `#DF1A22`.
+### 5. Quotes Section (`QuotesSection.tsx`)
+- **Badge Subtitle**: Subtitle `{ Teknik Informatika UMC }` dengan SVG kurung kurawal (*Braces*) diperbesar (`clamp(40px, 8vh, 80px)`) dan teks `clamp(16px, 2.8vh, 26px)` berbobot `font-medium`.
+- **Grand Quote Headline**: Tipografi editorial display PP Mori rata kiri.
+- **GSAP Flower Constellation**:
+  - **Tangkai Biru Lengkung (*Royal Blue Stem Curve*)**: Meluncur dari kiri bawah ke puncak kanan atas (durasi 1.2s, `power2.inOut`).
+  - **Bunga Hijau 8 Kelopak (*8-Petal Green Blossom*)**: 4 kelopak silang persegi panjang `#00e64f` dengan inti lingkaran putih mekar elastis (`back.out(1.8)`).
+  - **Aksen Satelit (*Satellites*)**: Berlian biru (`.flair-diamond`), titik berpendar (`.flair-dot`), dan bintang 4-sudut (`.flair-mini-star`) meletup serentak dengan stagger `0.06s`.
+  - **Interaktivitas**: Hover & click pada kata *"membimbing"* memicu ulang animasi mekar dan gelombang pendaran warna huruf `#1E90FF`.
+
+### 6. Peminatan Section (`PeminatanSection.tsx`)
+- **Background**: `#FFFFFF` dengan shadow transisi halus `shadow-[0_-40px_90px_rgba(0,0,0,0.7)]`.
+- **Interactive Accordion**: 5 domain spesialisasi kurikulum dengan photo backdrop preview dan layout expansion GPU-accelerated.
+
+### 7. Gallery Section (`GallerySection.tsx`)
+- **Background**: `#111111` dengan grid arsitektural halus dan seamless atmospheric dissolve.
+- **3D Coverflow Carousel**: Render interaktif langsung ke DOM via `useRef` + RAF tanpa re-render state React, dilengkapi kontrol swipe dan navigasi presisi.
+
+### 8. Testimonials Section (`TestimonialsSection.tsx`)
+- **Scroll Reel Testimonial**: Featured photo 185px diapit placeholder 95px, dilengkapi animasi teks per-karakter (*split-character text stagger*) dan asynchronous image decoding.
+
+### 9. Kemitraan / Mitra Section (`MitraSection.tsx`)
+- **Infinite Marquee Ticker**: Logo SVG monokrom dengan hover warna asli industri, berjalan di GPU Compositor Layer (`will-change-transform transform-gpu`).
+
+### 10. Footer (`Footer.tsx`) & Floating Chatbot (`Chatbot.tsx`)
+- **Footer**: Brand identity, tautan resmi PMB & universitas, serta social links.
+- **Chatbot**: Asisten virtual mengapung dengan dynamic import bundle splitting (`next/dynamic`).
+
+---
+
+## 5. Multi-Scale & Zoom Resilience Guidelines (Cross-Platform Standards)
+
+Bagian ini mendokumentasikan arsitektur dan standar teknis untuk menangani perbedaan tampilan lintas sistem operasi (Linux/Ubuntu vs Windows), variasi *Display Scaling* DPI (100%, 125%, 150%), serta pembesaran layar (*browser zoom level* `Ctrl +` 110% s.d. 150%).
+
+### 1. Identifikasi & Akar Masalah (*Root Cause Analysis*)
+- **Perbedaan Default OS Scaling**:
+  - Di **Linux / Ubuntu**, layar 1080p berjalan pada rasio `1.0` (tinggi ruang pandang vertikal murni ~900–1000px).
+  - Di **Windows (khususnya laptop 13–15 inch)**, sistem menerapkan *Display Scaling* default **125% atau 150%**. Hal ini membuat tinggi vertikal efektif browser menyusut menjadi hanya **~600–700px** (identik dengan zoom `Ctrl +` 110%–125%).
+- **Vertical Viewport Overflow**:
+  - Section bertipe `sticky` atau `min-h-screen` dengan ukuran font absolut raksasa (misal `81px` 4 baris = ~400px + padding + ornamen = ~700px) akan melebihi tinggi layar 600px.
+- **Line Wrapping Disruption**:
+  - Pada pembesaran zoom, kalimat display panjang yang tidak dikunci barisnya akan patah (*line wrap*) secara acak, merusak kerapian rata kiri (*flush left alignment*).
+
+---
+
+### 2. Prinsip & Pola Desain Solusi (*Core Engineering Patterns*)
+
+#### A. Fluid Dual-Axis Clamping (`min(vw, vh)`)
+Gunakan formula `clamp` yang mengikat batas atas font ke nilai minimum antara lebar (`vw`) dan tinggi vertikal (`vh`):
+```css
+/* Contoh pada Quotes Section: */
+font-size: clamp(26px, min(4.35vw, 8.4vh), 80.9999px);
+line-height: 1.2;
+```
+- **Pada Laptop Standar (100% Zoom / Layar Penuh)**: Formula otomatis mencapai batas maksimal **`80.9999px`** (tampilan 100% megah dan gagah).
+- **Pada Windows Scaling / Browser Zoom (>110%)**: Nilai `vh` otomatis mengecilkan font secara halus dan proporsional sehingga **seluruh konten pas 1 layar penuh tanpa terpotong**.
+
+#### B. Strict Multi-Line Lock (`lg:whitespace-nowrap`)
+Untuk kalimat tipografi display editorial yang terbagi menjadi beberapa baris terstruktur:
+```tsx
+<span className="inline lg:block lg:whitespace-nowrap">
+  Teknik Informatika UMC membimbing Anda
+</span>
+```
+- Menjamin susunan baris tetap terkunci rapi (4 baris teratur) dan tidak menghasilkan kata yatim (*orphan words*) saat layar menyempit.
+- Memastikan teks selalu **100% rata kiri sejajar sempurna (*flush left-aligned*)**.
+
+#### C. Overflow & Dynamic Max-Height Constraints
+- Hindari penggunaan `overflow-hidden` pada container utama jika di dalamnya terdapat konten yang berpotensi memanjang vertikal; gunakan **`overflow-x-clip`** agar batas samping terlindungi tanpa memotong bagian atas/bawah.
+- Gunakan batasan adaptif berbasis viewport untuk elemen bertinggi statis:
+  - Masonry Gallery Hero: `max-h-[calc(100vh-180px)]`
+  - Chatbot Popup Window: `max-h-[calc(100vh-100px)]`
+
+---
+
+### 3. Matriks Implementasi per Komponen Teruji
+
+| Komponen | Isu yang Dimitigasi | Solusi Implementasi |
+| :--- | :--- | :--- |
+| **`QuotesSection.tsx`** | Teks terpotong saat zoom & susunan 4 baris berantakan | `clamp(26px, min(4.35vw, 8.4vh), 80.9999px)` + `lg:whitespace-nowrap` pada baris span + `overflow-x-clip`. |
+| **`HeroSection.tsx`** | Tombol CTA terdorong keluar saat galeri kanan memanjang | `overflow-x-clip` pada section + `max-h-[calc(100vh-180px)]` pada container masonry gallery + `transform-gpu`. |
+| **`VisiMisiSection.tsx`** | Visi panjang 180 karakter terpotong badge/indikatornya di layar sempit | `clamp(28px, min(4.3vw, 7.8vh), 80px)` pada visi utama + `clamp(24px, min(3vw, 5.2vh), 50px)` pada misi + GPU panels. |
+| **`Chatbot.tsx`** | Header popup chat keluar dari batas atas layar pada zoom 150% | `max-h-[calc(100vh-100px)]` pada jendela chat. |
+| **`GallerySection.tsx`** | Kartu 3D terpotong kaku di sisi kiri/kanan saat zoom/skala berbeda | `clamp(200px, min(30vw, 42vh), 380px)` + *Soft Horizontal Fade Mask* pada frame 3D carousel. |
+| **`MitraSection.tsx`** | Beban rendering marquee berkelanjutan | GPU hardware acceleration (`transform-gpu will-change-transform`) + logo SVG presisi `28x28px`. |
+
+---
+
+## 6. Web Performance & Optimization Engineering Standards
+
+Bagian ini menetapkan arsitektur performa tinggi (*high-performance engineering*) untuk mencapai skor PageSpeed 95–100, rendering instan (< 1 detik), dan transisi animasi 120 FPS tanpa jitter.
+
+### 1. Font Preloading & Zero-Layout Shift (`src/app/layout.tsx`)
+- Font self-hosted `PPMori-Regular.woff2` dan `PPMori-SemiBold.woff2` dipre-load langsung di dalam `<head>`:
+  ```html
+  <link rel="preload" href="/fonts/PPMori-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+  ```
+- **Manfaat**: Font diunduh secara paralel pada paket data pertama (detik ke-0), menghilangkan kedipan font (*Zero Flash of Unstyled Text / 0 CLS*).
+
+### 2. Next.js Compiler & Automatic Package Tree-Shaking (`next.config.ts`)
+- Menerapkan `optimizePackageImports` untuk library berat:
+  ```ts
+  optimizePackageImports: ['lucide-react', 'gsap', '@gsap/react', 'framer-motion', 'lenis']
+  ```
+- **Manfaat**: Menghindari impor modul monolitik, memangkas ukuran bundle JavaScript hingga 40%.
+- Mengaktifkan kompresi bawaan `compress: true` serta format gambar modern `AVIF` dan `WebP` dengan cache TTL 1 tahun (`minimumCacheTTL: 31536000`).
+
+### 3. Code-Splitting & Dynamic Imports (`src/app/page.tsx`)
+- Komponen interaktif floating yang tidak dibutuhkan saat first paint (`Chatbot.tsx`) dimuat secara dinamis:
+  ```tsx
+  const Chatbot = dynamic(() => import("./components/Chatbot/Chatbot"));
+  ```
+- **Manfaat**: Mengurangi First Contentful Paint (FCP) dan Total Blocking Time (TBT) secara signifikan pada pemuatan awal.
+
+### 4. Smart Image Loading & LCP Prioritization Strategy
+- **Above-The-Fold (Hero Section)**: 2 kartu teratas diberikan `priority={true}` dan `loading="eager"` untuk mendongkrak skor Largest Contentful Paint (LCP).
+- **Below-The-Fold (Facts, Peminatan, Gallery, Testimoni, Footer)**: Seluruh gambar di bawah lipatan layar menggunakan `loading="lazy"` dan `decoding="async"`.
+- **Format Aset**: 100% gambar dikonversi dan dikompresi ke format **Next-Gen WebP** dengan ukuran rata-rata hanya 10–140 KB.
+
+### 5. Buttery-Smooth Momentum Scrolling & Navigation Interception (`SmoothScroll.tsx`)
+- Menggabungkan mesin Lenis Virtual Scroll dengan GSAP Ticker pada `lagSmoothing(0)` untuk 120 FPS konsisten.
+- Mengintersepsi seluruh klik tautan navigasi anchor internal (`href^="#"` pada Navbar, Hero CTA, dan Footer) untuk meluncur halus menggunakan rumus inersia eksponensial dengan kompensasi offset fixed navbar `-20px`.

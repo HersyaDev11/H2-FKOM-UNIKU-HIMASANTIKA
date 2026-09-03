@@ -108,12 +108,12 @@ export default function Chatbot() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end" style={{ fontFamily: "'Mori', sans-serif" }}>
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[100] flex flex-col items-end" style={{ fontFamily: "'Mori', sans-serif" }}>
       
       {/* Chat Window */}
       <div 
         ref={chatRef}
-        className={`${isOpen ? 'flex' : 'hidden'} w-[320px] sm:w-[380px] h-[520px] bg-[#111111]/80 backdrop-blur-2xl border border-neutral-800/80 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] mb-5 flex-col overflow-hidden`}
+        className={`${isOpen ? 'flex' : 'hidden'} w-[calc(100vw-32px)] max-w-[380px] h-[520px] max-h-[calc(100vh-100px)] bg-[#111111]/85 backdrop-blur-2xl border border-neutral-800/80 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] mb-4 sm:mb-5 flex-col overflow-hidden`}
       >
         {/* Header */}
         <div className="border-b border-neutral-800/60 p-5 flex justify-between items-center bg-white/[0.02] shrink-0">
@@ -221,15 +221,16 @@ export default function Chatbot() {
       <button 
         ref={buttonRef}
         onClick={toggleChat}
-        className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center transition-all duration-500 hover:scale-110 active:scale-95 z-50 ${isOpen ? 'bg-[#1A1A1A] border border-neutral-800 text-white shadow-lg rotate-180' : 'bg-gradient-to-tr from-[#DF1A22] to-[#ff4b52] text-white shadow-[0_10px_25px_rgba(223,26,34,0.4)]'}`}
+        aria-label={isOpen ? "Tutup Chat" : "Buka Chat Asisten Virtual"}
+        className={`w-11 h-11 sm:w-16 sm:h-16 rounded-full flex items-center justify-center transition-all duration-500 hover:scale-110 active:scale-95 z-50 ${isOpen ? 'bg-[#1A1A1A] border border-neutral-800 text-white shadow-lg rotate-180' : 'bg-gradient-to-tr from-[#DF1A22] to-[#ff4b52] text-white shadow-[0_8px_20px_rgba(223,26,34,0.4)]'}`}
       >
         {isOpen ? (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg className="w-4 h-4 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg className="w-5 h-5 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
           </svg>
         )}

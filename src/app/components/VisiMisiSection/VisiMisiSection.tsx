@@ -62,43 +62,28 @@ export default function VisiMisiSection() {
           }
         );
 
-        // Animate the mission numbers when they enter the screen
+        // Animate the mission texts when they enter the screen
         panels.forEach((panel: any, i: number) => {
           if (i > 0) { // Skip the first panel (Vision)
-            gsap.fromTo(
-              panel.querySelector('.misi-number'),
-              { scale: 0.5, opacity: 0, rotate: -15 },
-              {
-                scale: 1,
-                opacity: 0.1,
-                rotate: 0,
-                duration: 1,
-                ease: "elastic.out(1, 0.5)",
-                scrollTrigger: {
-                  trigger: panel,
-                  containerAnimation: scrollTween, // bind to horizontal scroll
-                  start: "left center", // when left of panel hits center of viewport
-                  toggleActions: "play none none reverse"
+            const textEl = panel.querySelector('.misi-text');
+            if (textEl) {
+              gsap.fromTo(
+                textEl,
+                { opacity: 0, x: 50 },
+                {
+                  opacity: 1,
+                  x: 0,
+                  duration: 1,
+                  ease: "power3.out",
+                  scrollTrigger: {
+                    trigger: panel,
+                    containerAnimation: scrollTween,
+                    start: "left center",
+                    toggleActions: "play none none reverse"
+                  }
                 }
-              }
-            );
-
-            gsap.fromTo(
-              panel.querySelector('.misi-text'),
-              { opacity: 0, x: 50 },
-              {
-                opacity: 1,
-                x: 0,
-                duration: 1,
-                ease: "power3.out",
-                scrollTrigger: {
-                  trigger: panel,
-                  containerAnimation: scrollTween,
-                  start: "left center",
-                  toggleActions: "play none none reverse"
-                }
-              }
-            );
+              );
+            }
           }
         });
       } else {
@@ -147,20 +132,24 @@ export default function VisiMisiSection() {
       >
         
         {/* PANEL 1: VISION (Full viewport width on desktop) */}
-        <div className="hz-panel w-full lg:w-screen h-auto lg:h-full flex flex-col justify-center items-center px-6 sm:px-12 md:px-24 lg:px-32 relative mb-24 lg:mb-0">
-          <div className="max-w-[100rem] w-full relative z-10 flex flex-col items-center text-center">
+        <div className="hz-panel w-full lg:w-screen h-auto lg:h-full flex flex-col justify-center items-center px-6 sm:px-12 md:px-24 lg:px-32 relative mb-24 lg:mb-0 will-change-transform transform-gpu">
+          <div className="max-w-[100rem] w-full relative z-10 flex flex-col items-center text-center my-auto py-6">
             
-            <div className="visi-reveal inline-flex items-center justify-center px-8 py-3 rounded-full border border-white/10 bg-white/[0.03] mb-12 backdrop-blur-md">
-              <span className="text-[12px] sm:text-[14px] font-bold tracking-[0.2em] text-[#DF1A22] uppercase">
-                Visi Utama
-              </span>
-            </div>
+            <span className="visi-reveal text-[14px] font-bold tracking-[0.2em] text-[#DF1A22] uppercase block mb-6 lg:mb-8">
+              Visi Utama
+            </span>
             
-            <h2 className="visi-reveal text-[36px] sm:text-[50px] md:text-[60px] lg:text-[70px] xl:text-[80px] leading-[1.1] font-normal tracking-[-0.02em] text-white">
-              "{VISI_TEXT}"
+            <h2 
+              className="visi-reveal font-normal tracking-[-0.02em] text-white max-w-6xl"
+              style={{
+                fontSize: 'clamp(28px, min(4.3vw, 7.8vh), 80px)',
+                lineHeight: 1.16,
+              }}
+            >
+              {VISI_TEXT}
             </h2>
             
-            <div className="visi-reveal mt-16 hidden lg:flex items-center gap-4 text-neutral-500 opacity-60">
+            <div className="visi-reveal mt-10 lg:mt-14 hidden lg:flex items-center gap-4 text-neutral-500 opacity-60">
               <span className="text-[14px] uppercase tracking-widest">Geser untuk Misi</span>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
@@ -168,45 +157,54 @@ export default function VisiMisiSection() {
         </div>
 
         {/* PANEL 2: MISSION 1 */}
-        <div className="hz-panel w-full lg:w-screen h-auto lg:h-full flex flex-col justify-center px-6 sm:px-12 md:px-24 lg:px-40 relative border-l-0 lg:border-l border-white/10 mb-16 lg:mb-0 bg-[#0a0a0a]">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center overflow-hidden pointer-events-none z-0">
-            <span className="misi-number text-[250px] sm:text-[400px] font-bold text-white/[0.02] leading-none select-none">01</span>
-          </div>
-          <div className="misi-text relative z-10 max-w-4xl">
-            <span className="text-[14px] font-bold tracking-[0.2em] text-[#DF1A22] uppercase block mb-8">
+        <div className="hz-panel w-full lg:w-screen h-auto lg:h-full flex flex-col justify-center px-6 sm:px-12 md:px-24 lg:px-40 relative border-l-0 lg:border-l border-white/10 mb-16 lg:mb-0 bg-[#0a0a0a] will-change-transform transform-gpu">
+          <div className="misi-text relative z-10 max-w-4xl my-auto py-6">
+            <span className="text-[14px] font-bold tracking-[0.2em] text-[#DF1A22] uppercase block mb-6 lg:mb-8">
               Misi Pertama
             </span>
-            <p className="text-[28px] sm:text-[40px] md:text-[50px] leading-[1.3] text-neutral-200 font-light">
+            <p 
+              className="text-neutral-200 font-light"
+              style={{
+                fontSize: 'clamp(24px, min(3vw, 5.2vh), 50px)',
+                lineHeight: 1.3,
+              }}
+            >
               {MISI[0]}
             </p>
           </div>
         </div>
 
         {/* PANEL 3: MISSION 2 */}
-        <div className="hz-panel w-full lg:w-screen h-auto lg:h-full flex flex-col justify-center px-6 sm:px-12 md:px-24 lg:px-40 relative border-l-0 lg:border-l border-white/10 mb-16 lg:mb-0 bg-[#111111]">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center overflow-hidden pointer-events-none z-0">
-            <span className="misi-number text-[250px] sm:text-[400px] font-bold text-white/[0.02] leading-none select-none">02</span>
-          </div>
-          <div className="misi-text relative z-10 max-w-4xl">
-            <span className="text-[14px] font-bold tracking-[0.2em] text-[#DF1A22] uppercase block mb-8">
+        <div className="hz-panel w-full lg:w-screen h-auto lg:h-full flex flex-col justify-center px-6 sm:px-12 md:px-24 lg:px-40 relative border-l-0 lg:border-l border-white/10 mb-16 lg:mb-0 bg-[#111111] will-change-transform transform-gpu">
+          <div className="misi-text relative z-10 max-w-4xl my-auto py-6">
+            <span className="text-[14px] font-bold tracking-[0.2em] text-[#DF1A22] uppercase block mb-6 lg:mb-8">
               Misi Kedua
             </span>
-            <p className="text-[28px] sm:text-[40px] md:text-[50px] leading-[1.3] text-neutral-200 font-light">
+            <p 
+              className="text-neutral-200 font-light"
+              style={{
+                fontSize: 'clamp(24px, min(3vw, 5.2vh), 50px)',
+                lineHeight: 1.3,
+              }}
+            >
               {MISI[1]}
             </p>
           </div>
         </div>
 
         {/* PANEL 4: MISSION 3 */}
-        <div className="hz-panel w-full lg:w-screen h-auto lg:h-full flex flex-col justify-center px-6 sm:px-12 md:px-24 lg:px-40 relative border-l-0 lg:border-l border-white/10 bg-[#050505]">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center overflow-hidden pointer-events-none z-0">
-            <span className="misi-number text-[250px] sm:text-[400px] font-bold text-[#DF1A22]/[0.03] leading-none select-none">03</span>
-          </div>
-          <div className="misi-text relative z-10 max-w-4xl">
-            <span className="text-[14px] font-bold tracking-[0.2em] text-[#DF1A22] uppercase block mb-8">
+        <div className="hz-panel w-full lg:w-screen h-auto lg:h-full flex flex-col justify-center px-6 sm:px-12 md:px-24 lg:px-40 relative border-l-0 lg:border-l border-white/10 bg-[#050505] will-change-transform transform-gpu">
+          <div className="misi-text relative z-10 max-w-4xl my-auto py-6">
+            <span className="text-[14px] font-bold tracking-[0.2em] text-[#DF1A22] uppercase block mb-6 lg:mb-8">
               Misi Ketiga
             </span>
-            <p className="text-[28px] sm:text-[40px] md:text-[50px] leading-[1.3] text-neutral-200 font-light">
+            <p 
+              className="text-neutral-200 font-light"
+              style={{
+                fontSize: 'clamp(24px, min(3vw, 5.2vh), 50px)',
+                lineHeight: 1.3,
+              }}
+            >
               {MISI[2]}
             </p>
           </div>
@@ -216,4 +214,3 @@ export default function VisiMisiSection() {
     </section>
   );
 }
-
