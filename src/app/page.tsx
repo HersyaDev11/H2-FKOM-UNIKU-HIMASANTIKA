@@ -2,16 +2,16 @@ import dynamic from "next/dynamic";
 import Navbar from "./components/Navbar/Navbar";
 import HeroSection from "./components/HeroSection/HeroSection";
 import AboutSection from "./components/AboutSection/AboutSection";
-import VisiMisiSection from "./components/VisiMisiSection/VisiMisiSection";
-import FactsSection from "./components/FactsSection/FactsSection";
-import QuotesSection from "./components/QuotesSection/QuotesSection";
-import PeminatanSection from "./components/PeminatanSection/PeminatanSection";
-import GallerySection from "./components/GallerySection/GallerySection";
-import TestimonialsSection from "./components/TestimonialsSection/TestimonialsSection";
-import MitraSection from "./components/MitraSection/MitraSection";
-import Footer from "./components/Footer/Footer";
 
-// Dynamic import Chatbot to code-split its JavaScript bundle
+// Code-Split Below-The-Fold Components to eliminate initial bundle bloat
+const VisiMisiSection = dynamic(() => import("./components/VisiMisiSection/VisiMisiSection"));
+const FactsSection = dynamic(() => import("./components/FactsSection/FactsSection"));
+const QuotesSection = dynamic(() => import("./components/QuotesSection/QuotesSection"));
+const PeminatanSection = dynamic(() => import("./components/PeminatanSection/PeminatanSection"));
+const GallerySection = dynamic(() => import("./components/GallerySection/GallerySection"));
+const TestimonialsSection = dynamic(() => import("./components/TestimonialsSection/TestimonialsSection"));
+const MitraSection = dynamic(() => import("./components/MitraSection/MitraSection"));
+const Footer = dynamic(() => import("./components/Footer/Footer"));
 const Chatbot = dynamic(() => import("./components/Chatbot/Chatbot"));
 
 export default function Home() {

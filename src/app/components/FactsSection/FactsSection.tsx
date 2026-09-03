@@ -106,8 +106,9 @@ export default function FactsSection() {
             <Image
               src="/logoprodi/UMC-1.webp"
               alt="Logo Teknik Informatika UMC"
-              width={400}
-              height={400}
+              width={320}
+              height={320}
+              sizes="(max-width: 1024px) 0px, 320px"
               className="lg:w-76 lg:h-76 xl:w-88 xl:h-88 object-contain select-none pointer-events-none drop-shadow-sm"
               loading="lazy"
             />

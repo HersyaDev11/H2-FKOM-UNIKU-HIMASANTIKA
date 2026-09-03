@@ -2,14 +2,6 @@
 
 /* --- PP Mori (Self-Hosted) --- */
 @font-face {
-  font-family: 'Mori-400';
-  src: url('/fonts/PPMori-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'Mori';
   src: url('/fonts/PPMori-Regular.woff2') format('woff2');
   font-weight: 400;
@@ -34,8 +26,8 @@
   --color-hitam: #111111;
 
   /* --- Typography --- */
-  --font-mori: 'Mori-400', 'Mori', sans-serif;
-  --font-sans: 'Mori-400', 'Mori', sans-serif;
+  --font-mori: 'Mori', sans-serif;
+  --font-sans: 'Mori', sans-serif;
 }
 
 body {
