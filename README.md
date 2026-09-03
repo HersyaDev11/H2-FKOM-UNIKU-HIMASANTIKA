@@ -3,6 +3,8 @@
   <h1>🚀 Teknik Informatika — Universitas Muhammadiyah Cirebon</h1>
   <p><strong>Karya Kompetisi Web Design 2026</strong></p>
   <p>Website Company Profile modern, interaktif, dan performa tinggi yang dibangun dengan Next.js App Router, GSAP, dan Tailwind CSS.</p>
+  <p>Kami dari Tim H2-FKOM-UNIVERSITAS-KUNINGAN </p>
+  <p>Tim Pengembang/Developer : Hersya Yudina & Haqil Abdillah </p>
 </div>
 
 ---
