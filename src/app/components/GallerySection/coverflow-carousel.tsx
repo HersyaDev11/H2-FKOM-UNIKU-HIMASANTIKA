@@ -218,15 +218,18 @@ export function CoverflowCarousel({
     const frame = frameRef.current;
     if (!frame) return;
 
-    const measure = () => {
+    const measure = (entries?: ResizeObserverEntry[]) => {
       const card = cardRefs.current[0];
       if (!card) return;
-      widthRef.current = card.offsetWidth;
-      paint();
+      const width = card.getBoundingClientRect().width;
+      if (width > 0) {
+        widthRef.current = width;
+        requestAnimationFrame(paint);
+      }
     };
 
     measure();
-    const observer = new ResizeObserver(measure);
+    const observer = new ResizeObserver((entries) => measure(entries));
     observer.observe(frame);
     return () => observer.disconnect();
   }, [paint]);
@@ -298,6 +301,8 @@ export function CoverflowCarousel({
                 <img
                   src={slide.src}
                   alt={slide.alt}
+                  loading="lazy"
+                  decoding="async"
                   draggable={false}
                   className="h-full w-full select-none object-cover"
                 />
@@ -363,7 +368,7 @@ export function CoverflowCarousel({
 
           {/* Reserved Height for Subtitle */}
           <div className="min-h-[26px] sm:min-h-[30px] md:min-h-[32px] flex items-center justify-center w-full max-w-2xl mt-1">
-            <p className="text-[13px] sm:text-[16px] md:text-[18px] font-light text-neutral-400 text-center px-2 transition-opacity duration-200">
+            <p className="text-[13px] sm:text-[16px] md:text-[18px] font-normal text-neutral-300 text-center px-2 transition-opacity duration-200">
               {active?.subtitle || ""}
             </p>
           </div>
@@ -373,8 +378,8 @@ export function CoverflowCarousel({
             <dl className="mt-4 sm:mt-6 md:mt-7 w-full max-w-[270px] sm:max-w-[290px] text-[13px] sm:text-[14px] md:text-[15px]">
               {active.meta.map((row) => (
                 <div key={row.label} className="h-[32px] sm:h-[36px] flex items-center justify-between border-b border-neutral-800/80 gap-3 sm:gap-4">
-                  <dt className="text-neutral-400 font-light shrink-0">{row.label}</dt>
-                  <dd className="font-normal text-[#F2A900] text-right truncate">{row.value}</dd>
+                  <dt className="text-neutral-300 font-normal shrink-0">{row.label}</dt>
+                  <dd className="font-medium text-[#F2A900] text-right truncate">{row.value}</dd>
                 </div>
               ))}
             </dl>
@@ -383,7 +388,7 @@ export function CoverflowCarousel({
       )}
 
       {showPagination && (
-        <div className="mt-4 sm:mt-6 flex items-center justify-center gap-2.5">
+        <div className="mt-4 sm:mt-6 flex items-center justify-center gap-1.5">
           {slides.map((_, index) => (
             <button
               key={index}
@@ -391,13 +396,17 @@ export function CoverflowCarousel({
               aria-label={`Go to slide ${index + 1}`}
               aria-current={index === selected}
               onClick={() => goTo(index)}
-              className={cn(
-                "h-2.5 shrink-0 rounded-full transition-all duration-300 cursor-pointer",
-                index === selected
-                  ? "w-8 bg-[#DF1A22]"
-                  : "w-2.5 bg-white/25 hover:bg-white/50",
-              )}
-            />
+              className="p-2 flex items-center justify-center cursor-pointer min-w-[32px] min-h-[32px]"
+            >
+              <span
+                className={cn(
+                  "h-2.5 shrink-0 rounded-full transition-all duration-300 block",
+                  index === selected
+                    ? "w-8 bg-[#DF1A22]"
+                    : "w-2.5 bg-white/25 hover:bg-white/50",
+                )}
+              />
+            </button>
           ))}
         </div>
       )}

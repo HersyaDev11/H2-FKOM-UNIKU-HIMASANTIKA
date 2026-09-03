@@ -44,11 +44,6 @@ export default function FactsSection() {
 
   useGSAP(
     () => {
-      // Ensure ScrollTrigger refreshes accurately
-      const timer = setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 100);
-
       // Smooth reveal for list rows with immediateRender: false
       gsap.fromTo(
         '.facts-list-row',
@@ -67,8 +62,6 @@ export default function FactsSection() {
           },
         }
       );
-
-      return () => clearTimeout(timer);
     },
     { scope: containerRef }
   );
@@ -149,7 +142,7 @@ export default function FactsSection() {
 
               {/* Right: Subtitle Category */}
               <div className="mt-3 md:mt-0 flex items-center shrink-0">
-                <p className="text-[14px] sm:text-[16px] md:text-[18px] font-normal text-[#64748b] transition-all duration-300 group-hover:translate-x-2 group-hover:text-[#00853F] tracking-[-0.01em]">
+                <p className="text-[14px] sm:text-[16px] md:text-[18px] font-medium text-[#334155] transition-all duration-300 group-hover:translate-x-2 group-hover:text-[#00853F] tracking-[-0.01em]">
                   {fact.category}
                 </p>
               </div>

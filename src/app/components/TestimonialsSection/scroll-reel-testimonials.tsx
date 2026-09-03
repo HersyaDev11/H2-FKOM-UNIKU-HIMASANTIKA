@@ -39,7 +39,7 @@ const EASE_INOUT = "cubic-bezier(0.65,0,0.35,1)";
 const QUOTE_CLASSES =
   "m-0 text-[24.5px] sm:text-[28px] md:text-[33px] lg:text-[38px] xl:text-[42px] font-normal leading-[1.25] sm:leading-[1.26] tracking-[-0.018em] text-[#FFFFFF]";
 const AUTHOR_CLASSES =
-  "m-0 text-[14px] sm:text-[16px] lg:text-[19px] font-normal leading-[1.4] text-neutral-400";
+  "m-0 text-[14px] sm:text-[16px] lg:text-[19px] font-normal leading-[1.4] text-neutral-300";
 
 const FEATURED_SHADOW =
   "0 20px 45px -8px rgba(0,0,0,0.95), 0 0 0 1px rgba(255,255,255,0.2), inset 0 1px 0 rgba(255,255,255,0.3)";
@@ -374,10 +374,10 @@ export function ScrollReelTestimonials({
               onClick={() => paginate(-1)}
               disabled={index === 0}
               aria-label="Testimoni Sebelumnya"
-              className="grid h-9 w-9 sm:h-10 sm:w-10 lg:h-12 lg:w-12 cursor-pointer place-items-center rounded-full border border-white/15 bg-white/5 text-white transition-all duration-200 hover:enabled:bg-white/15 hover:enabled:scale-105 active:enabled:scale-95 disabled:cursor-default disabled:opacity-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+              className="grid min-w-[44px] min-h-[44px] h-11 w-11 sm:h-11 sm:w-11 lg:h-12 lg:w-12 cursor-pointer place-items-center rounded-full border border-white/15 bg-white/5 text-white transition-all duration-200 hover:enabled:bg-white/15 hover:enabled:scale-105 active:enabled:scale-95 disabled:cursor-default disabled:opacity-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
             >
               <svg
-                className="h-3.5 w-3.5 lg:h-4 lg:w-4"
+                className="h-4 w-4 lg:h-4.5 lg:w-4.5"
                 viewBox="0 0 12 12"
                 fill="none"
                 stroke="currentColor"
@@ -394,10 +394,10 @@ export function ScrollReelTestimonials({
               onClick={() => paginate(1)}
               disabled={index === count - 1}
               aria-label="Testimoni Berikutnya"
-              className="grid h-9 w-9 sm:h-10 sm:w-10 lg:h-12 lg:w-12 cursor-pointer place-items-center rounded-full border border-white/15 bg-white/5 text-white transition-all duration-200 hover:enabled:bg-white/15 hover:enabled:scale-105 active:enabled:scale-95 disabled:cursor-default disabled:opacity-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+              className="grid min-w-[44px] min-h-[44px] h-11 w-11 sm:h-11 sm:w-11 lg:h-12 lg:w-12 cursor-pointer place-items-center rounded-full border border-white/15 bg-white/5 text-white transition-all duration-200 hover:enabled:bg-white/15 hover:enabled:scale-105 active:enabled:scale-95 disabled:cursor-default disabled:opacity-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
             >
               <svg
-                className="h-3.5 w-3.5 lg:h-4 lg:w-4"
+                className="h-4 w-4 lg:h-4.5 lg:w-4.5"
                 viewBox="0 0 12 12"
                 fill="none"
                 stroke="currentColor"

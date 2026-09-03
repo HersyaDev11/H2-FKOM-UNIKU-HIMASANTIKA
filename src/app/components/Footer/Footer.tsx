@@ -16,11 +16,6 @@ export default function Footer() {
 
   useGSAP(
     () => {
-      // Ensure ScrollTrigger refreshes accurately
-      const timer = setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 100);
-
       // Staggered reveal for footer elements
       gsap.fromTo(
         '.footer-element',
@@ -39,8 +34,6 @@ export default function Footer() {
           },
         }
       );
-
-      return () => clearTimeout(timer);
     },
     { scope: containerRef }
   );
@@ -70,15 +63,15 @@ export default function Footer() {
               Teknik Informatika UMC
             </h2>
           </div>
-          <p className="footer-element text-neutral-400 text-[14px] sm:text-[17px] leading-relaxed mb-6 sm:mb-8">
+          <p className="footer-element text-neutral-300 text-[14px] sm:text-[17px] leading-relaxed mb-6 sm:mb-8">
             Mencetak talenta digital berdaya saing global melalui pendidikan berkualitas, riset inovatif, dan kolaborasi industri yang berkelanjutan.
           </p>
-          <div className="footer-element flex flex-wrap items-center gap-5 sm:gap-6">
+          <div className="footer-element flex flex-wrap items-center gap-4 sm:gap-6">
             <a 
               href="https://www.instagram.com/officialpmbumc.id?igsi=emMyc2R0cnVpdno4" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-white hover:text-[#DF1A22] transition-colors duration-300 font-normal text-[14px] sm:text-[15px]"
+              className="text-white hover:text-[#DF1A22] transition-colors duration-300 font-normal text-[14px] sm:text-[15px] py-2 min-h-[44px] flex items-center"
             >
               Instagram
             </a>
@@ -86,7 +79,7 @@ export default function Footer() {
               href="https://www.tiktok.com/@officialpmbumc.id?_r=1&_t=ZS-99P4h0p6NOe" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-white hover:text-[#DF1A22] transition-colors duration-300 font-normal text-[14px] sm:text-[15px]"
+              className="text-white hover:text-[#DF1A22] transition-colors duration-300 font-normal text-[14px] sm:text-[15px] py-2 min-h-[44px] flex items-center"
             >
               TikTok
             </a>
@@ -94,7 +87,7 @@ export default function Footer() {
               href="https://youtube.com/@umcirebon?si=ZAqeRaGlU7BZBITI" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-white hover:text-[#DF1A22] transition-colors duration-300 font-normal text-[14px] sm:text-[15px]"
+              className="text-white hover:text-[#DF1A22] transition-colors duration-300 font-normal text-[14px] sm:text-[15px] py-2 min-h-[44px] flex items-center"
             >
               YouTube
             </a>
@@ -104,23 +97,23 @@ export default function Footer() {
         {/* Right Side: Links in Clean 2-Column Grid on Mobile */}
         <div className="flex-1 grid grid-cols-2 gap-8 sm:flex sm:flex-row sm:gap-16 lg:gap-24 justify-start md:justify-end">
           
-          <div className="flex flex-col gap-2.5 sm:gap-3.5">
+          <div className="flex flex-col gap-1.5 sm:gap-3.5">
             <h3 className="footer-element text-[16px] sm:text-[19px] font-medium tracking-tight mb-1 sm:mb-2 text-white">Navigasi</h3>
-            <Link href="#beranda" className="footer-element text-neutral-400 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-0.5 sm:py-0">Beranda</Link>
-            <Link href="#visi-misi" className="footer-element text-neutral-400 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-0.5 sm:py-0">Visi &amp; Misi</Link>
-            <Link href="#fakta-akademik" className="footer-element text-neutral-400 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-0.5 sm:py-0">Keunggulan</Link>
-            <Link href="#peminatan" className="footer-element text-neutral-400 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-0.5 sm:py-0">Peminatan</Link>
-            <Link href="#galeri" className="footer-element text-neutral-400 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-0.5 sm:py-0">Galeri</Link>
-            <Link href="#testimoni-alumni" className="footer-element text-neutral-400 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-0.5 sm:py-0">Alumni</Link>
+            <Link href="#beranda" className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center">Beranda</Link>
+            <Link href="#visi-misi" className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center">Visi &amp; Misi</Link>
+            <Link href="#fakta-akademik" className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center">Keunggulan</Link>
+            <Link href="#peminatan" className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center">Peminatan</Link>
+            <Link href="#galeri" className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center">Galeri</Link>
+            <Link href="#testimoni-alumni" className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center">Alumni</Link>
           </div>
 
-          <div className="flex flex-col gap-2.5 sm:gap-3.5">
+          <div className="flex flex-col gap-1.5 sm:gap-3.5">
             <h3 className="footer-element text-[16px] sm:text-[19px] font-medium tracking-tight mb-1 sm:mb-2 text-white">Informasi Resmi</h3>
             <a 
               href="https://pmb.umc.ac.id" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="footer-element text-neutral-400 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-0.5 sm:py-0"
+              className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center"
             >
               Pendaftaran (PMB)
             </a>
@@ -128,7 +121,7 @@ export default function Footer() {
               href="https://umc.ac.id" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="footer-element text-neutral-400 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-0.5 sm:py-0"
+              className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center"
             >
               Website Universitas
             </a>
@@ -138,9 +131,9 @@ export default function Footer() {
       </div>
 
       {/* Bottom Legal / Copyright */}
-      <div className="footer-element w-full max-w-[120rem] mx-auto mt-10 sm:mt-16 lg:mt-20 pt-6 sm:pt-8 border-t border-neutral-800/60 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-neutral-400 text-[13px] sm:text-[13.5px]">
+      <div className="footer-element w-full max-w-[120rem] mx-auto mt-10 sm:mt-16 lg:mt-20 pt-6 sm:pt-8 border-t border-neutral-800/60 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-neutral-300 text-[13px] sm:text-[13.5px]">
         <p>© {new Date().getFullYear()} Prodi Teknik Informatika Universitas Muhammadiyah Cirebon.</p>
-        <p className="text-neutral-500 text-[12.5px] sm:text-[13px]">Jl. Tuparev No. 70, Cirebon, Jawa Barat</p>
+        <p className="text-neutral-400 text-[12.5px] sm:text-[13px]">Jl. Tuparev No. 70, Cirebon, Jawa Barat</p>
       </div>
     </footer>
   );

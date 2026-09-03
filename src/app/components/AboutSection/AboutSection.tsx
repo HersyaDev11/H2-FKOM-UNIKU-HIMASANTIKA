@@ -16,11 +16,6 @@ export default function AboutSection() {
 
   useGSAP(
     () => {
-      // Refresh ScrollTrigger to ensure accurate calculations
-      const timer = setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 100);
-
       // Scrubbed Word Reveal Animation
       // Kata-kata akan menyala menjadi putih seiring dengan scroll
       gsap.to('.about-word', {
@@ -53,8 +48,6 @@ export default function AboutSection() {
           }
         }
       );
-
-      return () => clearTimeout(timer);
     },
     { scope: sectionRef }
   );
@@ -62,7 +55,7 @@ export default function AboutSection() {
   // Memecah teks menjadi kata-kata (words) untuk dianimasikan secara individual
   const renderWords = (text: string) => {
     return text.split(' ').map((word, i) => (
-      <span key={i} className="about-word opacity-20 text-neutral-600 inline-block mr-[0.25em] transition-colors duration-300">
+      <span key={i} className="about-word opacity-40 text-neutral-400 inline-block mr-[0.25em] transition-colors duration-300">
         {word}
       </span>
     ));
@@ -118,7 +111,7 @@ export default function AboutSection() {
                 {stat.value}
                 <span className="text-[#DF1A22]">{stat.suffix}</span>
               </h3>
-              <p className="text-[12px] sm:text-[14px] text-neutral-400 font-bold tracking-widest uppercase relative z-10">
+              <p className="text-[12px] sm:text-[14px] text-neutral-300 font-bold tracking-widest uppercase relative z-10">
                 {stat.label}
               </p>
             </div>

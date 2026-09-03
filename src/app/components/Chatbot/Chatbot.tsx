@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -10,10 +11,42 @@ interface Message {
   text: string;
 }
 
+const PRESET_RESPONSES: Record<string, string> = {
+  daftar: "Pendaftaran Mahasiswa Baru (PMB) Prodi Teknik Informatika UMC dibuka 100% secara daring! Anda dapat langsung mengakses portal resmi di https://pmb.umc.ac.id. Tersedia Jalur Reguler, Jalur Prestasi (Rapor/Kejuaraan), dan Jalur Beasiswa KIP.",
+  kurikulum: "Kurikulum Teknik Informatika UMC dirancang berbasis Outcome-Based Education (OBE) dan standar IEEE/ACM dengan 5 bidang keahlian utama: Rekayasa Perangkat Lunak, Kecerdasan Buatan (AI & ML), Jaringan Komputer & Cyber Security, Data Science, dan Cloud Computing.",
+  beasiswa: "Teknik Informatika UMC menyediakan berbagai program beasiswa: Beasiswa KIP-Kuliah (Full Gratis & Uang Saku), Beasiswa Kader Persyarikatan Muhammadiyah, Beasiswa Tahfidz Quran, Beasiswa Prestasi Juara, dan Beasiswa Mitra Industri.",
+  biaya: "Biaya kuliah di Teknik Informatika UMC sangat kompetitif dan terjangkau dengan skema cicilan fleksibel tanpa bunga. Detail rincian UKT & DPP dapat Anda lihat langsung di menu biaya pada https://pmb.umc.ac.id.",
+  akreditasi: "Program Studi Teknik Informatika Universitas Muhammadiyah Cirebon telah terakreditasi oleh LAM-INFOKOM / BAN-PT dengan jaminan standar mutu pendidikan dan fasilitas laboratorium komputer terpadu.",
+};
+
+const getBotResponse = (input: string): string => {
+  const lower = input.toLowerCase();
+  if (lower.includes('daftar') || lower.includes('syarat') || lower.includes('masuk') || lower.includes('pmb')) {
+    return PRESET_RESPONSES.daftar;
+  }
+  if (lower.includes('kurikulum') || lower.includes('kuliah') || lower.includes('peminatan') || lower.includes('matkul') || lower.includes('belajar')) {
+    return PRESET_RESPONSES.kurikulum;
+  }
+  if (lower.includes('beasiswa') || lower.includes('kip') || lower.includes('kader') || lower.includes('gratis')) {
+    return PRESET_RESPONSES.beasiswa;
+  }
+  if (lower.includes('biaya') || lower.includes('spp') || lower.includes('bayar') || lower.includes('ukt')) {
+    return PRESET_RESPONSES.biaya;
+  }
+  if (lower.includes('akreditasi') || lower.includes('status') || lower.includes('kualitas')) {
+    return PRESET_RESPONSES.akreditasi;
+  }
+  return "Terima kasih atas pesan Anda! 😊 Saya asisten virtual Prodi Teknik Informatika UMC. Untuk konsultasi langsung atau pertanyaan khusus, Anda dapat mengunjungi laman resmi https://pmb.umc.ac.id atau menghubungi hotline admisi UMC. Ada yang bisa kami bantu lagi?";
+};
+
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { id: '1', type: 'bot', text: 'Halo! 👋 Selamat datang di Teknik Informatika UMC. Ada yang bisa kami bantu terkait pendaftaran, kurikulum, atau hal lainnya?' }
+    { 
+      id: '1', 
+      type: 'bot', 
+      text: 'Halo! 👋 Selamat datang di Teknik Informatika UMC. Ada yang bisa kami bantu terkait pendaftaran PMB, kurikulum, peminatan, atau program beasiswa?' 
+    }
   ]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -23,14 +56,25 @@ export default function Chatbot() {
   const chatBodyRef = useRef<HTMLDivElement>(null);
   const pulseAnimRef = useRef<gsap.core.Tween | null>(null);
 
-  // Auto scroll to bottom
-  useEffect(() => {
+  // Smooth Auto-Scroll to bottom whenever messages or typing state change
+  const scrollToBottom = () => {
     if (chatBodyRef.current) {
-      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+      setTimeout(() => {
+        if (chatBodyRef.current) {
+          chatBodyRef.current.scrollTo({
+            top: chatBodyRef.current.scrollHeight,
+            behavior: 'smooth'
+          });
+        }
+      }, 50);
     }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
   }, [messages, isTyping]);
 
-  // Pulse effect for the floating button when it's closed
+  // Pulse effect for the floating button when closed
   useEffect(() => {
     if (buttonRef.current && !isOpen) {
       pulseAnimRef.current = gsap.to(buttonRef.current, {
@@ -58,13 +102,7 @@ export default function Chatbot() {
       gsap.fromTo(
         chatRef.current,
         { opacity: 0, y: 30, scale: 0.9, filter: 'blur(10px)' },
-        { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 0.5, ease: 'back.out(1.2)', transformOrigin: 'bottom right' }
-      );
-
-      gsap.fromTo(
-        '.chat-stagger',
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, ease: 'power2.out', delay: 0.2 }
+        { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 0.45, ease: 'back.out(1.2)', transformOrigin: 'bottom right' }
       );
     }
   }, [isOpen]);
@@ -76,7 +114,7 @@ export default function Chatbot() {
         y: 20,
         scale: 0.95,
         filter: 'blur(5px)',
-        duration: 0.3,
+        duration: 0.28,
         ease: 'power3.in',
         onComplete: () => setIsOpen(false)
       });
@@ -86,25 +124,30 @@ export default function Chatbot() {
   };
 
   const handleSendMessage = (text: string) => {
-    if (!text.trim()) return;
+    const trimmed = text.trim();
+    if (!trimmed || isTyping) return;
     
-    // Add user message
-    const userMsg: Message = { id: Date.now().toString(), type: 'user', text };
+    // 1. Add user message with unique ID
+    const userMsg: Message = { id: `user-${Date.now()}`, type: 'user', text: trimmed };
     setMessages(prev => [...prev, userMsg]);
     setInputText('');
     
-    // Simulate bot typing
+    // 2. Smoothly display typing indicator
     setIsTyping(true);
+    
+    // 3. Realistic dynamic delay based on reply length
+    const botReplyText = getBotResponse(trimmed);
+    const delay = Math.min(1400, Math.max(800, botReplyText.length * 10));
     
     setTimeout(() => {
       setIsTyping(false);
       const botMsg: Message = { 
-        id: (Date.now() + 1).toString(), 
+        id: `bot-${Date.now()}`, 
         type: 'bot', 
-        text: 'Terima kasih atas pesannya! 😊 Saat ini saya hanya asisten demo. Untuk informasi lebih lengkap mengenai pendaftaran, Anda bisa menghubungi nomor WhatsApp admin kami yang tertera di Footer website. Ada hal lain yang ingin ditelusuri?' 
+        text: botReplyText
       };
       setMessages(prev => [...prev, botMsg]);
-    }, 1500);
+    }, delay);
   };
 
   return (
@@ -113,7 +156,7 @@ export default function Chatbot() {
       {/* Chat Window */}
       <div 
         ref={chatRef}
-        className={`${isOpen ? 'flex' : 'hidden'} w-[calc(100vw-32px)] max-w-[380px] h-[520px] max-h-[calc(100vh-100px)] bg-[#111111]/85 backdrop-blur-2xl border border-neutral-800/80 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] mb-4 sm:mb-5 flex-col overflow-hidden`}
+        className={`${isOpen ? 'flex' : 'hidden'} w-[calc(100vw-32px)] max-w-[380px] h-[520px] max-h-[calc(100vh-100px)] bg-[#111111]/90 backdrop-blur-2xl border border-neutral-800/80 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] mb-4 sm:mb-5 flex-col overflow-hidden`}
       >
         {/* Header */}
         <div className="border-b border-neutral-800/60 p-5 flex justify-between items-center bg-white/[0.02] shrink-0">
@@ -126,13 +169,17 @@ export default function Chatbot() {
             </div>
             <div>
               <h4 className="font-semibold tracking-tight text-[16px] text-white">Asisten Virtual UMC</h4>
-              <p className="text-[13px] text-neutral-400 flex items-center gap-1.5">
+              <p className="text-[13px] text-neutral-300 flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
                 Online
               </p>
             </div>
           </div>
-          <button onClick={toggleChat} className="w-8 h-8 flex items-center justify-center rounded-full bg-neutral-800/50 text-neutral-400 hover:text-white hover:bg-neutral-700 transition-all duration-300">
+          <button 
+            onClick={toggleChat} 
+            className="w-9 h-9 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-full bg-neutral-800/50 text-neutral-300 hover:text-white hover:bg-neutral-700 transition-all duration-300 cursor-pointer"
+            aria-label="Tutup Jendela Chat"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -140,54 +187,83 @@ export default function Chatbot() {
           </button>
         </div>
 
-        {/* Chat Body */}
-        <div ref={chatBodyRef} className="flex-1 p-5 overflow-y-auto flex flex-col gap-5 custom-scrollbar">
+        {/* Chat Body with Smooth Animated Messages */}
+        <div ref={chatBodyRef} className="flex-1 p-5 overflow-y-auto flex flex-col gap-4 custom-scrollbar">
           
-          {messages.map((msg) => (
-            <div key={msg.id} className={`chat-stagger flex ${msg.type === 'user' ? 'justify-end' : 'items-end gap-3'}`}>
-              {msg.type === 'bot' && (
+          <AnimatePresence initial={false}>
+            {messages.map((msg) => (
+              <motion.div 
+                key={msg.id} 
+                initial={{ opacity: 0, y: 14, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+                className={`flex ${msg.type === 'user' ? 'justify-end' : 'items-end gap-2.5'}`}
+              >
+                {msg.type === 'bot' && (
+                  <motion.div 
+                    initial={{ scale: 0.6, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
+                    className="w-8 h-8 bg-gradient-to-tr from-[#DF1A22] to-[#ff4b52] rounded-full shrink-0 flex items-center justify-center text-white text-[11px] font-bold shadow-md mb-1 select-none"
+                  >
+                    TI
+                  </motion.div>
+                )}
+                <div className={`
+                  p-4 rounded-2xl text-[14px] leading-relaxed max-w-[85%] shadow-sm transition-shadow duration-300
+                  ${msg.type === 'user' 
+                    ? 'bg-[#DF1A22] text-white rounded-br-sm shadow-[0_4px_16px_rgba(223,26,34,0.3)]' 
+                    : 'bg-[#1A1A1A] border border-neutral-800/90 text-[#F0F0F0] rounded-bl-sm'}
+                `}>
+                  {msg.text}
+                </div>
+              </motion.div>
+            ))}
+
+            {/* Smooth Animated Typing Indicator */}
+            {isTyping && (
+              <motion.div 
+                key="typing-indicator"
+                initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -6, scale: 0.92, transition: { duration: 0.2 } }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
+                className="flex items-end gap-2.5"
+              >
                 <div className="w-8 h-8 bg-gradient-to-tr from-[#DF1A22] to-[#ff4b52] rounded-full shrink-0 flex items-center justify-center text-white text-[11px] font-bold shadow-md mb-1">
                   TI
                 </div>
-              )}
-              <div className={`
-                p-4 rounded-2xl text-[14px] leading-relaxed max-w-[85%] shadow-sm
-                ${msg.type === 'user' 
-                  ? 'bg-[#DF1A22] text-white rounded-br-sm' 
-                  : 'bg-[#1A1A1A]/80 border border-neutral-800/80 text-[#E5E5E5] rounded-bl-sm'}
-              `}>
-                {msg.text}
-              </div>
-            </div>
-          ))}
-
-          {/* Typing Indicator */}
-          {isTyping && (
-            <div className="flex items-end gap-3">
-              <div className="w-8 h-8 bg-gradient-to-tr from-[#DF1A22] to-[#ff4b52] rounded-full shrink-0 flex items-center justify-center text-white text-[11px] font-bold shadow-md mb-1">
-                TI
-              </div>
-              <div className="bg-[#1A1A1A]/80 border border-neutral-800/80 py-4 px-5 rounded-2xl rounded-bl-sm flex items-center gap-1.5 w-fit">
-                <span className="w-2 h-2 bg-neutral-500 rounded-full animate-bounce"></span>
-                <span className="w-2 h-2 bg-neutral-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></span>
-                <span className="w-2 h-2 bg-neutral-500 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></span>
-              </div>
-            </div>
-          )}
+                <div className="bg-[#1A1A1A] border border-neutral-800/90 py-3.5 px-4.5 rounded-2xl rounded-bl-sm flex items-center gap-1.5 w-fit shadow-sm">
+                  <span className="w-2 h-2 bg-[#DF1A22] rounded-full animate-bounce" style={{ animationDuration: '0.8s', animationDelay: '0s' }}></span>
+                  <span className="w-2 h-2 bg-[#DF1A22] rounded-full animate-bounce" style={{ animationDuration: '0.8s', animationDelay: '0.18s' }}></span>
+                  <span className="w-2 h-2 bg-[#DF1A22] rounded-full animate-bounce" style={{ animationDuration: '0.8s', animationDelay: '0.36s' }}></span>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
           
-          {/* Preset Options (Only show if no messages sent yet, besides the first one) */}
+          {/* Preset Suggestion Chips (Smooth Fade In on Start) */}
           {messages.length === 1 && !isTyping && (
-            <div className="flex flex-col gap-2.5 mt-2 items-end">
-               <button onClick={() => handleSendMessage("Cara Daftar & Syarat Masuk")} className="chat-stagger bg-[#DF1A22]/10 hover:bg-[#DF1A22] border border-[#DF1A22]/30 hover:border-[#DF1A22] text-[#DF1A22] hover:text-white text-[13px] px-5 py-2.5 rounded-full transition-all duration-300 w-fit text-left shadow-sm">
-                 Cara Daftar & Syarat Masuk
-               </button>
-               <button onClick={() => handleSendMessage("Info Kurikulum Terbaru")} className="chat-stagger bg-[#DF1A22]/10 hover:bg-[#DF1A22] border border-[#DF1A22]/30 hover:border-[#DF1A22] text-[#DF1A22] hover:text-white text-[13px] px-5 py-2.5 rounded-full transition-all duration-300 w-fit text-left shadow-sm">
-                 Info Kurikulum Terbaru
-               </button>
-               <button onClick={() => handleSendMessage("Peluang Beasiswa")} className="chat-stagger bg-[#DF1A22]/10 hover:bg-[#DF1A22] border border-[#DF1A22]/30 hover:border-[#DF1A22] text-[#DF1A22] hover:text-white text-[13px] px-5 py-2.5 rounded-full transition-all duration-300 w-fit text-left shadow-sm">
-                 Peluang Beasiswa
-               </button>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25, duration: 0.4 }}
+              className="flex flex-col gap-2 mt-2 items-end"
+            >
+              {[
+                "Cara Daftar & Syarat Masuk",
+                "Info Kurikulum Terbaru",
+                "Peluang Beasiswa"
+              ].map((chip, idx) => (
+                <button 
+                  key={idx}
+                  onClick={() => handleSendMessage(chip)} 
+                  className="bg-[#DF1A22]/10 hover:bg-[#DF1A22] border border-[#DF1A22]/30 hover:border-[#DF1A22] text-[#DF1A22] hover:text-white text-[13px] px-4.5 py-2.5 min-h-[44px] flex items-center rounded-full transition-all duration-300 w-fit text-left shadow-sm cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  {chip}
+                </button>
+              ))}
+            </motion.div>
           )}
         </div>
 
@@ -205,9 +281,14 @@ export default function Chatbot() {
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               placeholder="Tulis pesan Anda..." 
-              className="w-full bg-[#1A1A1A] text-[#FFFFFF] text-[14px] pl-5 pr-12 py-3.5 rounded-full outline-none border border-neutral-800 focus:border-[#DF1A22]/50 transition-colors shadow-inner"
+              className="w-full bg-[#1A1A1A] text-[#FFFFFF] text-[14px] pl-5 pr-14 py-3.5 rounded-full outline-none border border-neutral-800 focus:border-[#DF1A22]/60 transition-colors shadow-inner placeholder:text-neutral-500"
             />
-            <button type="submit" disabled={!inputText.trim()} className="absolute right-2 w-9 h-9 bg-[#DF1A22] text-white rounded-full flex items-center justify-center hover:bg-[#B3151B] disabled:opacity-50 disabled:hover:bg-[#DF1A22] disabled:hover:scale-100 transition-transform duration-300 hover:scale-105 shadow-md">
+            <button 
+              type="submit" 
+              disabled={!inputText.trim() || isTyping} 
+              aria-label="Kirim Pesan" 
+              className="absolute right-2 w-10 h-10 min-w-[40px] min-h-[40px] bg-[#DF1A22] text-white rounded-full flex items-center justify-center hover:bg-[#B3151B] disabled:opacity-40 disabled:hover:bg-[#DF1A22] disabled:hover:scale-100 transition-transform duration-300 hover:scale-105 shadow-md cursor-pointer disabled:cursor-not-allowed"
+            >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="ml-0.5 mt-0.5">
                 <line x1="22" y1="2" x2="11" y2="13"></line>
                 <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
@@ -217,12 +298,12 @@ export default function Chatbot() {
         </div>
       </div>
 
-      {/* Floating Button */}
+      {/* Floating Action Button with Status Ring */}
       <button 
         ref={buttonRef}
         onClick={toggleChat}
         aria-label={isOpen ? "Tutup Chat" : "Buka Chat Asisten Virtual"}
-        className={`w-11 h-11 sm:w-16 sm:h-16 rounded-full flex items-center justify-center transition-all duration-500 hover:scale-110 active:scale-95 z-50 ${isOpen ? 'bg-[#1A1A1A] border border-neutral-800 text-white shadow-lg rotate-180' : 'bg-gradient-to-tr from-[#DF1A22] to-[#ff4b52] text-white shadow-[0_8px_20px_rgba(223,26,34,0.4)]'}`}
+        className={`w-13 h-13 sm:w-16 sm:h-16 min-w-[50px] min-h-[50px] rounded-full flex items-center justify-center transition-all duration-500 hover:scale-110 active:scale-95 z-50 cursor-pointer ${isOpen ? 'bg-[#1A1A1A] border border-neutral-800 text-white shadow-lg rotate-180' : 'bg-gradient-to-tr from-[#DF1A22] to-[#ff4b52] text-white shadow-[0_8px_20px_rgba(223,26,34,0.4)]'}`}
       >
         {isOpen ? (
           <svg className="w-4 h-4 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

@@ -23,11 +23,6 @@ export default function VisiMisiSection() {
 
   useGSAP(
     () => {
-      // Small timeout to ensure DOM is fully rendered
-      const timer = setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 100);
-
       const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
 
       if (isDesktop && trackRef.current && sectionRef.current) {
@@ -105,8 +100,6 @@ export default function VisiMisiSection() {
           }
         );
       }
-
-      return () => clearTimeout(timer);
     },
     { scope: sectionRef }
   );

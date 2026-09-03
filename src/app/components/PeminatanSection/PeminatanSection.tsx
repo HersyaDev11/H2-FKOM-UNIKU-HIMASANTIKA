@@ -152,6 +152,8 @@ export default function PeminatanSection() {
                       alt={track.title}
                       fill
                       quality={80}
+                      loading="lazy"
+                      decoding="async"
                       className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 z-0"
                       sizes="(max-width: 1024px) 33vw, 25vw"
                     />
@@ -251,7 +253,7 @@ export default function PeminatanSection() {
           })}
         </div>
 
-        {/* Mobile: Taller & Spacious Synchronized Accordion (< 768px - Optimized GPU) */}
+        {/* Mobile: Consistent & Locked-Position Accordion (< 768px - Optimized GPU) */}
         <div className="flex md:hidden flex-col gap-4">
           {PEMINATAN_TRACKS.map((track, index) => {
             const isExpanded = activeIndex === index;
@@ -261,10 +263,10 @@ export default function PeminatanSection() {
               <div
                 key={track.id}
                 onClick={() => setActiveIndex(isExpanded ? null : index)}
-                className={`rounded-2xl border cursor-pointer overflow-hidden relative transition-colors duration-300 transform-gpu ${
+                className={`rounded-2xl border cursor-pointer overflow-hidden relative p-6 sm:p-7 transition-colors duration-300 transform-gpu ${
                   isExpanded
-                    ? 'p-6 sm:p-7 bg-white border-neutral-300 shadow-lg min-h-[160px]'
-                    : 'py-7 px-6 sm:py-8 sm:px-7 min-h-[148px] sm:min-h-[160px] flex flex-col justify-between bg-[#161616] border-neutral-800 shadow-sm'
+                    ? 'bg-white border-neutral-300 shadow-lg'
+                    : 'bg-[#161616] border-neutral-800 shadow-sm'
                 }`}
               >
                 {/* Persistent Background Photo with Smooth Synchronized Opacity Transition */}
@@ -278,13 +280,15 @@ export default function PeminatanSection() {
                     alt={track.title}
                     fill
                     quality={80}
+                    loading="lazy"
+                    decoding="async"
                     className="object-cover object-center"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/35" />
                 </div>
 
-                {/* Top Row: Number & Icon (Always in place, never unmounts) */}
+                {/* Top Row: Number & Icon (Locked in Place, Never Jumps) */}
                 <div className="flex items-center justify-between relative z-10 w-full mb-3.5">
                   <span
                     className={`text-[28px] sm:text-[32px] font-bold tracking-tighter tabular-nums leading-none transition-colors duration-300 ${
@@ -302,7 +306,7 @@ export default function PeminatanSection() {
                   />
                 </div>
 
-                {/* Unified Title & Subtitle */}
+                {/* Unified Title & Subtitle (Locked in Place, Never Jumps) */}
                 <div className="relative z-10">
                   <h3
                     className={`text-[21px] sm:text-[23px] font-normal leading-snug transition-colors duration-300 ${
@@ -313,7 +317,7 @@ export default function PeminatanSection() {
                   </h3>
                   <span
                     className={`text-[12.5px] sm:text-[13px] block mt-1 transition-colors duration-300 ${
-                      isExpanded ? 'text-neutral-400 font-light' : 'text-white/70'
+                      isExpanded ? 'text-neutral-500 font-normal' : 'text-neutral-200'
                     }`}
                   >
                     {track.subtitle}
@@ -333,19 +337,19 @@ export default function PeminatanSection() {
                       }}
                       className="overflow-hidden relative z-10"
                     >
-                      <div className="pt-3 mt-3.5 border-t border-neutral-100">
-                        <p className="text-neutral-600 text-[14px] sm:text-[14.5px] leading-relaxed font-light mb-4">
+                      <div className="pt-4 mt-4 border-t border-neutral-100">
+                        <p className="text-neutral-700 text-[14px] sm:text-[14.5px] leading-relaxed font-normal mb-4">
                           {track.summary}
                         </p>
 
                         <div className="space-y-4">
                           <div>
-                            <span className="text-[12px] uppercase tracking-wide text-neutral-400 block mb-2 font-medium">
+                            <span className="text-[12px] uppercase tracking-wide text-neutral-500 block mb-2 font-medium">
                               Ruang Lingkup Kajian
                             </span>
                             <ul className="space-y-2">
                               {track.topics.map((topic) => (
-                                <li key={topic} className="text-[13.5px] text-neutral-700 font-light flex items-center gap-2">
+                                <li key={topic} className="text-[13.5px] text-neutral-800 font-normal flex items-center gap-2">
                                   <span
                                     className="w-1.5 h-1.5 rounded-full shrink-0"
                                     style={{ backgroundColor: track.accent }}
@@ -357,13 +361,13 @@ export default function PeminatanSection() {
                           </div>
 
                           <div>
-                            <span className="text-[12px] uppercase tracking-wide text-neutral-400 block mb-2 font-medium">
+                            <span className="text-[12px] uppercase tracking-wide text-neutral-500 block mb-2 font-medium">
                               Prospek Lulusan
                             </span>
                             <ul className="space-y-2">
                               {track.careers.map((career) => (
-                                <li key={career} className="text-[13.5px] text-neutral-800 font-normal flex items-center gap-2">
-                                  <ArrowUpRight className="size-3.5 text-neutral-400 shrink-0" />
+                                <li key={career} className="text-[13.5px] text-neutral-900 font-medium flex items-center gap-2">
+                                  <ArrowUpRight className="size-3.5 text-neutral-500 shrink-0" />
                                   <span>{career}</span>
                                 </li>
                               ))}

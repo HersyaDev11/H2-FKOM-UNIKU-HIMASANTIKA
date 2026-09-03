@@ -67,7 +67,7 @@ export default function Navbar() {
           <Link 
             key={item.id} 
             href={item.href} 
-            className="group relative py-1 text-[14px] xl:text-[15px] text-neutral-400 hover:text-white transition-colors font-normal tracking-[-0.01em]"
+            className="group relative py-1 text-[14px] xl:text-[15px] text-neutral-300 hover:text-white transition-colors font-normal tracking-[-0.01em]"
           >
             {lang === 'ID' ? item.idLabel : item.enLabel}
             <span className="absolute left-0 bottom-0 w-full h-[1.5px] bg-[#DF1A22] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-full" />
@@ -80,10 +80,11 @@ export default function Navbar() {
         {/* Language Toggle */}
         <button 
           onClick={() => setLang(lang === 'ID' ? 'EN' : 'ID')}
-          className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 border border-white/10 hover:border-white/25 rounded-full text-neutral-300 hover:text-white transition-all bg-white/[0.03] text-[12px] font-normal cursor-pointer"
+          className="hidden sm:flex items-center gap-2 px-3.5 py-2 min-h-[44px] border border-white/10 hover:border-white/25 rounded-full text-neutral-200 hover:text-white transition-all bg-white/[0.03] text-[12px] font-normal cursor-pointer"
           title="Ganti Bahasa / Switch Language"
+          aria-label="Ganti Bahasa"
         >
-          <Globe className="w-3.5 h-3.5 text-neutral-400" />
+          <Globe className="w-3.5 h-3.5 text-neutral-300" />
           <span className="font-medium">{lang}</span>
         </button>
 
@@ -92,15 +93,15 @@ export default function Navbar() {
           href="https://pmb.umc.ac.id" 
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden sm:inline-flex items-center justify-center px-5 sm:px-6 py-2 sm:py-2.5 bg-[#DF1A22] hover:bg-[#c4151d] text-white text-[13px] sm:text-[14px] font-medium rounded-full transition-all hover:scale-105 active:scale-95 shadow-[0_8px_20px_-4px_rgba(223,26,34,0.4)]"
+          className="hidden sm:inline-flex items-center justify-center px-5 sm:px-6 py-2.5 min-h-[44px] bg-[#DF1A22] hover:bg-[#c4151d] text-white text-[13px] sm:text-[14px] font-medium rounded-full transition-all hover:scale-105 active:scale-95 shadow-[0_8px_20px_-4px_rgba(223,26,34,0.4)]"
         >
           <span>{lang === 'ID' ? 'Daftar PMB' : 'Apply Now'}</span>
         </a>
 
-        {/* Mobile Hamburger Toggle */}
+        {/* Mobile Hamburger Toggle (Touch target min 44x44px) */}
         <button 
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden text-white p-2 hover:bg-white/10 rounded-full transition-colors cursor-pointer"
+          className="lg:hidden text-white p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-white/10 rounded-full transition-colors cursor-pointer"
           aria-label="Toggle Menu"
         >
           {mobileMenuOpen ? <X className="w-5 h-5 transition-transform rotate-90 duration-200" /> : <Menu className="w-5 h-5 transition-transform duration-200" />}
@@ -127,7 +128,7 @@ export default function Navbar() {
                 <Link
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-[16px] text-neutral-300 hover:text-white font-normal py-2 border-b border-white/5 block transition-colors"
+                  className="text-[16px] text-neutral-200 hover:text-white font-normal py-3 min-h-[44px] flex items-center border-b border-white/5 block transition-colors"
                 >
                   {lang === 'ID' ? item.idLabel : item.enLabel}
                 </Link>
@@ -142,9 +143,10 @@ export default function Navbar() {
             >
               <button 
                 onClick={() => setLang(lang === 'ID' ? 'EN' : 'ID')}
-                className="flex items-center gap-2 px-4 py-2 border border-white/10 rounded-full text-neutral-300 text-[13px] hover:bg-white/5 transition-colors"
+                className="flex items-center gap-2 px-4 py-2.5 min-h-[44px] border border-white/10 rounded-full text-neutral-200 text-[13px] hover:bg-white/5 transition-colors cursor-pointer"
+                aria-label="Ganti Bahasa"
               >
-                <Globe className="w-4 h-4 text-neutral-400" />
+                <Globe className="w-4 h-4 text-neutral-300" />
                 <span>{lang === 'ID' ? 'Bahasa Indonesia' : 'English'}</span>
               </button>
 
@@ -152,7 +154,7 @@ export default function Navbar() {
                 href="https://pmb.umc.ac.id"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-6 py-2.5 bg-[#DF1A22] hover:bg-[#c4151d] text-white text-[13px] font-medium rounded-full shadow-[0_8px_20px_-4px_rgba(223,26,34,0.4)] transition-all active:scale-95"
+                className="inline-flex items-center justify-center px-6 py-2.5 min-h-[44px] bg-[#DF1A22] hover:bg-[#c4151d] text-white text-[13px] font-medium rounded-full shadow-[0_8px_20px_-4px_rgba(223,26,34,0.4)] transition-all active:scale-95"
               >
                 <span>Daftar PMB</span>
               </a>

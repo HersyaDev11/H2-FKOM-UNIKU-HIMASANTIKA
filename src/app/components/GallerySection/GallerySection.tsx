@@ -85,9 +85,6 @@ export default function GallerySection() {
 
   useGSAP(
     () => {
-      // Refresh ScrollTrigger to ensure smooth transitions
-      ScrollTrigger.refresh();
-
       // Subtle scroll reveal
       gsap.from('.gallery-header', {
         scrollTrigger: {

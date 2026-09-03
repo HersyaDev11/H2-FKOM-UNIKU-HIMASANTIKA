@@ -52,29 +52,35 @@ Dokumen ini mendefinisikan panduan identitas visual, spesifikasi palet warna (*c
 
 ---
 
-### 4. Panduan Penerapan per Komponen
+## 4. Panduan Penerapan per Komponen
 
 ### 1. Header / Navigation Bar (`Navbar.tsx`)
 - **Latar Belakang**: Glassmorphism semi-transparan (`bg-[#111111]/85 backdrop-blur-xl border-b border-white/[0.08]`).
 - **Logo & Nav Links**: Teks `#FFFFFF` dengan font PP Mori (`tracking-[-0.01em]`) dan hover indicator strip merah UMC (`#DF1A22`).
 - **CTA Button**: Clean pill button warna merah UMC (`#DF1A22`), tanpa ikon panah, dengan teks `Daftar PMB` / `Apply Now` berbobot `font-medium`.
+- **Target Sentuh Mobile**: Tombol hamburger dan tombol bahasa memiliki area sentuh minimal `min-w-[44px] min-h-[44px]`.
 
 ### 2. Hero Section (`HeroSection.tsx`)
 - **Latar Belakang**: `#111111` dengan giant background watermark typography `"INFORMATIKA"` (17vw, opacity 0.035).
 - **Headline**: PP Mori Display 4 baris terstruktur dengan aksen merah `#DF1A22` pada "Teknik Informatika".
 - **Visual Stagger**: Pinterest-style vertical masonry 2 kolom bergerak kontinu dengan akselerasi GPU (`transform-gpu`) dan smart LCP image prioritization.
 
-### 3. Visi & Misi (`VisiMisiSection.tsx`)
+### 3. About Section (`AboutSection.tsx`)
+- **Latar Belakang**: `#050505` dengan ambient radial glow merah UMC.
+- **Scrubbed Word Reveal**: Animasi teks sinematik di mana kata-kata menyala putih bertahap seiring guliran scroll.
+- **Metrics Grid**: 4 kartu statistik serapan kerja (95%), dosen praktisi (15+), konsentrasi studi (3), dan akreditasi (A) dengan pendaran hover glow merah.
+
+### 4. Visi & Misi (`VisiMisiSection.tsx`)
 - **Latar Belakang**: Nuansa gelap elegan `#050505`, `#0a0a0a`, `#111111` dengan ambient blur glow merah UMC.
 - **Horizontal Scroll Scrub**: 4 panel widescreen (`w-[400vw]`) dengan sinkronisasi ScrollTrigger pin pada desktop dan stacking vertikal responsif pada mobile.
 
-### 4. Facts Section (`FactsSection.tsx`)
+### 5. Facts Section (`FactsSection.tsx`)
 - **Background**: `#FFFFFF` (Clean light layout).
 - **Grand Headline**: Teks `#111111`.
-- **Interactive List Rows**: Hover baris transisi ke warna `#DF1A22` (Merah) dan teks kategori ke `#00853F` (Hijau).
+- **Interactive List Rows**: Hover baris transisi ke warna `#DF1A22` (Merah) dan teks kategori ke `#00853F` (Hijau) dengan rasio kontras tinggi `#334155`.
 - **Official Logo**: Menampilkan logo resmi UMC (`/logoprodi/UMC-1.webp`) dengan lazy-load hemat memori.
 
-### 5. Quotes Section (`QuotesSection.tsx`)
+### 6. Quotes Section (`QuotesSection.tsx`)
 - **Badge Subtitle**: Subtitle `{ Teknik Informatika UMC }` dengan SVG kurung kurawal (*Braces*) diperbesar (`clamp(40px, 8vh, 80px)`) dan teks `clamp(16px, 2.8vh, 26px)` berbobot `font-medium`.
 - **Grand Quote Headline**: Tipografi editorial display PP Mori rata kiri.
 - **GSAP Flower Constellation**:
@@ -83,23 +89,28 @@ Dokumen ini mendefinisikan panduan identitas visual, spesifikasi palet warna (*c
   - **Aksen Satelit (*Satellites*)**: Berlian biru (`.flair-diamond`), titik berpendar (`.flair-dot`), dan bintang 4-sudut (`.flair-mini-star`) meletup serentak dengan stagger `0.06s`.
   - **Interaktivitas**: Hover & click pada kata *"membimbing"* memicu ulang animasi mekar dan gelombang pendaran warna huruf `#1E90FF`.
 
-### 6. Peminatan Section (`PeminatanSection.tsx`)
+### 7. Peminatan Section (`PeminatanSection.tsx`)
 - **Background**: `#FFFFFF` dengan shadow transisi halus `shadow-[0_-40px_90px_rgba(0,0,0,0.7)]`.
 - **Interactive Accordion**: 5 domain spesialisasi kurikulum dengan photo backdrop preview dan layout expansion GPU-accelerated.
+- **Mobile Locked-Position Layout**: Elemen nomor, ikon, dan judul terkunci di posisi stabil tanpa efek loncat/kaku saat dibuka.
 
-### 7. Gallery Section (`GallerySection.tsx`)
+### 8. Gallery Section (`GallerySection.tsx`)
 - **Background**: `#111111` dengan grid arsitektural halus dan seamless atmospheric dissolve.
-- **3D Coverflow Carousel**: Render interaktif langsung ke DOM via `useRef` + RAF tanpa re-render state React, dilengkapi kontrol swipe dan navigasi presisi.
+- **3D Coverflow Carousel**: Render interaktif langsung ke DOM via `useRef` + RAF tanpa re-render state React, diobservasi via `ResizeObserver` asinkron, dilengkapi kontrol swipe dan navigasi presisi.
 
-### 8. Testimonials Section (`TestimonialsSection.tsx`)
-- **Scroll Reel Testimonial**: Featured photo 185px diapit placeholder 95px, dilengkapi animasi teks per-karakter (*split-character text stagger*) dan asynchronous image decoding.
+### 9. Testimonials Section (`TestimonialsSection.tsx`)
+- **Scroll Reel Testimonial**: Featured photo 185px diapit placeholder 95px, dilengkapi animasi teks per-karakter (*split-character text stagger*), asynchronous image decoding, dan tombol navigasi 44px.
 
-### 9. Kemitraan / Mitra Section (`MitraSection.tsx`)
-- **Infinite Marquee Ticker**: Logo SVG monokrom dengan hover warna asli industri, berjalan di GPU Compositor Layer (`will-change-transform transform-gpu`).
+### 10. Kemitraan / Mitra Section (`MitraSection.tsx`)
+- **Infinite Marquee Ticker**: Logo SVG monokrom dengan hover warna asli industri, berjalan di GPU Compositor Layer (`will-change-transform transform-gpu`) dengan duplikasi hemat 2x (14 partner).
 
-### 10. Footer (`Footer.tsx`) & Floating Chatbot (`Chatbot.tsx`)
-- **Footer**: Brand identity, tautan resmi PMB & universitas, serta social links.
-- **Chatbot**: Asisten virtual mengapung dengan dynamic import bundle splitting (`next/dynamic`).
+### 11. Footer (`Footer.tsx`)
+- **Brand Identity & Links**: Identitas prodi, tautan resmi PMB & universitas, serta social links dengan padding sentuh minimal 44px di mobile.
+
+### 12. Floating Virtual Assistant (`Chatbot.tsx`)
+- **Asisten Cerdas Interaktif**: Dibangun dengan dynamic import bundle splitting (`next/dynamic`).
+- **Spring Physics Animation**: Balon obrolan mekar halus (*spring bloom*) dengan transisi `framer-motion`, indikator mengetik gelombang (*wave dots*), dan auto-scroll otomatis.
+- **Jawaban Kontekstual**: Menyediakan respon cerdas seputar PMB, Kurikulum, Beasiswa, Biaya, dan Akreditasi.
 
 ---
 
@@ -195,3 +206,22 @@ Bagian ini menetapkan arsitektur performa tinggi (*high-performance engineering*
 ### 5. Buttery-Smooth Momentum Scrolling & Navigation Interception (`SmoothScroll.tsx`)
 - Menggabungkan mesin Lenis Virtual Scroll dengan GSAP Ticker pada `lagSmoothing(0)` untuk 120 FPS konsisten.
 - Mengintersepsi seluruh klik tautan navigasi anchor internal (`href^="#"` pada Navbar, Hero CTA, dan Footer) untuk meluncur halus menggunakan rumus inersia eksponensial dengan kompensasi offset fixed navbar `-20px`.
+- Meng-inline aturan CSS Lenis langsung ke dalam `globals.css` untuk mengeliminasi rantai *request chaining* stylesheet eksternal.
+
+### 6. Modern Baseline ES2022 Target (`tsconfig.json`)
+- Menetapkan `compilerOptions.target: "ES2022"` dan `module: "ESNext"` untuk mengeliminasi polyfill usang dan memangkas ukuran byte JavaScript yang dieksekusi browser modern (Desktop & Mobile).
+
+### 7. Zero-Forced Reflow & Anti-Layout Thrashing Strategy
+- **Eliminasi Multiple Timer Reflow**: Seluruh `setTimeout(() => ScrollTrigger.refresh(), ...)` yang sebelumnya tersebar di berbagai komponen dihapus. Pengukuran tata letak DOM hanya dilakukan sekali secara asinkron setelah render selesai.
+- **Asynchronous Geometry Measuring**: Di `coverflow-carousel.tsx`, kueri geometri kartu dibungkus di dalam `requestAnimationFrame` dan diobservasi melalui `ResizeObserver`, menghindari pembacaan sinkron `offsetWidth` yang memicu pemaksaan reflow (*forced reflow*).
+
+### 8. Touch Targets & Accessibility Compliance (Mobile & Laptop)
+- **Ukuran Sentuh Standar (Min. 44px–50px)**:
+  - Tombol Hamburger Navbar: `min-w-[44px] min-h-[44px]`
+  - Tombol Floating Chatbot: `min-w-[50px] min-h-[50px]`
+  - Tombol Navigasi Testimoni: `min-w-[44px] min-h-[44px]`
+  - Tombol CTA Hero & Daftar PMB: `min-h-[44px]` hingga `min-h-[48px]`
+  - Tautan Footer & Media Sosial: `min-h-[44px]` padding sentuh di mobile
+- **Peningkatan Kontras Warna (WCAG 2.1 AAA)**:
+  - Subtitle pada latar putih menggunakan `#334155` / `text-neutral-700` (rasio kontras > 7.5:1).
+  - Teks abu-abu sekunder pada latar gelap `#111111` menggunakan `text-neutral-300` (rasio kontras > 9.2:1).

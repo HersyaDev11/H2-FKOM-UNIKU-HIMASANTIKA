@@ -136,9 +136,9 @@ export default function MitraSection() {
           WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
         }}
       >
-        {/* Scrolling Track with 4x duplication for seamless infinite looping */}
+        {/* Scrolling Track with 2x duplication for seamless infinite 50% looping */}
         <div className="marquee-track flex items-center w-max shrink-0 will-change-transform transform-gpu">
-          {[...partners, ...partners, ...partners, ...partners].map((partner, index) => (
+          {[...partners, ...partners].map((partner, index) => (
             <div 
               key={index} 
               className="flex items-center justify-center gap-3 min-w-max group cursor-pointer px-6 sm:px-8 lg:px-10"
