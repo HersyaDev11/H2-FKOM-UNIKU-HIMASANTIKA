@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Code2, BrainCircuit, ShieldCheck, Cpu, Gamepad2, ArrowUpRight } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface PeminatanTrack {
   id: string;
@@ -11,12 +12,16 @@ interface PeminatanTrack {
   title: string;
   subtitle: string;
   enTitle: string;
+  enSubtitle: string;
   accent: string;
   icon: typeof Code2;
   image: string;
   summary: string;
+  enSummary: string;
   topics: string[];
+  enTopics: string[];
   careers: string[];
+  enCareers: string[];
 }
 
 const PEMINATAN_TRACKS: PeminatanTrack[] = [
@@ -26,12 +31,16 @@ const PEMINATAN_TRACKS: PeminatanTrack[] = [
     title: 'Rekayasa Perangkat Lunak',
     subtitle: 'Software Engineering & Cloud Architecture',
     enTitle: 'Software Engineering',
+    enSubtitle: 'Software Engineering & Cloud Architecture',
     accent: '#DF1A22',
     icon: Code2,
     image: '/peminatan/software-engineering.webp',
     summary: 'Perancangan dan pengembangan perangkat lunak skala enterprise, aplikasi multiplatform, dan ekosistem komputasi awan modern.',
+    enSummary: 'Design and development of enterprise-scale software, multiplatform applications, and modern cloud computing ecosystems.',
     topics: ['Arsitektur Cloud & Microservices', 'Web & Mobile Fullstack Development', 'DevOps & Continuous Integration (CI/CD)', 'Rekayasa Mutu & Software Testing'],
+    enTopics: ['Cloud Architecture & Microservices', 'Web & Mobile Fullstack Development', 'DevOps & Continuous Integration (CI/CD)', 'Quality Engineering & Software Testing'],
     careers: ['Fullstack Software Engineer', 'Mobile Application Developer', 'DevOps & Cloud Infrastructure Engineer'],
+    enCareers: ['Fullstack Software Engineer', 'Mobile Application Developer', 'DevOps & Cloud Infrastructure Engineer'],
   },
   {
     id: 'ai',
@@ -39,12 +48,16 @@ const PEMINATAN_TRACKS: PeminatanTrack[] = [
     title: 'Kecerdasan Buatan & Data',
     subtitle: 'Artificial Intelligence & Data Science',
     enTitle: 'AI & Data Science',
+    enSubtitle: 'Artificial Intelligence & Data Science',
     accent: '#F2A900',
     icon: BrainCircuit,
     image: '/peminatan/ai-data-science.webp',
     summary: 'Eksplorasi algoritma cerdas, pemodelan data tingkat lanjut, machine learning, computer vision, dan automasi analitik skala besar.',
+    enSummary: 'Exploration of intelligent algorithms, advanced data modeling, machine learning, computer vision, and large-scale analytic automation.',
     topics: ['Machine Learning & Deep Neural Networks', 'Computer Vision & Image Processing', 'Natural Language Processing (NLP)', 'Pemrosesan Big Data & Analisis Prediktif'],
+    enTopics: ['Machine Learning & Deep Neural Networks', 'Computer Vision & Image Processing', 'Natural Language Processing (NLP)', 'Big Data Processing & Predictive Analytics'],
     careers: ['AI / Machine Learning Engineer', 'Data Scientist & Analyst', 'Computer Vision Specialist'],
+    enCareers: ['AI / Machine Learning Engineer', 'Data Scientist & Analyst', 'Computer Vision Specialist'],
   },
   {
     id: 'cyber',
@@ -52,12 +65,16 @@ const PEMINATAN_TRACKS: PeminatanTrack[] = [
     title: 'Keamanan Siber & Jaringan',
     subtitle: 'Cyber Security & Network Infrastructure',
     enTitle: 'Cyber Security & Networks',
+    enSubtitle: 'Cyber Security & Network Infrastructure',
     accent: '#00853F',
     icon: ShieldCheck,
     image: '/peminatan/cyber-security.webp',
     summary: 'Pertahanan sistem informasi, audit keamanan digital, arsitektur jaringan terdistribusi, dan manajemen infrastruktur server.',
+    enSummary: 'Information system defense, digital security audits, distributed network architecture, and server infrastructure management.',
     topics: ['Infrastruktur Jaringan Enterprise', 'Penetration Testing & Security Audit', 'Cloud & Data Center Security', 'Administrasi Sistem & Linux Server'],
+    enTopics: ['Enterprise Network Infrastructure', 'Penetration Testing & Security Audit', 'Cloud & Data Center Security', 'System Administration & Linux Server'],
     careers: ['Cyber Security Analyst', 'Network Infrastructure Engineer', 'System & Security Administrator'],
+    enCareers: ['Cyber Security Analyst', 'Network Infrastructure Engineer', 'System & Security Administrator'],
   },
   {
     id: 'iot',
@@ -65,12 +82,16 @@ const PEMINATAN_TRACKS: PeminatanTrack[] = [
     title: 'Internet of Things & Robotika',
     subtitle: 'IoT & Embedded Systems Automation',
     enTitle: 'IoT & Robotics Automation',
+    enSubtitle: 'IoT & Embedded Systems Automation',
     accent: '#DF1A22',
     icon: Cpu,
     image: '/peminatan/iot-robotics.webp',
     summary: 'Integrasi perangkat keras pintar, sistem komputasi tertanam (embedded), jaringan sensor nirkabel, dan otomatisasi industri.',
+    enSummary: 'Integration of smart hardware, embedded computing systems, wireless sensor networks, and industrial automation.',
     topics: ['Perancangan Sistem Tertanam (Embedded)', 'Jaringan Sensor & Komunikasi Nirkabel', 'Integrasi Mikrokontroler & Firmware', 'Automasi Industri & Edge Computing'],
+    enTopics: ['Embedded System Design', 'Sensor Networks & Wireless Communication', 'Microcontroller & Firmware Integration', 'Industrial Automation & Edge Computing'],
     careers: ['IoT Solutions Architect', 'Embedded Systems Engineer', 'Automation & Robotics Specialist'],
+    enCareers: ['IoT Solutions Architect', 'Embedded Systems Engineer', 'Automation & Robotics Specialist'],
   },
   {
     id: 'game',
@@ -78,17 +99,22 @@ const PEMINATAN_TRACKS: PeminatanTrack[] = [
     title: 'Game Dev',
     subtitle: 'Game Technology',
     enTitle: 'Game Technology',
+    enSubtitle: 'Game Technology',
     accent: '#F2A900',
     icon: Gamepad2,
     image: '/peminatan/game-dev.webp',
     summary: 'Perancangan dan pengembangan game digital, arsitektur game engine, logika mekanika gameplay, grafika 3D, serta kecerdasan buatan dalam game.',
+    enSummary: 'Design and development of digital games, game engine architecture, gameplay mechanics logic, 3D graphics, and game artificial intelligence.',
     topics: ['Arsitektur Game Engine & Scripting', 'Grafika Komputer & Shader Rendering', 'Pengembangan Game 2D/3D Multiplatform', 'Fisika Simulasi & Game Artificial Intelligence'],
+    enTopics: ['Game Engine Architecture & Scripting', 'Computer Graphics & Shader Rendering', '2D/3D Multiplatform Game Development', 'Physics Simulation & Game Artificial Intelligence'],
     careers: ['Game Programmer / Developer', 'Game Engine & Mechanics Engineer', 'Technical Gameplay Designer'],
+    enCareers: ['Game Programmer / Developer', 'Game Engine & Mechanics Engineer', 'Technical Gameplay Designer'],
   },
 ];
 
 export default function PeminatanSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const { lang } = useLanguage();
 
   return (
     <section
@@ -104,15 +130,18 @@ export default function PeminatanSection() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 sm:gap-8">
             <div className="max-w-4xl xl:max-w-5xl">
               <h2 className="text-[33px] leading-[43px] sm:text-[48px] sm:leading-[58px] md:text-[60px] md:leading-[72px] lg:text-[72px] lg:leading-[86px] xl:text-[80.9999px] xl:leading-[97.1999px] font-normal tracking-[-0.01em] text-[#111111]">
-                Pilihan Spesialisasi <span className="italic text-neutral-400 font-light">&</span>
+                {lang === 'ID' ? 'Pilihan Spesialisasi' : 'Specialization Choices'} <span className="italic text-neutral-400 font-light">&</span>
                 <br className="hidden sm:inline" />
-                <span className="text-[#DF1A22] font-medium"> Domain Keahlian.</span>
+                <span className="text-[#DF1A22] font-medium"> {lang === 'ID' ? 'Domain Keahlian.' : 'Expertise Domains.'}</span>
               </h2>
             </div>
 
             <div className="max-w-md lg:pb-1">
               <p className="text-[15px] sm:text-[16px] text-neutral-500 font-light leading-relaxed">
-                Pilih jalur minat komputasi untuk membangun portofolio nyata dan kompetensi mendalam selama masa studi.
+                {lang === 'ID' 
+                  ? 'Pilih jalur minat komputasi untuk membangun portofolio nyata dan kompetensi mendalam selama masa studi.'
+                  : 'Choose a computational interest track to build a real portfolio and in-depth competence during your studies.'
+                }
               </p>
             </div>
           </div>
@@ -175,7 +204,7 @@ export default function PeminatanSection() {
                     </span>
                     {isExpanded && (
                       <span className="text-[12px] uppercase tracking-wider text-neutral-400 font-medium">
-                        {track.enTitle}
+                        {lang === 'ID' ? track.title : track.enTitle}
                       </span>
                     )}
                   </div>
@@ -197,10 +226,10 @@ export default function PeminatanSection() {
                   >
                     <div>
                       <h3 className="text-[28px] lg:text-[34px] font-normal tracking-[-0.015em] text-[#111111] leading-tight mb-3">
-                        {track.title}
+                        {lang === 'ID' ? track.title : track.enTitle}
                       </h3>
                       <p className="text-neutral-600 text-[15px] lg:text-[16px] leading-relaxed max-w-2xl font-light">
-                        {track.summary}
+                        {lang === 'ID' ? track.summary : track.enSummary}
                       </p>
                     </div>
 
@@ -209,10 +238,10 @@ export default function PeminatanSection() {
                       {/* Left Column: Ruang Lingkup */}
                       <div>
                         <span className="text-[12px] uppercase tracking-wide text-neutral-400 block mb-2.5 font-medium">
-                          Ruang Lingkup Kajian
+                          {lang === 'ID' ? 'Ruang Lingkup Kajian' : 'Scope of Study'}
                         </span>
                         <ul className="space-y-2">
-                          {track.topics.map((topic) => (
+                          {(lang === 'ID' ? track.topics : track.enTopics).map((topic) => (
                             <li key={topic} className="text-[13px] lg:text-[14px] text-neutral-700 font-light flex items-center gap-2.5">
                               <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: track.accent }} />
                               <span>{topic}</span>
@@ -224,10 +253,10 @@ export default function PeminatanSection() {
                       {/* Right Column: Prospek Karier */}
                       <div>
                         <span className="text-[12px] uppercase tracking-wide text-neutral-400 block mb-2.5 font-medium">
-                          Prospek Lulusan
+                          {lang === 'ID' ? 'Prospek Lulusan' : 'Graduate Prospects'}
                         </span>
                         <ul className="space-y-2">
-                          {track.careers.map((career) => (
+                          {(lang === 'ID' ? track.careers : track.enCareers).map((career) => (
                             <li key={career} className="text-[13px] lg:text-[14px] text-neutral-800 font-normal flex items-center gap-2.5">
                               <ArrowUpRight className="size-4 text-neutral-400 shrink-0" />
                               <span>{career}</span>
@@ -241,10 +270,10 @@ export default function PeminatanSection() {
                   /* Collapsed State: Crisp White Typography over Preview Photo */
                   <div className="flex flex-col items-start justify-end flex-1 pb-1 relative z-10">
                     <span className="text-[17px] lg:text-[19px] font-medium text-white tracking-tight leading-snug drop-shadow-sm">
-                      {track.title}
+                      {lang === 'ID' ? track.title : track.enTitle}
                     </span>
                     <span className="text-[12px] text-white/70 font-light mt-1">
-                      {track.enTitle}
+                      {lang === 'ID' ? track.subtitle : track.enSubtitle}
                     </span>
                   </div>
                 )}
@@ -313,14 +342,14 @@ export default function PeminatanSection() {
                       isExpanded ? 'text-[#111111] font-medium' : 'text-white'
                     }`}
                   >
-                    {track.title}
+                    {lang === 'ID' ? track.title : track.enTitle}
                   </h3>
                   <span
                     className={`text-[12.5px] sm:text-[13px] block mt-1 transition-colors duration-300 ${
                       isExpanded ? 'text-neutral-500 font-normal' : 'text-neutral-200'
                     }`}
                   >
-                    {track.subtitle}
+                    {lang === 'ID' ? track.subtitle : track.enSubtitle}
                   </span>
                 </div>
 
@@ -339,16 +368,16 @@ export default function PeminatanSection() {
                     >
                       <div className="pt-4 mt-4 border-t border-neutral-100">
                         <p className="text-neutral-700 text-[14px] sm:text-[14.5px] leading-relaxed font-normal mb-4">
-                          {track.summary}
+                          {lang === 'ID' ? track.summary : track.enSummary}
                         </p>
 
                         <div className="space-y-4">
                           <div>
                             <span className="text-[12px] uppercase tracking-wide text-neutral-500 block mb-2 font-medium">
-                              Ruang Lingkup Kajian
+                              {lang === 'ID' ? 'Ruang Lingkup Kajian' : 'Scope of Study'}
                             </span>
                             <ul className="space-y-2">
-                              {track.topics.map((topic) => (
+                              {(lang === 'ID' ? track.topics : track.enTopics).map((topic) => (
                                 <li key={topic} className="text-[13.5px] text-neutral-800 font-normal flex items-center gap-2">
                                   <span
                                     className="w-1.5 h-1.5 rounded-full shrink-0"
@@ -362,10 +391,10 @@ export default function PeminatanSection() {
 
                           <div>
                             <span className="text-[12px] uppercase tracking-wide text-neutral-500 block mb-2 font-medium">
-                              Prospek Lulusan
+                              {lang === 'ID' ? 'Prospek Lulusan' : 'Graduate Prospects'}
                             </span>
                             <ul className="space-y-2">
-                              {track.careers.map((career) => (
+                              {(lang === 'ID' ? track.careers : track.enCareers).map((career) => (
                                 <li key={career} className="text-[13.5px] text-neutral-900 font-medium flex items-center gap-2">
                                   <ArrowUpRight className="size-3.5 text-neutral-500 shrink-0" />
                                   <span>{career}</span>

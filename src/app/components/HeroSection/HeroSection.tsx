@@ -3,6 +3,7 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../../context/LanguageContext';
 
 // 2 Staggered Columns of Gallery Images for Pinterest-style Infinite Scroll
 const COLUMN_1 = [
@@ -23,6 +24,7 @@ const COLUMN_2 = [
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const { lang } = useLanguage();
 
   const scrollToSection = (id: string) => {
     const lenis = (window as unknown as { lenis?: { scrollTo: (target: HTMLElement, options?: Record<string, unknown>) => void } }).lenis;
@@ -61,8 +63,8 @@ export default function HeroSection() {
           
           {/* Grand Headline (PP Mori Display) */}
           <h1 className="text-[33px] leading-[43px] sm:text-[48px] sm:leading-[58px] md:text-[60px] md:leading-[72px] lg:text-[68px] lg:leading-[80px] xl:text-[80.9999px] xl:leading-[97.1999px] font-normal tracking-[-0.01em] text-[#FFFFFF]">
-            Program Studi <br />
-            <span className="text-[#DF1A22] font-normal">Teknik Informatika</span> <br />
+            {lang === 'ID' ? 'Program Studi' : 'Study Program'} <br />
+            <span className="text-[#DF1A22] font-normal">{lang === 'ID' ? 'Teknik Informatika' : 'Informatics Engineering'}</span> <br />
             <span className="text-neutral-300 font-light">Universitas Muhammadiyah Cirebon.</span>
           </h1>
 
@@ -75,14 +77,14 @@ export default function HeroSection() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center min-h-[48px] px-6 py-3.5 sm:px-8 sm:py-4 rounded-full bg-[#DF1A22] hover:bg-[#c4151d] text-white text-[13px] sm:text-[15px] font-medium transition-all hover:scale-105 active:scale-95 shadow-[0_10px_25px_-5px_rgba(223,26,34,0.45)]"
             >
-              Daftar Mahasiswa Baru
+              {lang === 'ID' ? 'Daftar Mahasiswa Baru' : 'Apply for Admission'}
             </a>
 
             <button
               onClick={() => scrollToSection('peminatan')}
               className="inline-flex items-center justify-center min-h-[48px] px-5 py-3.5 sm:px-7 sm:py-4 rounded-full text-[13px] sm:text-[15px] font-normal text-neutral-200 hover:text-white border border-white/20 hover:border-white/40 transition-all hover:scale-105 active:scale-95 cursor-pointer bg-white/[0.02]"
             >
-              Eksplorasi Kurikulum
+              {lang === 'ID' ? 'Eksplorasi Kurikulum' : 'Explore Curriculum'}
             </button>
           </div>
 

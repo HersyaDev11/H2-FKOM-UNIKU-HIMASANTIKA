@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll/SmoothScroll";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "Teknik Informatika — Universitas Muhammadiyah Cirebon",
@@ -34,7 +35,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <SmoothScroll>{children}</SmoothScroll>
+        <Providers>
+          <SmoothScroll>{children}</SmoothScroll>
+        </Providers>
       </body>
     </html>
   );

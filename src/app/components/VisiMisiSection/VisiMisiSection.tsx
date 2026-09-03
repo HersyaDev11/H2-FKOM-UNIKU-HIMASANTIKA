@@ -4,12 +4,14 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../../context/LanguageContext';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 const VISI_TEXT = 'Menjadi Program Studi Teknik Informatika yang unggul, inovatif, dan terkemuka di tingkat nasional maupun global, berbasis nilai-nilai kecerdasan digital dan kewirausahaan.';
+const VISI_TEXT_EN = 'To become a superior, innovative, and leading Informatics Engineering Study Program at the national and global levels, based on the values of digital intelligence and entrepreneurship.';
 
 const MISI = [
   "Menyelenggarakan pendidikan dan pengajaran berkualitas di bidang komputasi, AI, dan rekayasa perangkat lunak yang relevan dengan kebutuhan industri.", 
@@ -17,9 +19,16 @@ const MISI = [
   "Melakukan pengabdian kepada masyarakat melalui solusi teknologi tepat guna yang memberikan dampak sosial dan ekonomi secara nyata."
 ];
 
+const MISI_EN = [
+  "Organizing quality education and teaching in the fields of computing, AI, and software engineering that are relevant to industry needs.",
+  "Carrying out and developing innovative research that contributes to the advancement of science and future technology.",
+  "Conducting community service through appropriate technological solutions that provide real social and economic impacts."
+];
+
 export default function VisiMisiSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const { lang } = useLanguage();
 
   useGSAP(
     () => {
@@ -129,7 +138,7 @@ export default function VisiMisiSection() {
           <div className="max-w-[100rem] w-full relative z-10 flex flex-col items-center text-center my-auto py-6">
             
             <span className="visi-reveal text-[14px] font-bold tracking-[0.2em] text-[#DF1A22] uppercase block mb-6 lg:mb-8">
-              Visi Utama
+              {lang === 'ID' ? 'Visi Utama' : 'Main Vision'}
             </span>
             
             <h2 
@@ -139,11 +148,11 @@ export default function VisiMisiSection() {
                 lineHeight: 1.16,
               }}
             >
-              {VISI_TEXT}
+              {lang === 'ID' ? VISI_TEXT : VISI_TEXT_EN}
             </h2>
             
             <div className="visi-reveal mt-10 lg:mt-14 hidden lg:flex items-center gap-4 text-neutral-500 opacity-60">
-              <span className="text-[14px] uppercase tracking-widest">Geser untuk Misi</span>
+              <span className="text-[14px] uppercase tracking-widest">{lang === 'ID' ? 'Geser untuk Misi' : 'Swipe for Mission'}</span>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </div>
           </div>
@@ -153,7 +162,7 @@ export default function VisiMisiSection() {
         <div className="hz-panel w-full lg:w-screen h-auto lg:h-full flex flex-col justify-center px-6 sm:px-12 md:px-24 lg:px-40 relative border-l-0 lg:border-l border-white/10 mb-16 lg:mb-0 bg-[#0a0a0a] will-change-transform transform-gpu">
           <div className="misi-text relative z-10 max-w-4xl my-auto py-6">
             <span className="text-[14px] font-bold tracking-[0.2em] text-[#DF1A22] uppercase block mb-6 lg:mb-8">
-              Misi Pertama
+              {lang === 'ID' ? 'Misi Pertama' : 'First Mission'}
             </span>
             <p 
               className="text-neutral-200 font-light"
@@ -162,7 +171,7 @@ export default function VisiMisiSection() {
                 lineHeight: 1.3,
               }}
             >
-              {MISI[0]}
+              {lang === 'ID' ? MISI[0] : MISI_EN[0]}
             </p>
           </div>
         </div>
@@ -171,7 +180,7 @@ export default function VisiMisiSection() {
         <div className="hz-panel w-full lg:w-screen h-auto lg:h-full flex flex-col justify-center px-6 sm:px-12 md:px-24 lg:px-40 relative border-l-0 lg:border-l border-white/10 mb-16 lg:mb-0 bg-[#111111] will-change-transform transform-gpu">
           <div className="misi-text relative z-10 max-w-4xl my-auto py-6">
             <span className="text-[14px] font-bold tracking-[0.2em] text-[#DF1A22] uppercase block mb-6 lg:mb-8">
-              Misi Kedua
+              {lang === 'ID' ? 'Misi Kedua' : 'Second Mission'}
             </span>
             <p 
               className="text-neutral-200 font-light"
@@ -180,7 +189,7 @@ export default function VisiMisiSection() {
                 lineHeight: 1.3,
               }}
             >
-              {MISI[1]}
+              {lang === 'ID' ? MISI[1] : MISI_EN[1]}
             </p>
           </div>
         </div>
@@ -189,7 +198,7 @@ export default function VisiMisiSection() {
         <div className="hz-panel w-full lg:w-screen h-auto lg:h-full flex flex-col justify-center px-6 sm:px-12 md:px-24 lg:px-40 relative border-l-0 lg:border-l border-white/10 bg-[#050505] will-change-transform transform-gpu">
           <div className="misi-text relative z-10 max-w-4xl my-auto py-6">
             <span className="text-[14px] font-bold tracking-[0.2em] text-[#DF1A22] uppercase block mb-6 lg:mb-8">
-              Misi Ketiga
+              {lang === 'ID' ? 'Misi Ketiga' : 'Third Mission'}
             </span>
             <p 
               className="text-neutral-200 font-light"
@@ -198,7 +207,7 @@ export default function VisiMisiSection() {
                 lineHeight: 1.3,
               }}
             >
-              {MISI[2]}
+              {lang === 'ID' ? MISI[2] : MISI_EN[2]}
             </p>
           </div>
         </div>

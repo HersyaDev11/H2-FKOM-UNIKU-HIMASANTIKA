@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../../context/LanguageContext';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -83,6 +84,7 @@ const partners = [
 export default function MitraSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
+  const { lang } = useLanguage();
 
   useGSAP(() => {
     // 1. Reveal header
@@ -123,7 +125,7 @@ export default function MitraSection() {
     >
       <div className="w-full max-w-[120rem] mx-auto px-6 sm:px-12 md:px-16 lg:px-24 xl:px-32 mb-6 sm:mb-8 text-center">
         <span className="mitra-header inline-block text-[11px] sm:text-[12px] font-medium tracking-[0.2em] text-[#DF1A22] uppercase">
-          Kemitraan Industri &amp; Kolaborasi Strategis
+          {lang === 'ID' ? 'Kemitraan Industri & Kolaborasi Strategis' : 'Industrial Partnership & Strategic Collaboration'}
         </span>
       </div>
 

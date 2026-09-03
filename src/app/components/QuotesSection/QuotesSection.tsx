@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../../context/LanguageContext';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -14,6 +15,7 @@ export default function QuotesSection() {
   const wordMembimbingRef = useRef<HTMLSpanElement>(null);
   const wordInovasiRef = useRef<HTMLSpanElement>(null);
   const wordTalentaRef = useRef<HTMLSpanElement>(null);
+  const { lang } = useLanguage();
 
   // Helper to render interactive words with character splitting
   const renderInteractiveWord = (
@@ -403,7 +405,7 @@ export default function QuotesSection() {
                 lineHeight: 1.2,
               }}
             >
-              Teknik Informatika UMC
+              {lang === 'ID' ? 'Teknik Informatika UMC' : 'UMC Informatics Engineering'}
             </p>
 
             {/* Right SVG Brace */}
@@ -436,20 +438,20 @@ export default function QuotesSection() {
             }}
           >
             <span className="inline lg:block lg:whitespace-nowrap">
-              Teknik Informatika UMC{' '}
-              {renderInteractiveWord('membimbing', wordMembimbingRef, true)}{' '}
-              Anda{' '}
+              {lang === 'ID' ? 'Teknik Informatika UMC ' : 'UMC Informatics Engineering '}
+              {renderInteractiveWord(lang === 'ID' ? 'membimbing' : 'guides', wordMembimbingRef, true)}{' '}
+              {lang === 'ID' ? 'Anda ' : 'you to '}
             </span>
             <span className="inline lg:block lg:whitespace-nowrap">
-              {renderInteractiveWord('menciptakan inovasi', wordInovasiRef, false)}{' '}
-              teknologi cerdas.{' '}
+              {renderInteractiveWord(lang === 'ID' ? 'menciptakan inovasi' : 'create innovations', wordInovasiRef, false)}{' '}
+              {lang === 'ID' ? 'teknologi cerdas. ' : 'in smart technology. '}
             </span>
             <span className="inline lg:block lg:whitespace-nowrap">
-              Menghadirkan kurikulum berstandar global{' '}
+              {lang === 'ID' ? 'Menghadirkan kurikulum berstandar global ' : 'Delivering a global standard curriculum '}
             </span>
             <span className="inline lg:block lg:whitespace-nowrap">
-              untuk mencetak{' '}
-              {renderInteractiveWord('talenta digital masa depan', wordTalentaRef, false)}
+              {lang === 'ID' ? 'untuk mencetak ' : 'to produce '}
+              {renderInteractiveWord(lang === 'ID' ? 'talenta digital masa depan' : 'future digital talents', wordTalentaRef, false)}
               .
             </span>
           </h2>

@@ -6,6 +6,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useLanguage } from '../../context/LanguageContext';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -13,6 +14,7 @@ if (typeof window !== 'undefined') {
 
 export default function Footer() {
   const containerRef = useRef<HTMLElement>(null);
+  const { lang } = useLanguage();
 
   useGSAP(
     () => {
@@ -60,11 +62,14 @@ export default function Footer() {
                />
             </div>
             <h2 className="footer-element text-[22px] sm:text-[34px] md:text-[40px] font-normal tracking-[-0.02em] leading-none mt-1">
-              Teknik Informatika UMC
+              {lang === 'ID' ? 'Teknik Informatika UMC' : 'UMC Informatics Engineering'}
             </h2>
           </div>
           <p className="footer-element text-neutral-300 text-[14px] sm:text-[17px] leading-relaxed mb-6 sm:mb-8">
-            Mencetak talenta digital berdaya saing global melalui pendidikan berkualitas, riset inovatif, dan kolaborasi industri yang berkelanjutan.
+            {lang === 'ID' 
+              ? 'Mencetak talenta digital berdaya saing global melalui pendidikan berkualitas, riset inovatif, dan kolaborasi industri yang berkelanjutan.'
+              : 'Producing globally competitive digital talents through quality education, innovative research, and sustainable industry collaboration.'
+            }
           </p>
           <div className="footer-element flex flex-wrap items-center gap-4 sm:gap-6">
             <a 
@@ -98,24 +103,40 @@ export default function Footer() {
         <div className="flex-1 grid grid-cols-2 gap-8 sm:flex sm:flex-row sm:gap-16 lg:gap-24 justify-start md:justify-end">
           
           <div className="flex flex-col gap-1.5 sm:gap-3.5">
-            <h3 className="footer-element text-[16px] sm:text-[19px] font-medium tracking-tight mb-1 sm:mb-2 text-white">Navigasi</h3>
-            <Link href="#beranda" className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center">Beranda</Link>
-            <Link href="#visi-misi" className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center">Visi &amp; Misi</Link>
-            <Link href="#fakta-akademik" className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center">Keunggulan</Link>
-            <Link href="#peminatan" className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center">Peminatan</Link>
-            <Link href="#galeri" className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center">Galeri</Link>
-            <Link href="#testimoni-alumni" className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center">Alumni</Link>
+            <h3 className="footer-element text-[16px] sm:text-[19px] font-medium tracking-tight mb-1 sm:mb-2 text-white">
+              {lang === 'ID' ? 'Navigasi' : 'Navigation'}
+            </h3>
+            <Link href="#beranda" className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center">
+              {lang === 'ID' ? 'Beranda' : 'Home'}
+            </Link>
+            <Link href="#visi-misi" className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center">
+              {lang === 'ID' ? 'Visi & Misi' : 'Vision & Mission'}
+            </Link>
+            <Link href="#fakta-akademik" className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center">
+              {lang === 'ID' ? 'Keunggulan' : 'Excellence'}
+            </Link>
+            <Link href="#peminatan" className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center">
+              {lang === 'ID' ? 'Peminatan' : 'Specializations'}
+            </Link>
+            <Link href="#galeri" className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center">
+              {lang === 'ID' ? 'Galeri' : 'Gallery'}
+            </Link>
+            <Link href="#testimoni-alumni" className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center">
+              {lang === 'ID' ? 'Alumni' : 'Alumni'}
+            </Link>
           </div>
 
           <div className="flex flex-col gap-1.5 sm:gap-3.5">
-            <h3 className="footer-element text-[16px] sm:text-[19px] font-medium tracking-tight mb-1 sm:mb-2 text-white">Informasi Resmi</h3>
+            <h3 className="footer-element text-[16px] sm:text-[19px] font-medium tracking-tight mb-1 sm:mb-2 text-white">
+              {lang === 'ID' ? 'Informasi Resmi' : 'Official Info'}
+            </h3>
             <a 
               href="https://pmb.umc.ac.id" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center"
             >
-              Pendaftaran (PMB)
+              {lang === 'ID' ? 'Pendaftaran (PMB)' : 'Registration (PMB)'}
             </a>
             <a 
               href="https://umc.ac.id" 
@@ -123,7 +144,7 @@ export default function Footer() {
               rel="noopener noreferrer" 
               className="footer-element text-neutral-300 hover:text-white transition-colors duration-300 text-[14px] sm:text-[15px] py-2 sm:py-0.5 min-h-[36px] flex items-center"
             >
-              Website Universitas
+              {lang === 'ID' ? 'Website Universitas' : 'University Website'}
             </a>
           </div>
 
@@ -132,7 +153,7 @@ export default function Footer() {
 
       {/* Bottom Legal / Copyright */}
       <div className="footer-element w-full max-w-[120rem] mx-auto mt-10 sm:mt-16 lg:mt-20 pt-6 sm:pt-8 border-t border-neutral-800/60 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-neutral-300 text-[13px] sm:text-[13.5px]">
-        <p>© {new Date().getFullYear()} Prodi Teknik Informatika Universitas Muhammadiyah Cirebon.</p>
+        <p>© {new Date().getFullYear()} {lang === 'ID' ? 'Prodi Teknik Informatika Universitas Muhammadiyah Cirebon.' : 'Informatics Engineering Study Program, Universitas Muhammadiyah Cirebon.'}</p>
         <p className="text-neutral-400 text-[12.5px] sm:text-[13px]">Jl. Tuparev No. 70, Cirebon, Jawa Barat</p>
       </div>
     </footer>

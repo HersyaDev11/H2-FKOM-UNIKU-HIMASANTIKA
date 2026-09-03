@@ -2,8 +2,9 @@
 
 import React from 'react';
 import { ScrollReelTestimonials, ScrollReelTestimonial } from './scroll-reel-testimonials';
+import { useLanguage } from '../../context/LanguageContext';
 
-const TESTIMONIALS: ScrollReelTestimonial[] = [
+const TESTIMONIALS_ID: ScrollReelTestimonial[] = [
   {
     quote:
       'Teknik Informatika UMC memberikan fondasi berpikir komputasi yang kuat dan ruang eksplorasi tanpa batas untuk terus berinovasi.',
@@ -41,7 +42,47 @@ const TESTIMONIALS: ScrollReelTestimonial[] = [
   },
 ];
 
+const TESTIMONIALS_EN: ScrollReelTestimonial[] = [
+  {
+    quote:
+      'UMC Informatics Engineering provides a strong computational thinking foundation and limitless exploration space to keep innovating.',
+    author: 'Rian Pratama, S.T.',
+    image: '/testimonials/alumni-1.webp',
+    alt: 'Portrait of Rian Pratama',
+  },
+  {
+    quote:
+      'The intensive guidance of lecturers and supportive learning atmosphere build real mental readiness to face the dynamics of the professional work world.',
+    author: 'Nadia Kirana, S.T.',
+    image: '/testimonials/alumni-2.webp',
+    alt: 'Portrait of Nadia Kirana',
+  },
+  {
+    quote:
+      'The adaptive curriculum and modern practicum facilities provide practical experience that is highly relevant to today’s industry needs.',
+    author: 'Fajar Hidayat, S.T.',
+    image: '/testimonials/alumni-3.webp',
+    alt: 'Portrait of Fajar Hidayat',
+  },
+  {
+    quote:
+      'The experience of collaborating in various real projects and a solid campus community opens up many broad career opportunities.',
+    author: 'Dimas Setiawan, S.T.',
+    image: '/testimonials/alumni-4.webp',
+    alt: 'Portrait of Dimas Setiawan',
+  },
+  {
+    quote:
+      'Learning here is not just about understanding technology, but how to create real solutions that have a positive impact on society.',
+    author: 'Sarah Azzahra, S.T.',
+    image: '/testimonials/alumni-5.webp',
+    alt: 'Portrait of Sarah Azzahra',
+  },
+];
+
 export default function TestimonialsSection() {
+  const { lang } = useLanguage();
+  
   return (
     <section
       id="testimoni-alumni"
@@ -52,7 +93,7 @@ export default function TestimonialsSection() {
         {/* Full-Screen Seamless Scroll Reel Component */}
         <div className="w-full flex items-center justify-center">
           <ScrollReelTestimonials
-            testimonials={TESTIMONIALS}
+            testimonials={lang === 'ID' ? TESTIMONIALS_ID : TESTIMONIALS_EN}
             charStaggerMs={4}
             className="w-full"
           />

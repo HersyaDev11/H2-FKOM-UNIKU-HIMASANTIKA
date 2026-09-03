@@ -9,6 +9,7 @@ import PeminatanSection from "./components/PeminatanSection/PeminatanSection";
 import GallerySection from "./components/GallerySection/GallerySection";
 import TestimonialsSection from "./components/TestimonialsSection/TestimonialsSection";
 import MitraSection from "./components/MitraSection/MitraSection";
+import FaqContactSection from "./components/FaqContactSection/FaqContactSection";
 import Footer from "./components/Footer/Footer";
 
 // Dynamic import Chatbot to code-split its JavaScript bundle
@@ -43,6 +44,8 @@ export default function Home() {
       <TestimonialsSection />
 
       <MitraSection />
+
+      <FaqContactSection />
 
       <Footer />
 

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../../context/LanguageContext';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -14,33 +15,44 @@ if (typeof window !== 'undefined') {
 const factsList = [
   {
     num: '01',
-    title: 'Kurikulum Adaptif Berbasis Kebutuhan Industri',
-    category: 'Rekayasa Perangkat Lunak, AI & Cloud',
+    titleId: 'Kurikulum Adaptif Berbasis Kebutuhan Industri',
+    titleEn: 'Adaptive Curriculum Based on Industry Needs',
+    categoryId: 'Rekayasa Perangkat Lunak, AI & Cloud',
+    categoryEn: 'Software Engineering, AI & Cloud',
   },
   {
     num: '02',
-    title: 'Penguatan Praktikum & Project-Based Learning',
-    category: 'Portofolio Produk & Studi Kasus Nyata',
+    titleId: 'Penguatan Praktikum & Project-Based Learning',
+    titleEn: 'Strengthening Practicum & Project-Based Learning',
+    categoryId: 'Portofolio Produk & Studi Kasus Nyata',
+    categoryEn: 'Product Portfolio & Real Case Studies',
   },
   {
     num: '03',
-    title: 'Pembekalan Kompetensi & Keahlian Digital',
-    category: 'Kesiapan Karier & Standar Profesional',
+    titleId: 'Pembekalan Kompetensi & Keahlian Digital',
+    titleEn: 'Provision of Digital Competencies & Skills',
+    categoryId: 'Kesiapan Karier & Standar Profesional',
+    categoryEn: 'Career Readiness & Professional Standards',
   },
   {
     num: '04',
-    title: 'Inovasi Riset & Pengabdian Berbasis Teknologi',
-    category: 'Solusi Digital Tepat Guna untuk Masyarakat',
+    titleId: 'Inovasi Riset & Pengabdian Berbasis Teknologi',
+    titleEn: 'Research Innovation & Technology-Based Community Service',
+    categoryId: 'Solusi Digital Tepat Guna untuk Masyarakat',
+    categoryEn: 'Appropriate Digital Solutions for Society',
   },
   {
     num: '05',
-    title: 'Peluang Karier Luas di Era Transformasi Digital',
-    category: 'Software Engineer, Data & Tech Innovator',
+    titleId: 'Peluang Karier Luas di Era Transformasi Digital',
+    titleEn: 'Broad Career Opportunities in the Digital Transformation Era',
+    categoryId: 'Software Engineer, Data & Tech Innovator',
+    categoryEn: 'Software Engineer, Data & Tech Innovator',
   },
 ];
 
 export default function FactsSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const { lang } = useLanguage();
 
   useGSAP(
     () => {
@@ -97,7 +109,7 @@ export default function FactsSection() {
           <div className="max-w-4xl xl:max-w-5xl">
             {/* Grand Headline matching Quotes Headline Scale and Tracking */}
             <h2 className="facts-grand-title text-[33px] leading-[43px] sm:text-[48px] sm:leading-[58px] md:text-[60px] md:leading-[72px] lg:text-[72px] lg:leading-[86px] xl:text-[80.9999px] xl:leading-[97.1999px] font-normal tracking-[-0.01em] text-[#111111]">
-              Fakta di balik kualitas lulusan &amp; kurikulum masa depan Teknik Informatika UMC.
+              {lang === 'ID' ? 'Fakta di balik kualitas lulusan & kurikulum masa depan Teknik Informatika UMC.' : 'Facts behind the quality of graduates & the future curriculum of UMC Informatics Engineering.'}
             </h2>
           </div>
 
@@ -136,14 +148,14 @@ export default function FactsSection() {
 
                 {/* Mori Title: Perfectly Flush & Vertically Aligned */}
                 <h3 className="m-0 text-[22px] sm:text-[28px] md:text-[34px] lg:text-[38px] font-normal tracking-[-0.015em] text-[#111111] transition-all duration-300 group-hover:translate-x-2 group-hover:text-[#DF1A22]">
-                  {fact.title}
+                  {lang === 'ID' ? fact.titleId : fact.titleEn}
                 </h3>
               </div>
 
               {/* Right: Subtitle Category */}
               <div className="mt-3 md:mt-0 flex items-center shrink-0">
                 <p className="text-[14px] sm:text-[16px] md:text-[18px] font-medium text-[#334155] transition-all duration-300 group-hover:translate-x-2 group-hover:text-[#00853F] tracking-[-0.01em]">
-                  {fact.category}
+                  {lang === 'ID' ? fact.categoryId : fact.categoryEn}
                 </p>
               </div>
             </div>

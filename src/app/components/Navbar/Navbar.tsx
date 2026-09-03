@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Globe, Menu, X } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 
 const NAV_LINKS = [
   { id: 'beranda', idLabel: 'Beranda', enLabel: 'Home', href: '#beranda' },
@@ -18,7 +19,7 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const navRef = useRef<HTMLElement>(null);
-  const [lang, setLang] = useState<'ID' | 'EN'>('ID');
+  const { lang, setLang } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useGSAP(
@@ -53,10 +54,10 @@ export default function Navbar() {
         </div>
         <div className="flex flex-col">
           <span className="text-white font-medium text-[14px] sm:text-[15px] tracking-tight leading-tight group-hover:text-neutral-200 transition-colors">
-            Teknik Informatika
+            {lang === 'ID' ? 'Teknik Informatika' : 'Informatics Engineering'}
           </span>
           <span className="text-neutral-400 font-light text-[11px] sm:text-[12px] tracking-tight leading-tight mt-0.5">
-            Universitas Muhammadiyah Cirebon
+            {lang === 'ID' ? 'Universitas Muhammadiyah Cirebon' : 'Universitas Muhammadiyah Cirebon'}
           </span>
         </div>
       </Link>
@@ -81,8 +82,8 @@ export default function Navbar() {
         <button 
           onClick={() => setLang(lang === 'ID' ? 'EN' : 'ID')}
           className="hidden sm:flex items-center gap-2 px-3.5 py-2 min-h-[44px] border border-white/10 hover:border-white/25 rounded-full text-neutral-200 hover:text-white transition-all bg-white/[0.03] text-[12px] font-normal cursor-pointer"
-          title="Ganti Bahasa / Switch Language"
-          aria-label="Ganti Bahasa"
+          title={lang === 'ID' ? "Ganti Bahasa / Switch Language" : "Switch Language"}
+          aria-label={lang === 'ID' ? "Ganti Bahasa" : "Switch Language"}
         >
           <Globe className="w-3.5 h-3.5 text-neutral-300" />
           <span className="font-medium">{lang}</span>
@@ -144,10 +145,10 @@ export default function Navbar() {
               <button 
                 onClick={() => setLang(lang === 'ID' ? 'EN' : 'ID')}
                 className="flex items-center gap-2 px-4 py-2.5 min-h-[44px] border border-white/10 rounded-full text-neutral-200 text-[13px] hover:bg-white/5 transition-colors cursor-pointer"
-                aria-label="Ganti Bahasa"
+                aria-label={lang === 'ID' ? "Ganti Bahasa" : "Switch Language"}
               >
                 <Globe className="w-4 h-4 text-neutral-300" />
-                <span>{lang === 'ID' ? 'Bahasa Indonesia' : 'English'}</span>
+                <span>{lang === 'ID' ? 'English' : 'Bahasa Indonesia'}</span>
               </button>
 
               <a
@@ -156,7 +157,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-6 py-2.5 min-h-[44px] bg-[#DF1A22] hover:bg-[#c4151d] text-white text-[13px] font-medium rounded-full shadow-[0_8px_20px_-4px_rgba(223,26,34,0.4)] transition-all active:scale-95"
               >
-                <span>Daftar PMB</span>
+                <span>{lang === 'ID' ? 'Daftar PMB' : 'Apply Now'}</span>
               </a>
             </motion.div>
           </motion.div>

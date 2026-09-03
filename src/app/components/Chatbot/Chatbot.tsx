@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface Message {
   id: string;
@@ -11,7 +12,7 @@ interface Message {
   text: string;
 }
 
-const PRESET_RESPONSES: Record<string, string> = {
+const PRESET_RESPONSES_ID: Record<string, string> = {
   daftar: "Pendaftaran Mahasiswa Baru (PMB) Prodi Teknik Informatika UMC dibuka 100% secara daring! Anda dapat langsung mengakses portal resmi di https://pmb.umc.ac.id. Tersedia Jalur Reguler, Jalur Prestasi (Rapor/Kejuaraan), dan Jalur Beasiswa KIP.",
   kurikulum: "Kurikulum Teknik Informatika UMC dirancang berbasis Outcome-Based Education (OBE) dan standar IEEE/ACM dengan 5 bidang keahlian utama: Rekayasa Perangkat Lunak, Kecerdasan Buatan (AI & ML), Jaringan Komputer & Cyber Security, Data Science, dan Cloud Computing.",
   beasiswa: "Teknik Informatika UMC menyediakan berbagai program beasiswa: Beasiswa KIP-Kuliah (Full Gratis & Uang Saku), Beasiswa Kader Persyarikatan Muhammadiyah, Beasiswa Tahfidz Quran, Beasiswa Prestasi Juara, dan Beasiswa Mitra Industri.",
@@ -19,35 +20,42 @@ const PRESET_RESPONSES: Record<string, string> = {
   akreditasi: "Program Studi Teknik Informatika Universitas Muhammadiyah Cirebon telah terakreditasi oleh LAM-INFOKOM / BAN-PT dengan jaminan standar mutu pendidikan dan fasilitas laboratorium komputer terpadu.",
 };
 
-const getBotResponse = (input: string): string => {
+const PRESET_RESPONSES_EN: Record<string, string> = {
+  daftar: "New Student Admission (PMB) for UMC Informatics Engineering is open 100% online! You can directly access the official portal at https://pmb.umc.ac.id. Regular, Achievement (Report Card/Championship), and KIP Scholarship tracks are available.",
+  kurikulum: "The UMC Informatics Engineering Curriculum is designed based on Outcome-Based Education (OBE) and IEEE/ACM standards with 5 main areas of expertise: Software Engineering, Artificial Intelligence (AI & ML), Computer Network & Cyber Security, Data Science, and Cloud Computing.",
+  beasiswa: "UMC Informatics Engineering provides various scholarship programs: KIP-Kuliah Scholarship (Full Free & Pocket Money), Muhammadiyah Association Cadre Scholarship, Tahfidz Quran Scholarship, Champion Achievement Scholarship, and Industry Partner Scholarship.",
+  biaya: "Tuition fees at UMC Informatics Engineering are very competitive and affordable with flexible interest-free installment schemes. You can see the details of UKT & DPP directly in the tuition menu at https://pmb.umc.ac.id.",
+  akreditasi: "The Informatics Engineering Study Program, Universitas Muhammadiyah Cirebon has been accredited by LAM-INFOKOM / BAN-PT with a guarantee of educational quality standards and integrated computer laboratory facilities.",
+};
+
+const getBotResponse = (input: string, lang: string): string => {
   const lower = input.toLowerCase();
-  if (lower.includes('daftar') || lower.includes('syarat') || lower.includes('masuk') || lower.includes('pmb')) {
+  const PRESET_RESPONSES = lang === 'ID' ? PRESET_RESPONSES_ID : PRESET_RESPONSES_EN;
+  
+  if (lower.includes('daftar') || lower.includes('syarat') || lower.includes('masuk') || lower.includes('pmb') || lower.includes('admission') || lower.includes('register') || lower.includes('enroll')) {
     return PRESET_RESPONSES.daftar;
   }
-  if (lower.includes('kurikulum') || lower.includes('kuliah') || lower.includes('peminatan') || lower.includes('matkul') || lower.includes('belajar')) {
+  if (lower.includes('kurikulum') || lower.includes('kuliah') || lower.includes('peminatan') || lower.includes('matkul') || lower.includes('belajar') || lower.includes('curriculum') || lower.includes('study') || lower.includes('major')) {
     return PRESET_RESPONSES.kurikulum;
   }
-  if (lower.includes('beasiswa') || lower.includes('kip') || lower.includes('kader') || lower.includes('gratis')) {
+  if (lower.includes('beasiswa') || lower.includes('kip') || lower.includes('kader') || lower.includes('gratis') || lower.includes('scholarship') || lower.includes('free')) {
     return PRESET_RESPONSES.beasiswa;
   }
-  if (lower.includes('biaya') || lower.includes('spp') || lower.includes('bayar') || lower.includes('ukt')) {
+  if (lower.includes('biaya') || lower.includes('spp') || lower.includes('bayar') || lower.includes('ukt') || lower.includes('fee') || lower.includes('cost') || lower.includes('tuition')) {
     return PRESET_RESPONSES.biaya;
   }
-  if (lower.includes('akreditasi') || lower.includes('status') || lower.includes('kualitas')) {
+  if (lower.includes('akreditasi') || lower.includes('status') || lower.includes('kualitas') || lower.includes('accreditation') || lower.includes('quality')) {
     return PRESET_RESPONSES.akreditasi;
   }
-  return "Terima kasih atas pesan Anda! 😊 Saya asisten virtual Prodi Teknik Informatika UMC. Untuk konsultasi langsung atau pertanyaan khusus, Anda dapat mengunjungi laman resmi https://pmb.umc.ac.id atau menghubungi hotline admisi UMC. Ada yang bisa kami bantu lagi?";
+  return lang === 'ID'
+    ? "Terima kasih atas pesan Anda! 😊 Saya asisten virtual Prodi Teknik Informatika UMC. Untuk konsultasi langsung atau pertanyaan khusus, Anda dapat mengunjungi laman resmi https://pmb.umc.ac.id atau menghubungi hotline admisi UMC. Ada yang bisa kami bantu lagi?"
+    : "Thank you for your message! 😊 I am the virtual assistant for the UMC Informatics Engineering Study Program. For direct consultation or specific questions, you can visit the official website https://pmb.umc.ac.id or contact the UMC admission hotline. Is there anything else we can help you with?";
 };
 
 export default function Chatbot() {
+  const { lang } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    { 
-      id: '1', 
-      type: 'bot', 
-      text: 'Halo! 👋 Selamat datang di Teknik Informatika UMC. Ada yang bisa kami bantu terkait pendaftaran PMB, kurikulum, peminatan, atau program beasiswa?' 
-    }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
 
@@ -55,6 +63,19 @@ export default function Chatbot() {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const chatBodyRef = useRef<HTMLDivElement>(null);
   const pulseAnimRef = useRef<gsap.core.Tween | null>(null);
+
+  // Initialize and reset messages on language change
+  useEffect(() => {
+    setMessages([
+      { 
+        id: `initial-${Date.now()}`, 
+        type: 'bot', 
+        text: lang === 'ID' 
+          ? 'Halo! 👋 Selamat datang di Teknik Informatika UMC. Ada yang bisa kami bantu terkait pendaftaran PMB, kurikulum, peminatan, atau program beasiswa?' 
+          : 'Hello! 👋 Welcome to UMC Informatics Engineering. Is there anything we can help you with regarding PMB registration, curriculum, specializations, or scholarship programs?' 
+      }
+    ]);
+  }, [lang]);
 
   // Smooth Auto-Scroll to bottom whenever messages or typing state change
   const scrollToBottom = () => {
@@ -136,7 +157,7 @@ export default function Chatbot() {
     setIsTyping(true);
     
     // 3. Realistic dynamic delay based on reply length
-    const botReplyText = getBotResponse(trimmed);
+    const botReplyText = getBotResponse(trimmed, lang);
     const delay = Math.min(1400, Math.max(800, botReplyText.length * 10));
     
     setTimeout(() => {
@@ -168,7 +189,9 @@ export default function Chatbot() {
               <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-[#111111] rounded-full"></div>
             </div>
             <div>
-              <h4 className="font-semibold tracking-tight text-[16px] text-white">Asisten Virtual UMC</h4>
+              <h4 className="font-semibold tracking-tight text-[16px] text-white">
+                {lang === 'ID' ? 'Asisten Virtual UMC' : 'UMC Virtual Assistant'}
+              </h4>
               <p className="text-[13px] text-neutral-300 flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
                 Online
@@ -178,7 +201,7 @@ export default function Chatbot() {
           <button 
             onClick={toggleChat} 
             className="w-9 h-9 min-w-[36px] min-h-[36px] flex items-center justify-center rounded-full bg-neutral-800/50 text-neutral-300 hover:text-white hover:bg-neutral-700 transition-all duration-300 cursor-pointer"
-            aria-label="Tutup Jendela Chat"
+            aria-label={lang === 'ID' ? 'Tutup Jendela Chat' : 'Close Chat Window'}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -251,9 +274,9 @@ export default function Chatbot() {
               className="flex flex-col gap-2 mt-2 items-end"
             >
               {[
-                "Cara Daftar & Syarat Masuk",
-                "Info Kurikulum Terbaru",
-                "Peluang Beasiswa"
+                lang === 'ID' ? "Cara Daftar & Syarat Masuk" : "How to Apply & Requirements",
+                lang === 'ID' ? "Info Kurikulum Terbaru" : "Latest Curriculum Info",
+                lang === 'ID' ? "Peluang Beasiswa" : "Scholarship Opportunities"
               ].map((chip, idx) => (
                 <button 
                   key={idx}
@@ -280,13 +303,13 @@ export default function Chatbot() {
               type="text" 
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              placeholder="Tulis pesan Anda..." 
+              placeholder={lang === 'ID' ? "Tulis pesan Anda..." : "Type your message..."} 
               className="w-full bg-[#1A1A1A] text-[#FFFFFF] text-[14px] pl-5 pr-14 py-3.5 rounded-full outline-none border border-neutral-800 focus:border-[#DF1A22]/60 transition-colors shadow-inner placeholder:text-neutral-500"
             />
             <button 
               type="submit" 
               disabled={!inputText.trim() || isTyping} 
-              aria-label="Kirim Pesan" 
+              aria-label={lang === 'ID' ? 'Kirim Pesan' : 'Send Message'} 
               className="absolute right-2 w-10 h-10 min-w-[40px] min-h-[40px] bg-[#DF1A22] text-white rounded-full flex items-center justify-center hover:bg-[#B3151B] disabled:opacity-40 disabled:hover:bg-[#DF1A22] disabled:hover:scale-100 transition-transform duration-300 hover:scale-105 shadow-md cursor-pointer disabled:cursor-not-allowed"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="ml-0.5 mt-0.5">
@@ -302,7 +325,7 @@ export default function Chatbot() {
       <button 
         ref={buttonRef}
         onClick={toggleChat}
-        aria-label={isOpen ? "Tutup Chat" : "Buka Chat Asisten Virtual"}
+        aria-label={isOpen ? (lang === 'ID' ? "Tutup Chat" : "Close Chat") : (lang === 'ID' ? "Buka Chat Asisten Virtual" : "Open Virtual Assistant Chat")}
         className={`w-13 h-13 sm:w-16 sm:h-16 min-w-[50px] min-h-[50px] rounded-full flex items-center justify-center transition-all duration-500 hover:scale-110 active:scale-95 z-50 cursor-pointer ${isOpen ? 'bg-[#1A1A1A] border border-neutral-800 text-white shadow-lg rotate-180' : 'bg-gradient-to-tr from-[#DF1A22] to-[#ff4b52] text-white shadow-[0_8px_20px_rgba(223,26,34,0.4)]'}`}
       >
         {isOpen ? (

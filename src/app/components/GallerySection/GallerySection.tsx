@@ -1,17 +1,18 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useMemo } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CoverflowCarousel, type CoverflowSlide } from './coverflow-carousel';
+import { useLanguage } from '../../context/LanguageContext';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 // Curated Gallery Slides: Aktivitas Praktik & Pembelajaran Mahasiswa Teknik Informatika UMC (Symmetrical & Clean)
-const GALLERY_SLIDES: CoverflowSlide[] = [
+const GALLERY_SLIDES_ID = [
   {
     src: '/gallery/praktik-mahasiswa-1.webp',
     alt: 'Mahasiswa Teknik Informatika UMC sedang Praktik Pemrograman di Laboratorium Komputer',
@@ -80,8 +81,78 @@ const GALLERY_SLIDES: CoverflowSlide[] = [
   },
 ];
 
+const GALLERY_SLIDES_EN = [
+  {
+    src: '/gallery/praktik-mahasiswa-1.webp',
+    alt: 'UMC Informatics Engineering Students Practicing Programming in the Computer Laboratory',
+    title: 'Computer Programming Practicum',
+    subtitle: 'Coding Activities & Software Logic',
+    meta: [
+      { label: 'Activity', value: 'Coding & Algorithms' },
+      { label: 'Facility', value: 'IT Laboratory' },
+      { label: 'Participants', value: 'IT Students' },
+    ],
+  },
+  {
+    src: '/gallery/pembelajaran-jaringan.webp',
+    alt: 'Informatics Engineering Students Practicing Computer Network Learning',
+    title: 'Network & Computing Practice',
+    subtitle: 'Hands-on Cabling & Network Configuration',
+    meta: [
+      { label: 'Focus', value: 'Computer Networks' },
+      { label: 'Method', value: 'Direct Practice' },
+      { label: 'Space', value: 'IT Laboratory' },
+    ],
+  },
+  {
+    src: '/gallery/pembelajaran-kuliah.webp',
+    alt: 'Interactive and Collaborative Learning Process of UMC Informatics Engineering Students',
+    title: 'Interactive Lecture Atmosphere',
+    subtitle: 'Teaching & Learning Process of Theory & Class Discussion',
+    meta: [
+      { label: 'Method', value: 'Collaborative Learning' },
+      { label: 'Facility', value: 'Lecture Room' },
+      { label: 'Atmosphere', value: 'Active & Dynamic' },
+    ],
+  },
+  {
+    src: '/gallery/praktik-mahasiswa-2.webp',
+    alt: 'Software Engineering and Web Programming Practicum of UMC IT Students',
+    title: 'Software Project Development',
+    subtitle: 'Practical Implementation of Student Application Engineering',
+    meta: [
+      { label: 'Activity', value: 'Application Development' },
+      { label: 'Method', value: 'Project Practicum' },
+      { label: 'Equipment', value: 'PC Workstations' },
+    ],
+  },
+  {
+    src: '/gallery/lab-komputer.webp',
+    alt: 'UMC Informatics Engineering Computer Laboratory Facilities',
+    title: 'Computer Laboratory Facilities',
+    subtitle: 'Student Digital Exploration & Practice Space',
+    meta: [
+      { label: 'Facility', value: 'Integrated Laboratory' },
+      { label: 'Access', value: 'Practicum & Research' },
+      { label: 'Equipment', value: 'PC Workstations' },
+    ],
+  },
+  {
+    src: '/gallery/ujian-semester.webp',
+    alt: 'Evaluation and Competency Practice Exams of UMC Informatics Engineering Students',
+    title: 'Competency Evaluation & Exams',
+    subtitle: 'Testing of Theoretical Understanding & Practical Skills',
+    meta: [
+      { label: 'Activity', value: 'Competency Exam' },
+      { label: 'Standard', value: 'Academic Quality' },
+      { label: 'Objective', value: 'Achievement Evaluation' },
+    ],
+  },
+];
+
 export default function GallerySection() {
   const containerRef = useRef<HTMLElement>(null);
+  const { lang } = useLanguage();
 
   useGSAP(
     () => {
@@ -100,6 +171,8 @@ export default function GallerySection() {
     },
     { scope: containerRef }
   );
+
+  const slides = useMemo(() => lang === 'ID' ? GALLERY_SLIDES_ID : GALLERY_SLIDES_EN, [lang]);
 
   return (
     <section
@@ -128,14 +201,14 @@ export default function GallerySection() {
             className="text-[26px] leading-[34px] sm:text-[44px] sm:leading-[54px] md:text-[58px] md:leading-[68px] lg:text-[72px] lg:leading-[86px] xl:text-[80.9999px] xl:leading-[97.1999px] font-normal tracking-[-0.01em] text-[#FFFFFF] font-['Mori',sans-serif]"
             style={{ fontFamily: "'Mori', sans-serif" }}
           >
-            Eksplorasi ruang praktikum, aktivitas, dan atmosfer belajar kami.
+            {lang === 'ID' ? 'Eksplorasi ruang praktikum, aktivitas, dan atmosfer belajar kami.' : 'Explore our practicum spaces, activities, and learning atmosphere.'}
           </h2>
         </div>
 
         {/* 21st.dev Coverflow Carousel Component */}
         <div className="w-full">
           <CoverflowCarousel
-            slides={GALLERY_SLIDES}
+            slides={slides}
             rotate={38}
             depth={0.55}
             perspective={2.8}
