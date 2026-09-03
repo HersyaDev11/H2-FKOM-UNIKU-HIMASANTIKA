@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Teknik Informatika — Universitas Muhammadiyah Cirebon",
   description:
     "Program Studi Teknik Informatika Universitas Muhammadiyah Cirebon. Membentuk generasi digital yang kompeten dan inovatif.",
+  icons: {
+    icon: "/logoprodi/UMC-1.webp",
+  },
 };
 
 export const viewport: Viewport = {
