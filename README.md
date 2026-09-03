@@ -1,63 +1,96 @@
-# Landing Page - Program Studi Teknik Informatika
+<div align="center">
+  <img src="public/logoprodi/UMC-1.webp" alt="Logo UMC" width="120" />
+  <h1>🚀 Teknik Informatika — Universitas Muhammadiyah Cirebon</h1>
+  <p><strong>Karya Kompetisi Web Design 2026</strong></p>
+  <p>Website Company Profile modern, interaktif, dan performa tinggi yang dibangun dengan Next.js App Router, GSAP, dan Tailwind CSS.</p>
+</div>
 
-**Tim Pengembang (H2-FKOM):**  
-👨‍💻 **Hersya Yudina** & **Haqil Abdillah**
+---
 
-Repositori ini berisi kode sumber untuk **Landing Page Program Studi Teknik Informatika** yang dibangun untuk keperluan kompetisi desain dan pengembangan web.
+## ✨ Ikhtisar Proyek (Project Overview)
 
-## 🎨 Konsep Desain
+Proyek ini merupakan hasil dedikasi untuk **Lomba Web Design**, berfokus pada pengalaman pengguna (UX) tingkat tinggi, animasi mikro (*micro-interactions*) yang mulus, dan performa yang sangat ringan. Dirancang khusus untuk mempresentasikan Program Studi Teknik Informatika Universitas Muhammadiyah Cirebon sebagai institusi yang *modern, inovatif, dan berstandar global*.
 
-Landing page ini dirancang dengan konsep **Modern, Premium, dan Futuristik** yang terinspirasi dari website kelas dunia (bergaya *Awwwards*). 
+Pendekatan desain menggunakan estetika **Dark Mode Premium** dengan tipografi eksklusif (PP Mori), aksen warna *Merah UMC* (`#DF1A22`), dan komposisi tata letak *Kinetic Editorial* ala 21st.dev.
 
-*   **Skema Warna**: Mendominasi *Dark Mode* (hitam/abu-abu gelap) yang elegan, dipadukan dengan aksen warna **Merah Solid (#DF1A22)** untuk memberikan kesan berani, inovatif, dan penuh energi.
-*   **Animasi Interaktif**: Mengutamakan pengalaman pengguna (*User Experience*) yang interaktif melalui animasi *scroll* yang canggih. Terdapat fitur **Horizontal Scroll Parallax** pada bagian Visi & Misi, efek *fade-in*, *scale-up*, *hover magnetik/spotlight*, dan kemunculan teks kata per kata (*word-reveal*).
-*   **Transisi Mulus (*Seamless*)**: Menghindari penggunaan garis pembatas (border) yang kaku antar seksi, dan menggantinya dengan efek *gradient masking* serta pendaran cahaya (*glow/blur*) untuk pergantian halaman yang menyatu mulus.
-*   **Responsif Penuh**: Dirancang secara khusus agar tetap terlihat proporsional, memukau, dan berfungsi penuh baik di layar Desktop, Tablet, maupun *Smartphone*.
+---
 
-## 🛠️ Teknologi yang Digunakan
+## 🛠️ Teknologi & Stack (Tech Stack)
 
-Website ini dibangun menggunakan *stack* teknologi modern berbasis JavaScript/TypeScript:
+Website ini dikembangkan menggunakan teknologi front-end modern terbaik di kelasnya:
+- **Framework**: [Next.js 14/15](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animasi Core**: [GSAP (GreenSock)](https://gsap.com/) & ScrollTrigger
+- **Animasi Mikro & Drawer**: [Framer Motion](https://www.framer.com/motion/)
+- **Smooth Scrolling**: [Lenis](https://lenis.studiofreight.com/)
+- **Ikonografi**: [Lucide React](https://lucide.dev/)
+- **Tipografi**: Custom Font PP Mori (Self-hosted & Preloaded)
 
-*   **[Next.js](https://nextjs.org/) (App Router)** - *Framework* React yang andal untuk membangun antarmuka pengguna yang cepat dan optimasi *routing*.
-*   **[React](https://reactjs.org/)** - *Library* utama (UI) berbasis komponen.
-*   **[Tailwind CSS](https://tailwindcss.com/)** - *Framework* CSS *utility-first* untuk penataan gaya (*styling*) yang sangat cepat, konsisten, dan mempermudah desain responsif.
-*   **[GSAP (GreenSock Animation Platform)](https://gsap.com/)** - *Library* animasi standar industri yang digunakan bersama *plugin* `ScrollTrigger` dan `@gsap/react` untuk menciptakan animasi *scroll-driven* yang kompleks tanpa mengorbankan performa.
-*   **[TypeScript](https://www.typescriptlang.org/)** - *Superset* dari JavaScript untuk penulisan kode yang memiliki tipe data yang lebih aman (*type-safe*) dan terstruktur.
+---
 
-## 🚀 Cara Menginstal & Menjalankan Website Secara Lokal
+## 🌟 Fitur Unggulan (Key Features)
 
-Ikuti langkah-langkah *step-by-step* berikut untuk menjalankan *website* ini secara lokal di komputer/laptop Anda:
+### 1. 🌐 Dukungan Dua Bahasa (Seamless Bilingual ID/EN)
+Sistem lokalisasi pintar yang dibangun menggunakan **React Context API**. Pengguna dapat mengganti bahasa (Indonesia/Inggris) secara instan tanpa perlu memuat ulang halaman (*zero page reload*). Terintegrasi ke seluruh elemen mulai dari Navbar, Teks Hero, Animasi GSAP, hingga jawaban dari Chatbot.
 
-### Prasyarat
-Pastikan Anda sudah menginstal **[Node.js](https://nodejs.org/)** (disarankan menggunakan versi LTS 18.x ke atas) dan **npm** (umumnya sudah terpasang otomatis bersamaan dengan Node.js).
+### 2. 🎬 Animasi Berbasis Scroll Tingkat Lanjut (Advanced Scroll Animations)
+Menggunakan algoritma GSAP *ScrollTrigger* yang dioptimasi untuk performa (GPU-Accelerated dengan `will-change-transform`):
+- **Horizontal Scroll Section (Visi & Misi)**: Mengubah *scroll* vertikal menjadi horizontal (*pinning*) di layar Desktop untuk memberikan gaya presentasi sinematik layaknya Apple/Stripe.
+- **Teks Interaktif (Quotes)**: Animasi pembagian karakter teks (*character-splitting*) dan interaksi *hover* yang merespons pointer mouse.
+- **Seamless Infinite Reel (Testimoni)**: Sistem pita berjalan otomatis (*marquee*) yang sangat halus, *pause on hover*, dan responsif di berbagai perangkat.
+- **Galeri 3D Coverflow**: Galeri aktivitas interaktif yang memusatkan pandangan pada foto utama sambil memberikan efek kedalaman (*depth*).
 
-### Langkah-langkah Instalasi
+### 3. ⚡ Ultra-Light Performance & Smooth Scroll
+Mengintegrasikan **Lenis Smooth Scroll** untuk sensasi *scrolling* yang lebih organik dan cair layaknya *native application*, ditambah pengelolaan performa animasi agar tidak menguras CPU (murni dirender melalui GPU).
 
-1. **Clone Repositori**
-   Buka Terminal atau Command Prompt, kemudian *clone* repositori ini ke komputer Anda:
-   ```bash
-   git clone <URL_REPOSITORI_ANDA_DISINI>
-   cd <NAMA_FOLDER_REPOSITORI>
-   ```
-   *(Catatan: Ubah URL repositori sesuai dengan link GitHub Anda).*
+### 4. 🤖 Asisten Virtual Cerdas (Interactive Chatbot)
+Dilengkapi dengan fitur *chatbot* interaktif melayang (*floating widget*) yang memiliki simulasi ketikan cerdas (*typing feedback*), *smart suggestion chips*, dan tentu saja... ia mampu beralih bahasa seketika!
 
-2. **Instal Dependensi (Library)**
-   Jalankan perintah berikut untuk menginstal semua modul dan *library* yang dibutuhkan oleh aplikasi:
-   ```bash
-   npm install
-   ```
-   *(Tunggu beberapa saat hingga proses instalasi atau unduhan selesai).*
+### 5. 📱 Sensibilitas Responsif Menyeluruh (Pixel-Perfect Responsive)
+Mulai dari ukuran layar *smartphone* terkecil hingga monitor *ultra-wide* (4K), tata letak website beradaptasi secara dinamis menggunakan *CSS Grid/Flexbox* dan fungsi perbandingan dinamis `clamp()`.
 
-3. **Jalankan Development Server**
-   Setelah instalasi selesai, jalankan perintah berikut untuk menghidupkan server lokal (mode pengembangan):
-   ```bash
-   npm run dev
-   ```
+---
 
-4. **Buka Website di Browser**
-   Buka web browser favorit Anda (Google Chrome, Firefox, Edge, dll) dan kunjungi alamat berikut:
-   ```
-   http://localhost:3000
-   ```
+## 📋 Catatan Khusus untuk Dewan Juri (For The Judges)
 
-Selamat! Anda sekarang sudah bisa melihat dan berinteraksi dengan **Landing Page Teknik Informatika** secara langsung di komputer Anda.
+Website ini tidak hanya mengejar tampilan visual yang cantik, tetapi juga direkayasa untuk memenuhi standar emas pengembangan web:
+
+1. **Perhatian Terhadap Detail (Attention to Detail)**: 
+   Setiap transisi, jeda durasi animasi, kurva *easing* (`power3.out`, `power4.out`), dan penggunaan efek *blur/glow* latar belakang dikalibrasi secara khusus.
+2. **Kualitas Kode (Clean Code & Architecture)**:
+   Kode disusun secara modular dalam *Components* (seperti `Navbar`, `HeroSection`, `Footer`). Logika dipisahkan (seperti `LanguageContext.tsx`) sehingga *maintainability* sangat tinggi.
+3. **Pengelolaan State & Memori (Memory Management)**:
+   Penggunaan *hook* animasi yang tepat (`useGSAP` dari `@gsap/react`) dengan fitur `scope` memastikan tidak ada kebocoran memori (*memory leak*) ketika navigasi berubah atau ada pembaruan *state* di React 18 Strict Mode.
+4. **Desain UI/UX (User Interface & Experience)**:
+   Menerapkan *contrast ratio* yang memadai di atas *background* hitam pekat (`#111111`) dengan warna aksen primer `#DF1A22` (merah) yang merepresentasikan identitas kuat institusi.
+
+---
+
+## 💻 Panduan Instalasi (Installation & Local Setup)
+
+Ikuti langkah-langkah di bawah ini untuk menjalankan *project* ini secara lokal di komputer Anda:
+
+```bash
+# 1. Clone repositori ini
+git clone https://github.com/HersyaDev11/H2-FKOM-UNIKU-HIMASANTIKA.git
+
+# 2. Masuk ke direktori proyek
+cd H2-FKOM-UNIKU-HIMASANTIKA
+
+# 3. Instal semua dependensi
+npm install
+# atau menggunakan yarn/pnpm:
+# yarn install
+# pnpm install
+
+# 4. Jalankan server pengembangan (development server)
+npm run dev
+```
+
+Buka [http://localhost:3000](http://localhost:3000) di browser Anda untuk melihat hasilnya.
+
+---
+
+> *"Design is not just what it looks like and feels like. Design is how it works."* – Steve Jobs
+
+Dibuat dengan ❤️ untuk **Lomba Web Design HIMASANTIKA**.
