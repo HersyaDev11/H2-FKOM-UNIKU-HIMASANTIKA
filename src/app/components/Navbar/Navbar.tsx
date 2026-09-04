@@ -11,10 +11,10 @@ import { useLanguage } from '../../context/LanguageContext';
 
 const NAV_LINKS = [
   { id: 'beranda', idLabel: 'Beranda', enLabel: 'Home', href: '#beranda' },
-  { id: 'fakta', idLabel: 'Keunggulan', enLabel: 'Excellence', href: '#fakta-akademik' },
-  { id: 'peminatan', idLabel: 'Peminatan', enLabel: 'Specializations', href: '#peminatan' },
-  { id: 'galeri', idLabel: 'Galeri', enLabel: 'Gallery', href: '#galeri' },
-  { id: 'testimoni', idLabel: 'Alumni', enLabel: 'Alumni', href: '#testimoni-alumni' },
+  { id: 'fakta', idLabel: 'Keunggulan', enLabel: 'Excellence', href: 'fakta-akademik' },
+  { id: 'peminatan', idLabel: 'Peminatan', enLabel: 'Specializations', href: 'peminatan' },
+  { id: 'galeri', idLabel: 'Galeri', enLabel: 'Gallery', href: 'galeri' },
+  { id: 'testimoni', idLabel: 'Alumni', enLabel: 'Alumni', href: 'testimoni-alumni' },
 ];
 
 export default function Navbar() {
